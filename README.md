@@ -1,14 +1,18 @@
+## 팀코드 소개
 
-## TODOs
+
+
+## 각종 가이드, 안내 (마지막 개발하던 내용들)
+### TODOs
 
 1. Log 디렉터리를 다른 파일 시스템에 마운트해서 처리할 수 있도록 해 주자. 보통 그렇게 관리하니까.
 2. 계정을 모두 teamcode 로 실행되도록. 현재는 모두 root 로 설정이 됨. 아마도 docker 때문 같음.
 3. application.yml 파일도 설치 세팅하도록
 4. Runner 설치하도록...
 
-## 개발 환경 세팅
+### 개발 환경 세팅
 
-### PC
+#### PC
 Mac 인 경우 아래 명령어로 최신 버전 Subversion Client (1.9.x) 를 설치합니다. 설치 시간이 다소 소요됩니다 (약 30분 이내).
 ```
 brew install subversion --with-java
@@ -27,7 +31,7 @@ Brew 로 설치한 경우 Library Path 가 정확히 Fix 되지 않으므로 아
 ```
 
 
-### 웹
+#### 웹
 
 ```bash
 sudo npm install -g vue-cli
@@ -46,7 +50,7 @@ sudo npm install --save toastr
 sudo npm install --save vuejs-datepicker``````
 ```
 
-#### Webpack
+##### Webpack
 
 Node Version 을 확인합니다.
 
@@ -104,27 +108,7 @@ Vue 를 화면에서 로딩하는데 아래와 같이 오류가 발생하면?
 
 
 
-## Upgrade Guide
-
-### 1.0 --> 1.1
-
-1. sync 추가
-
-#### DB
-
-1. projects.pipeline_enabled 추가 (not null true 인데 어케 하나?)
-2. projects.attachments_visibility 추가 (not null true 인데 어케 하나?)
-3. ci_pipelines 추가
-4. ProjectIntegrationServiceSettings 추가
-5. ci_runners 추가
-6. application_settings 추가
-
-### --> 1.?
-
-#### application.yml 에서 spring.mail 을 제거하고 mail 설정으로 변경
-
-
-## Application Build
+### Application Build
 
 1. gradle -x test build
 2. ./build-docker-image.sh 로 Docker 이미지 생성; tag 를 계속 동일한 것으로 사용하면, 이전 빌드의 Repository 와 Tag 는 <none> 으로 표기되고 새로 생성이 됩니다.
