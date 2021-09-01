@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-default">
+<head>
+    <title>내 프로젝트 목록</title>
+</head>
+<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-3" style="text-align: center;">
+				<h1 style="font-size: 24px; margin-top: 15px; margin-bottom: 35px;">대시보드</h1>
+				<img th:src="@{/assets/images/hello.png}" width="150" height="150"/>
+			</div>
+			<div class="col-md-9">
+		    <div class="projects-list-holder">
+	        <ul th:if="${!projects.empty}" class="projects-list content-list">
+	            <li th:each="project : ${projects}" class="project-row" th:classappend="${project.description != '' ? '' : 'no-description'}">
+                <div class="controls">
+                  <!-- span class="badge">0 Bytes</span -->
+                  <!-- span class="visibility-icon has-tooltip" data-container="body" data-placement="left" title="" th:attr="data-original-title=${project.visibility.tooltip}">
+                    <i th:if="${project.visibility.name() == 'PUBLIC'}" class="fa fa-globe fa-fw"></i>
+                    <i th:if="${project.visibility.name() == 'INTERNAL'}" class="fa fa-shield fa-fw"></i>
+                  </span -->
+                </div>
+	                <div class="title">
+	                    <a th:href="@{/projects/{path}(path=${project.path})}">
+	                        <div class="dash-project-avatar">
+	                            <div class="avatar-container project-avatar-container s40">
+	                                <img th:if="${project.avatarFileName != null}" class="avatar project-avatar" th:src="@{/avatar/projects/{projectPath}/{fileName}(projectPath=${project.path},fileName=${project.avatarFileName})}"/>
+	                                <img th:if="${project.avatarFileName == null}" class="avatar project-avatar" th:src="@{/avatar/langs/{fileName}.svg(fileName=${project.programmingLanguageIcon})}"/>
+	                            </div>
+	                        </div>
+	                        <span class="project-full-name">
+	                            <!-- span class="namespace-name">bigdata/</span --><span class="project-name filter-title" th:text="${project.name}">Project Path</span>
+	                        </span>
+	                    </a>
+	                </div>
+	                <div th:if="${project.description != ''}" class="description">
+		                <p dir="auto" th:text="${project.description}"></p>
+	                </div>
+	                <div class="project-annotations">
+		                <span th:if="${project.programmingLanguage != null}" class="project-lang" th:classappend="${project.programmingLanguage}" th:text="${project.programmingLanguage.displayName}"></span>
+		                <span th:if="${project.lastCommit != null}"><time class="js-timeago" th:attr="datetime=${#dates.format(project.lastCommit.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(project.lastCommit.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}"  data-toggle="tooltip" data-placement="top" data-container="body">?</time>에 마지막 커밋</span>
+	                </div>
+	            </li>
+	        </ul>
+	        <div th:if="${projects.empty}" class="nothing-here-block" th:text="#{projects.message.noProjects}">No projects found</div>
+		    </div>
+		    <form id="form-delete-project" method="POST">
+		        <input type="hidden" name="_method" value="delete"/>
+		    </form>
+			</div>
+		</div>
+</div><!-- .page-with-sidebar -->
+</html>

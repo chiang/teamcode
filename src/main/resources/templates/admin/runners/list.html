@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <p class="prepend-top-default">
+        <span>Runner 를 사용하기 위해서는 먼저 등록을 해야 합니다. 등록은 다음 Token 값을 Runner 에 설정 후에 Runner 를 실행하면 됩니다.<br/>
+        <br/>
+        등록 토큰은 <code id="runners-token" th:text="${runnersView.currentToken}"></code> 입니다.
+        </span>
+    </p>
+    <div class="bs-callout clearfix">
+        <div class="pull-left">
+            <p>아래 버튼을 클릭해서 Runner 등록 토큰을 재설정할 수 있습니다.</p>
+            <p></p>
+            <form class="button_to" method="post" th:action="@{/admin/runners?resetToken}">
+                <input type="hidden" name="_method" value="put"/>
+                <button class="btn btn-default" data-confirm="Are you sure you want to reset registration token?" type="submit"><i class="fa fa-refresh"></i>Runner 등록 토큰 재설정하기</button>
+            </form>
+            <p></p>
+        </div>
+    </div>
+    <br/>
+    <div class="table-holder">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>Runner token</th>
+                    <th>Description</th>
+                    <!-- th>Projects</th>
+                    <th>Builds</th>
+                    <th>Tags</th -->
+                    <th>Last contact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="runner: ${runnersView.runners}">
+                    <td>
+                        <th:block th:if="${runner.online}">
+                            <i class="fa fa-circle runner-status-online" title="Runner is online, last contact was 1 minute ago"></i>
+                        </th:block>
+                    </td>
+                    <td th:text="|#${runner.id}|"></td>
+                    <td th:text="${runner.token}"></td>
+                    <td th:text="${runner.name}"></td>
+                    <td th:text="${runner.contactedAt}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

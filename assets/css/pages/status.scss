@@ -1,0 +1,148 @@
+.container-fluid {
+
+  a.ci-status {
+    text-decoration: none;
+  }
+  .ci-status {
+    padding: 2px 7px 4px;
+    margin-right: 10px;
+    border: 1px solid $gray-darker;
+    white-space: nowrap;
+    border-radius: 4px;
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    svg {
+      height: 13px;
+      width: 13px;
+      position: relative;
+      top: 2px;
+      overflow: visible;
+    }
+
+    &.ci-failed,
+    &.ci-failed_with_warnings {
+      color: $gl-danger;
+      border-color: $gl-danger;
+
+      &:not(span):hover {
+        background-color: rgba($gl-danger, .07);
+      }
+
+      svg {
+        fill: $gl-danger;
+      }
+    }
+
+    &.ci-success,
+    &.ci-success_with_warnings {
+      color: $gl-success;
+      border-color: $gl-success;
+
+      &:not(span):hover {
+        background-color: rgba($gl-success, .07);
+      }
+
+      svg {
+        fill: $gl-success;
+      }
+    }
+
+    &.ci-info {
+      color: $gl-info;
+      border-color: $gl-info;
+
+      &:not(span):hover {
+        background-color: rgba($gl-info, .07);
+      }
+
+      svg {
+        fill: $gl-info;
+      }
+    }
+
+    &.ci-canceled,
+    &.ci-disabled {
+      color: $gl-text-color;
+      border-color: $gl-text-color;
+
+      &:not(span):hover {
+        background-color: rgba($gl-text-color, .07);
+      }
+
+      svg {
+        fill: $gl-text-color;
+      }
+    }
+
+    &.ci-pending {
+      color: $gl-warning;
+      border-color: $gl-warning;
+
+      &:not(span):hover {
+        background-color: rgba($gl-warning, .07);
+      }
+
+      svg {
+        fill: $gl-warning;
+      }
+    }
+
+    &.ci-running {
+      color: $blue-normal;
+      border-color: $blue-normal;
+
+      &:not(span):hover {
+        background-color: rgba($blue-normal, .07);
+      }
+
+      svg {
+        fill: $blue-normal;
+      }
+    }
+
+    &.ci-created,
+    &.ci-skipped {
+      color: $gl-text-color-secondary;
+      border-color: $gl-text-color-secondary;
+
+      &:not(span):hover {
+        background-color: rgba($gl-text-color-secondary, .07);
+      }
+
+      svg {
+        fill: $gl-text-color-secondary;
+      }
+    }
+
+    &.ci-manual {
+      color: $gl-text-color;
+      border-color: $gl-text-color;
+
+      &:not(span):hover {
+        background-color: rgba($gl-text-color, .07);
+      }
+
+      svg {
+        fill: $gl-text-color;
+      }
+    }
+  }
+}
+
+.visible-xs-inline {
+  .ci-status-link {
+    position: relative;
+    top: 2px;
+    left: 5px;
+  }
+}
+
+.ci-status-link {
+  svg {
+    overflow: visible;
+  }
+}

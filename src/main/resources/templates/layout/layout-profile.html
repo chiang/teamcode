@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+    <title layout:title-pattern="$CONTENT_TITLE">My website</title>
+    <style>
+        [v-cloak] {
+        display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="global-navigation">
+    <div id="project-list-bar">
+        <a th:href="@{/dashboard}" class="brand-logo">
+            <img th:src="@{/assets/images/teamcode-logo-reverse.png}"/>
+        </a>
+        <br/>
+        <div class="help-quick-menu dropdown">
+            <svg data-toggle="dropdown" width="26" height="26" viewBox="11 11 18 18" focusable="false" class="" role="img" aria-labelledby="title-vp1b0nn"><title id="title-vp1b0nn">Help</title><path d="M11 20a9 9 0 1 0 18 0 9 9 0 0 0-18 0zm8.858 5.25h-.047c-.733-.023-1.251-.563-1.23-1.286.021-.71.55-1.227 1.26-1.227l.043.001c.753.022 1.265.557 1.244 1.3-.022.713-.542 1.211-1.27 1.211zm3.086-6.124c-.173.244-.552.55-1.03.922l-.527.363c-.288.225-.463.437-.527.645-.053.163-.077.207-.082.54v.084h-2.01l.005-.17c.025-.698.042-1.11.332-1.45.454-.533 1.457-1.18 1.5-1.207a1.56 1.56 0 0 0 .355-.363c.21-.292.304-.52.304-.744a1.45 1.45 0 0 0-.275-.858c-.176-.25-.51-.374-.995-.374-.48 0-.809.152-1.005.465-.202.32-.304.657-.304 1v.087h-2.073l.004-.09c.053-1.268.507-2.183 1.345-2.716.528-.338 1.185-.51 1.95-.51 1.002 0 1.85.244 2.515.724.676.486 1.018 1.216 1.018 2.166 0 .532-.168 1.032-.5 1.486z" fill="currentColor" fill-rule="evenodd" role="presentation"></path></svg>
+            <ul class="dropdown-menu up" aria-labelledby="dLabel">
+                <li class="dropdown-header">Help</li>
+                <li>
+                    <a th:href="@{/help/faq}" aria-label="Quick Answers" target="_blank">빠른 답변!</a>
+                </li>
+                <li>
+                    <a th:href="@{/help}" aria-label="Documentation" target="_blank">사용자 매뉴얼</a>
+                </li>
+                <li>
+                    <a class="profile-link" aria-label="Keyboard Shortcuts" data-user="baramboy" href="#!">키보드 단축키</a>
+                </li>
+            </ul>
+        </div>
+        <div class="profile-quick-menu dropdown">
+            <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <!-- img th:attr="data-name=${commit.author}" class="avatar comment-avatar profile" / -->
+                <!-- img class="avatar has-tooltip s36 hidden-xs" alt="Administrator's avatar" title="Administrator" data-container="body" th:src="@{/assets/images/chiang.png}"/ -->
+                <img th:if="${session.currentUser.avatarFileName != null}" th:alt="${session.currentUser.name}" class="avatar header-user-avatar s36" th:src="@{/avatar/users/{userName}/{fileName}(userName=${session.currentUser.name},fileName=${session.currentUser.avatarFileName})}" />
+                <img th:if="${session.currentUser.avatarFileName == null}" th:attr="data-name=${session.currentUser.fullName}" class="avatar header-user-avatar profile s36" />
+            </a>
+            <ul class="dropdown-menu up" aria-labelledby="dLabel">
+                <li>
+                    <a aria-label="전체 프로젝트" data-user="baramboy" th:href="@{/}">내 프로젝트</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a th:href="@{/admin}">관리자</a>
+                </li>
+                <li>
+                    <a class="profile-link" aria-label="Profile" data-user="baramboy" th:href="@{/profile}">프로필</a>
+                </li>
+                <li>
+                    <a aria-label="Settings" href="/profile">설정</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a class="sign-out-link" aria-label="Sign out" rel="nofollow" th:href="@{/logout}">로그아웃</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<header th:replace="fragments/header :: default-header">Default Header</header>
+<div class="page-with-sidebar">
+    <div class="layout-nav">
+        <div class="container-fluid">
+            <div class="nav-control scrolling-tabs-container">
+                <div class="fade-left">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="fade-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+                <ul class="nav-links scrolling-tabs">
+                    <li th:classappend="${#httpServletRequest.requestURI == '/profile' ? 'active' : ''}">
+                        <a title="Profile" class="shortcuts-project" th:href="@{/profile}"><span>Profile</span></a>
+                    </li>
+                    <li th:classappend="${#httpServletRequest.requestURI == '/profile/emails' ? 'active' : ''}">
+                        <a title="My emails" class="shortcuts-graphs" th:href="@{/profile/emails}"><span>Emails</span></a>
+                    </li>
+                    <li th:classappend="${#httpServletRequest.requestURI == '/profile/password' ? 'active' : ''}">
+                        <a title="Password" class="shortcuts-issues" th:href="@{/profile/password}"><span>Password</span></a>
+                    </li>
+                    <!-- li th:classappend="${#httpServletRequest.requestURI == '/profile/notifications' ? 'active' : ''}">
+                        <a title="Notifications" class="shortcuts-merge_requests" th:href="@{/profile/notifications}"><span>Notifications</span></a>
+                    </li>
+                    <li th:classappend="${#httpServletRequest.requestURI == '/profile/preferences' ? 'active' : ''}">
+                        <a title="Preferences" class="shortcuts-snippets" th:href="@{/profile/preferences}"><span>Preferences</span></a>
+                    </li>
+                    <li th:classappend="${#httpServletRequest.requestURI == '/profile/audit' ? 'active' : ''}">
+                        <a title="Audit Logs" class="shortcuts-snippets" th:href="@{/profile/audit}"><span>Audit Log</span></a>
+                    </li -->
+                </ul>
+            </div>
+        </div><!-- .container-fluid -->
+    </div>
+    <div class="content-wrapper page-with-layout-nav">
+        <div th:if="${notice != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-notice">
+                    <div class="flash-text" th:text="${notice}"></div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${alert != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-alert">
+                    <div class="flash-text" th:text="${alert}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="content-body">
+            <div th:class="'container-fluid ' + (${session.currentUser.layout.name() == 'FIXED'} ? 'container-limited' : '')">
+                <div layout:fragment="content">
+                    <!-- ============================================================================ -->
+                    <!-- This content is only used for static prototyping purposes (natural templates)-->
+                    <!-- and is therefore entirely optional.                                          -->
+                    <!-- ============================================================================ -->
+                    <h1>Static content for prototyping purposes only</h1>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
+                        Phasellus et placerat elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
+                        Phasellus et placerat elit.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/js/libs/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/assets/js/libs/bootstrap-3.3.7.min.js}"></script>
+<script th:src="@{/assets/js/libs/select2-4.0.3.min.js}"></script>
+<script th:src="@{/assets/js/libs/initial.min.js}"></script>
+<script th:src="@{/assets/js/libs/vue.min.js}"></script>
+<script th:src="@{/assets/js/vue-utils.js}"></script>
+<script th:src="@{/assets/js/tc.js}"></script>
+<script>
+<!--
+	$(function(){
+	    $('.profile').initial();
+		$('#search').focusin(function(){
+			$(this).closest('.search-form').addClass('search-active');
+		});
+		$('#search').focusout(function(){
+			$(this).closest('.search-form').removeClass('search-active');
+		});
+
+		$('.alert-wrapper').click(function(){
+          $(this).fadeOut( "slow" );
+        });
+	});
+-->
+</script>
+<script layout:fragment="content-script"></script>
+</body>
+</html>

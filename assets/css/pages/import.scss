@@ -1,0 +1,20 @@
+.import-jobEntries-from-col,
+.import-jobEntries-to-col {
+  width: 40%;
+}
+
+.import-jobEntries-status-col {
+  width: 20%;
+}
+
+.btn-import {
+  .loading-icon {
+    display: none;
+  }
+
+  &.is-loading {
+    .loading-icon {
+      display: inline-block;
+    }
+  }
+}

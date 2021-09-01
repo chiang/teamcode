@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-profile">
+<head>
+	<title>Audit Log &middot; User Settings</title>
+</head>
+<div layout:fragment="content" class="row mt">
+	<div class="col-lg-3 profile-settings-sidebar">
+		<h3 class="prepend-top-0" th:text="#{profile.audit.header}">Audit Log</h3>
+		<p th:text="#{profile.audit.header.help}">This is a security log of important events involving your account.</p>
+	</div>
+	<div class="col-lg-9">
+		<h5 class="prepend-top-0">History of authentications</h5>
+		<ul class="well-list">
+			<li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    1 day ago
+                  </span>
+			</li>
+			<li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    1 day ago
+                  </span>
+			</li>
+			<li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    2 days ago
+                  </span>
+			</li>
+			<li>
+                  <span class="description">
+                    <i class="fa fa-bitbucket append-right-5"></i>
+                    Signed in with
+                    bitbucket
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    15 days ago
+                  </span>
+			</li>
+		</ul>
+	</div>
+</div>
+</html>

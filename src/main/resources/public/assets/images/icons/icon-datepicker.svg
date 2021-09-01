@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-datepicker</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-datepicker">
+            <rect id="Rectangle-12" stroke="#41516F" stroke-width="2" x="5" y="7" width="14" height="12" rx="2"></rect>
+            <path d="M7,5 C7,4.44771525 7.44386482,4 8,4 L8,4 C8.55228475,4 9,4.44386482 9,5 L9,6 L7,6 L7,5 Z" id="Rectangle-13" fill="#41516F"></path>
+            <path d="M15,5 C15,4.44771525 15.4438648,4 16,4 L16,4 C16.5522847,4 17,4.44386482 17,5 L17,6 L15,6 L15,5 Z" id="Rectangle-13" fill="#41516F"></path>
+            <rect id="Rectangle-14" fill="#41516F" x="8" y="11" width="2" height="2"></rect>
+            <rect id="Rectangle-14" fill="#41516F" x="11" y="11" width="2" height="2"></rect>
+            <rect id="Rectangle-14" fill="#41516F" x="14" y="11" width="2" height="2"></rect>
+            <rect id="Rectangle-14" fill="#41516F" x="14" y="14" width="2" height="2"></rect>
+            <rect id="Rectangle-14" fill="#41516F" x="11" y="14" width="2" height="2"></rect>
+            <rect id="Rectangle-14" fill="#41516F" x="8" y="14" width="2" height="2"></rect>
+            <rect id="Rectangle-15" fill="#41516F" x="6" y="8" width="12" height="1"></rect>
+        </g>
+    </g>
+</svg>

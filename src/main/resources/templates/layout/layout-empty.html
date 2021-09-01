@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+    <title layout:title-pattern="$CONTENT_TITLE">My website</title>
+    <style>
+        [v-cloak] {
+        display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="page-with-sidebar" style="padding-left: 0;">
+    <div class="content-wrapper page-with-layout-nav">
+        <div th:if="${notice != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-notice">
+                    <div class="flash-text" th:text="${notice}"></div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${alert != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-alert">
+                    <div class="flash-text" th:text="${alert}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content" id="content-body">
+            <div class="container-fluid">
+                <div layout:fragment="content">
+                    <!-- ============================================================================ -->
+                    <!-- This content is only used for static prototyping purposes (natural templates)-->
+                    <!-- and is therefore entirely optional.                                          -->
+                    <!-- ============================================================================ -->
+                    <h1>Static content for prototyping purposes only</h1>
+
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
+                        Phasellus et placerat elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Praesent scelerisque neque neque, ac elementum quam dignissim interdum.
+                        Phasellus et placerat elit.
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/js/libs/jquery-3.2.0.min.js}"></script>
+<script th:src="@{/assets/js/libs/bootstrap-3.3.7.min.js}"></script>
+<script th:src="@{/assets/js/libs/select2-4.0.3.min.js}"></script>
+<script th:src="@{/assets/js/libs/initial.min.js}"></script>
+<script th:src="@{/assets/js/libs/vue.min.js}"></script>
+<script th:src="@{/assets/js/vue-utils.js}"></script>
+<script th:src="@{/assets/js/tc.js}"></script>
+<script>
+<!--
+	$(function(){
+	    $('.profile').initial();
+		$('#search').focusin(function(){
+			$(this).closest('.search-form').addClass('search-active');
+		});
+		$('#search').focusout(function(){
+			$(this).closest('.search-form').removeClass('search-active');
+		});
+
+		$('.alert-wrapper').click(function(){
+          $(this).fadeOut( "slow" );
+        });
+	});
+-->
+</script>
+<script layout:fragment="content-script"></script>
+</body>
+</html>

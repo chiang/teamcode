@@ -1,0 +1,103 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+		<div class="">
+			<label class="label-light">마일스톤</label>
+			<p class="help-block">빌드 및 배포 시 Runner 가 사용하는 변수입니다. 자주 사용하는 정보를 등록해서 사용해 보세요.</p>
+		</div>
+		<div class="top-area">
+			<ul class="nav-links">
+				<li class="active"><a href="/baramboy/jandi-connector/milestones?state=opened">Open <span class="badge">1</span></a></li>
+				<li class=""><a href="/baramboy/jandi-connector/milestones?sort=due_date_desc&amp;state=closed">Closed <span class="badge">0</span></a></li>
+				<li class=""><a href="/baramboy/jandi-connector/milestones?sort=due_date_desc&amp;state=all">All <span class="badge">1</span></a></li>
+			</ul>
+			<div class="nav-controls">
+				<!-- div class="dropdown inline prepend-left-10">
+					<button class="dropdown-toggle" data-toggle="dropdown" type="button" aria-expanded="false">
+						<span class="light"></span>
+						Due soon
+						<i aria-hidden="true" class="fa fa-chevron-down"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-align-right dropdown-menu-sort">
+						<li>
+							<a href="/baramboy/jandi-connector/milestones?sort=due_date_asc">Due soon
+							</a><a href="/baramboy/jandi-connector/milestones?sort=due_date_desc">Due later
+						</a><a href="/baramboy/jandi-connector/milestones?sort=start_date_asc">Start soon
+						</a><a href="/baramboy/jandi-connector/milestones?sort=start_date_desc">Start later
+						</a><a href="/baramboy/jandi-connector/milestones?sort=name_asc">Name, ascending
+						</a><a href="/baramboy/jandi-connector/milestones?sort=name_desc">Name, descending
+						</a></li>
+					</ul>
+				</div -->
+
+				<a class="btn btn-new" title="새로운 마일스톤을 만듭니다." th:href="@{/projects/{projectPath}/admin/milestones?create(projectPath=${paramProjectPath})}">새 마일스톤</a>
+			</div>
+		</div>
+		<div class="milestones prepend-top-20">
+			<ul class="content-list">
+				<li class="milestone milestone-open" id="milestone_156176">
+					<div class="row">
+						<div class="col-sm-6">
+							<strong><a href="/baramboy/jandi-connector/milestones/1">0.0.1</a></strong>
+						</div>
+						<div class="col-sm-6">
+							<div class="pull-right light">100% complete</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="/baramboy/jandi-connector/issues?milestone_title=0.0.1">1 Issue</a>
+							·
+							<a href="/baramboy/jandi-connector/merge_requests?milestone_title=0.0.1">0 Merge Requests</a>
+						</div>
+						<div class="col-sm-6"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 100%;"></div></div></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6"><span class="cred">(Expired)</span>
+							<span>Jan 24, 2017–Jan 31, 2017</span>
+						</div>
+						<div class="col-sm-6 milestone-actions">
+							<a class="btn btn-xs btn-grouped" href="/baramboy/jandi-connector/milestones/1/edit">Edit
+							</a>
+							<a class="btn btn-xs btn-close btn-grouped" data-remote="true" rel="nofollow" data-method="put" href="/baramboy/jandi-connector/milestones/1?milestone%5Bstate_event%5D=close">Close Milestone</a>
+							<a data-confirm="Are you sure?" class="btn btn-xs btn-remove btn-grouped" rel="nofollow" data-method="delete" href="/baramboy/jandi-connector/milestones/1">Delete
+							</a>
+						</div>
+					</div>
+				</li>
+				<li th:each="milestone : ${milestonesView.milestones}" class="milestone milestone-open">
+					<div class="row">
+						<div class="col-sm-6">
+							<strong><a th:href="@{/projects/{projectPath}/admin/milestones/{milestoneId}(projectPath=${paramProjectPath},milestoneId=${milestone.id})}" th:text="${milestone.title}"></a></strong>
+						</div>
+						<div class="col-sm-6">
+							<div class="pull-right light">100% complete</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6">
+							<a href="/baramboy/jandi-connector/issues?milestone_title=0.0.1">1 Issue</a>
+							·
+							<a href="/baramboy/jandi-connector/merge_requests?milestone_title=0.0.1">0 Merge Requests</a>
+						</div>
+						<div class="col-sm-6"><div class="progress"><div class="progress-bar progress-bar-success" style="width: 100%;"></div></div></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6"><span class="cred">(Expired)</span>
+							<span>Jan 24, 2017–Jan 31, 2017</span>
+						</div>
+						<div class="col-sm-6 milestone-actions">
+							<a class="btn btn-xs btn-grouped" href="/baramboy/jandi-connector/milestones/1/edit">Edit
+							</a>
+							<a class="btn btn-xs btn-close btn-grouped" data-remote="true" rel="nofollow" data-method="put" href="/baramboy/jandi-connector/milestones/1?milestone%5Bstate_event%5D=close">Close Milestone</a>
+							<a data-confirm="Are you sure?" class="btn btn-xs btn-remove btn-grouped" rel="nofollow" data-method="delete" href="/baramboy/jandi-connector/milestones/1">Delete
+							</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</html>

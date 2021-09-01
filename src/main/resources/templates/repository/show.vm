@@ -1,0 +1,35 @@
+<html>
+<head>
+	#parse ("./include/head-styles.vm")
+</head>
+<body>
+#parse ("./include/header.vm")
+<div class="page-with-sidebar">
+	#parse ("./include/project-header.vm")
+	<div class="content-wrapper page-with-layout-nav">
+		#parse ("./include/issue-sub-nav.vm")
+		<div class="content" id="content-body">
+			<div class="container-fluid container-limited">
+				<div>$repository.name</div>
+        <div class="row-content-block second-block center">
+        	<h3 class="page-title">The repository for this project is empty</h3>
+        	<p>If you already have changedFiles you can push them using command line instructions below.</p>
+        	<p>
+        		Otherwise you can start with adding a
+        		<a class="underlined-link" href="/baramboy/jandi-connector/new/master?commit_message=Add+readme.md&amp;file_name=README.md">README</a>,
+        	a
+        <a class="underlined-link" href="/baramboy/jandi-connector/new/master?commit_message=Add+license&amp;file_name=LICENSE">LICENSE</a>,
+        or a
+        <a class="underlined-link" href="/baramboy/jandi-connector/new/master?commit_message=Add+.gitignore&amp;file_name=.gitignore">.gitignore</a>
+        to this project.
+        	</p>
+        	<p>
+        	You will need to be owner or have the master permission level for the initial push, as the master branch is automatically protected.
+        	</p>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

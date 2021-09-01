@@ -1,0 +1,16 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+		<div class="content-top adjust">
+			<div class="nav-text">
+			이슈에 레이블을 붙여 관리할 수 있습니다. 별표로 표시하면 우선 순위를 높일 수 있습니다. Drag 에서 우선 순위를 조정할 수 있습니다.
+			</div>
+			<div class="nav-controls">
+				<a class="btn btn-new" th:href="@{/projects/{projectPath}/admin/issues/labels?create(projectPath=${paramProjectPath})}">새 레이블</a>
+			</div>
+		</div>
+		<div id="vue_issue_label_list" th:attr="data-endpoint=@{/projects/{path}/admin/issues/labels(path=${paramProject.path})}"></div>
+	</div>
+</div>
+</html>

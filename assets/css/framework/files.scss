@@ -1,0 +1,235 @@
+/**
+ * File content holder
+ *
+ */
+.file-holder {
+  border: 1px solid $border-color;
+  border-top: 2px solid $border-color;
+
+  &.file-holder-no-border {
+    border: 0;
+  }
+
+  &.readme-holder {
+    margin: $gl-padding-top 0;
+  }
+
+  table {
+    @extend .table;
+  }
+
+  .file-title {
+    position: relative;
+    //background-color: $gray-light;
+    background-color: #fff;
+    border-bottom: 1px solid $border-color;
+    margin: 0;
+    text-align: left;
+    padding: 8px $gl-padding;
+    word-wrap: break-word;
+    border-radius: 3px 3px 0 0;
+
+    &.file-title-clear {
+      padding-left: 0;
+      padding-right: 0;
+      background-color: transparent;
+
+      .file-actions {
+        right: 0;
+      }
+    }
+
+    .file-actions {
+      position: absolute;
+      top: 5px;
+      right: 15px;
+
+      .btn {
+        //padding: 0 10px;
+        //font-size: 13px;
+        //line-height: 28px;
+      }
+    }
+
+    a:not(.btn) {
+      //color: $gl-text-color;
+    }
+
+    .left-options {
+      margin-top: -3px;
+    }
+  }
+
+  .file-content {
+    background: $white-light;
+
+    &.image_file {
+      background: $file-image-bg;
+      text-align: center;
+
+      img {
+        padding: 20px;
+        max-width: 80%;
+      }
+    }
+
+    &.wiki {
+      padding: 30px $gl-padding;
+
+      .highlight {
+        margin-bottom: 9px;
+
+        > pre {
+          margin: 0;
+        }
+      }
+    }
+
+    &.blob-no-preview {
+      background: $blob-bg;
+      text-shadow: 0 1px 2px $white-light;
+      padding: 100px 0;
+    }
+
+    /**
+     *  Blame file
+     */
+    &.blame {
+      table {
+        border: none;
+        margin: 0;
+      }
+
+      tr {
+        border-bottom: 1px solid $blame-border;
+      }
+
+      td {
+        &:first-child {
+          border-left: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      td.blame-commit {
+        padding: 0 10px;
+        min-width: 400px;
+        background: $gray-light;
+      }
+
+      td.line-numbers {
+        float: none;
+        border-left: 1px solid $blame-line-numbers-border;
+
+        i {
+          float: none;
+          margin-right: 0;
+        }
+      }
+
+      td.lines {
+        padding: 0;
+      }
+    }
+
+    &.logs {
+      background: $logs-bg;
+      max-height: 700px;
+      overflow-y: auto;
+
+      ol {
+        margin-left: 40px;
+        padding: 10px 0;
+        border-left: 1px solid $border-color;
+        margin-bottom: 0;
+        background: $white-light;
+
+        li {
+          color: $logs-li-color;
+
+          p {
+            margin: 0;
+            color: $logs-p-color;
+            line-height: 24px;
+            padding-left: 10px;
+          }
+
+          &:hover {
+            background: $row-hover;
+          }
+        }
+      }
+    }
+
+    /**
+     *  Code file
+     */
+    &.code {
+      padding: 0;
+    }
+  }
+}
+
+span.idiff {
+  &.left {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+  }
+
+  &.right {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}
+
+.file-stats {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+
+    li {
+      padding: 3px 0;
+      line-height: 20px;
+    }
+  }
+
+  .new-file {
+    a {
+      color: $gl-text-green;
+    }
+  }
+
+  .renamed-file {
+    a {
+      color: $gl-text-orange;
+    }
+  }
+
+  .deleted-file {
+    a {
+      color: $gl-text-red;
+    }
+  }
+
+  .edit-file {
+    a {
+      color: $gl-text-color;
+    }
+  }
+
+  a {
+    text-decoration: none;
+
+    .new-file {
+      color: $notify-new-file;
+    }
+
+    .deleted-file {
+      color: $notify-deleted-file;
+    }
+  }
+}

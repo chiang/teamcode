@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link rel="stylesheet" th:href="@{/assets/css/application.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">My website</title>
+</head>
+<body th:attr="data-project-path=${paramProjectPath}">
+<div id="project-list-bar">
+    <div class="avatar project-avatar s40 identicon" style="background-color: #E3F2FD;" th:text="${project.identiconChar}">P</div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+        <li class="sidebar-brand">
+            <a href="#">
+                <h1 style="color: #283c46;">Bootstrap 3</h1>
+            </a>
+        </li>
+        <li>
+            <a title="Project" class="shortcuts-project" th:href="@{/{groupPath}/{projectPath}(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Project</span></a>
+        </li>
+        <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/activity')} ? 'active': ''">
+            <a title="Activity" class="shortcuts-project-activity" th:href="@{/{groupPath}/{projectPath}/activity(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Activity</span></a>
+        </li>
+        <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/files')} ? 'active': ''">
+            <a title="Sources" class="shortcuts-tree" th:href="@{/{groupPath}/{projectPath}/files(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Repository</span></a>
+        </li>
+        <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/commits')} ? 'active': ''">
+            <a title="Commits" class="shortcuts-tree" th:href="@{/{groupPath}/{projectPath}/files(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Commits</span></a>
+        </li>
+        <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/settings/members')} ? 'active' : ''">
+            <a title="Members" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/settings/members(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Members</span></a>
+        </li>
+        <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*!(/)$')} ? 'active' : ''">
+            <a title="Settings" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}?edit(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Settings</span></a>
+        </li>
+    </ul>
+</nav>
+<header th:replace="fragments/header :: default-header">Default Header</header>
+<div class="page-with-sidebar">
+    <div class="layout-nav">
+        <div class="container-fluid">
+            <div class="nav-control scrolling-tabs-container">
+                <div class="fade-left">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="fade-right">
+                    <i class="fa fa-angle-right"></i>
+                </div>
+            </div>
+        </div><!-- .container-fluid -->
+    </div>
+    <div class="content-wrapper page-with-layout-nav">
+        <div th:if="${#httpServletRequest.requestURI.matches('/.*/.*/(issues|labels|milestones)')}" >
+            <div th:replace="fragments/project-issue-sub-nav :: sub-nav"></div>
+        </div>
+        <div th:if="${#httpServletRequest.requestURI.matches('/.*/.*/(changedFiles|commits)')}" >
+            <div th:replace="fragments/project-repository-sub-nav :: sub-nav"></div>
+        </div>
+        <div th:if="${notice != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-notice">
+                    <div class="flash-text" th:text="${notice}"></div>
+                </div>
+            </div>
+        </div>
+        <div th:if="${alert != null}" class="alert-wrapper">
+            <div class="flash-container flash-container-page">
+                <div class="flash-notice">
+                    <div class="flash-text" th:text="${notice}"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content" id="content-body">
+            <div th:class="'container-fluid ' + (${session.currentUser.layout.name() == 'FIXED'} ? 'container-limited' : '')">
+                <div layout:fragment="content">
+                    <h1>Static content for prototyping purposes only</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script th:src="@{/assets/js/jquery.timeago.js}"></script>
+<script>
+<!--
+    var localTimeAgo = function(selector){
+        $(selector).each(function(i, e){
+            $(e).tooltip({
+                template: '<div class="tooltip local-timeago" role="tooltip"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'
+            });
+            $(e).timeago('update', $(e).attr('datetime'));
+        });
+        //$timeagoEls.each((i, el) => {
+        //    el.setAttribute('title', gl.utils.formatDate(el.getAttribute('datetime')));
+        //    el.classList.add('js-timeago-render');
+        //  });
+    }
+	$(function(){
+	    $('.select2').select2();
+		$('#search').focusin(function(){
+			$(this).closest('.search-form').addClass('search-active');
+		});
+		$('#search').focusout(function(){
+			$(this).closest('.search-form').removeClass('search-active');
+		});
+		$('.alert-wrapper').click(function(){
+            $(this).fadeOut( "slow" );
+        });
+	});
+-->
+</script>
+<th:block layout:fragment="content-script"></th:block>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title></title>
+</head>
+<body bgcolor="#ffffff" style="color: #444; background-color: #ffffff;">
+  <table border="0" cellpadding="10" style="max-width: 550px;">
+    <tr>
+      <td>
+        <h1 style="color: #000; font-family: 'Lucida Grande',verdana; font-size: 16px; margin-top: 33px; padding-bottom: 20px;"><span th:text="${projectName}"></span> 프로젝트에 새로운 커밋이 올라왔습니다.</h1>
+        <p style="font-family: 'Lucida Grande',verdana; font-size: 14px; margin: 0 0 20px 0; line-height: 1.5em;">안녕하세요 <span th:text="${recipient}"></span> 님,</p>
+        <p style="font-family: 'Lucida Grande',verdana; font-size: 14px; margin: 0 0 0 0; line-height: 1.5em;"><strong th:text="${projectName}"></strong> 프로젝트에 <strong th:text="${changedFiles}"></strong> 개 파일에 대한 변경 사항이 커밋되었습니다. <strong th:text="${author}"></strong> 님이 커밋했으며 커밋 메시지는 아래와 같습니다.</p>
+        <p style="margin: 20px 0 20px; background-color: #ff0; font-size: 14px;" th:text="${message}"></p>
+        <h2 style="color: #000; font-family: 'Lucida Grande',verdana; font-size: 15px; margin-top: 50px; padding: 0 0 5px 0;">세부 변경 사항</h2>
+        <p style="font-family: 'Lucida Grande',verdana; font-size: 14px; margin: 0 0 20px 0; line-height: 1.5em;">이 커밋에는 <mark th:text="${commitDetails}"></mark> 이 있습니다. 상세한 내용을 보시려면 <a th:href="${commitUrl}" th:text="${commitUrl}">커밋 목록</a> 을 방문하시기 바랍니다.</p>
+        <p style="font-family: 'Lucida Grande',verdana; font-size: 14px; margin: 40px 0 20px 0; line-height: 1.5em;">TeamCode 에서<br /><a th:href="${teamCodeUrl}" th:text="${teamCodeUrl}"></a></p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

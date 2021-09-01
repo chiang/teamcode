@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-info-svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-info-svg">
+            <circle id="Oval" fill="#2FB47E" cx="12" cy="12" r="9"></circle>
+            <g id="checkmark-green" transform="translate(7.000000, 7.000000)" fill-rule="nonzero" fill="#FFFFFF">
+                <path d="M2.90322581,9.90322581 L0.290322581,6.41935484 C-0.064516129,6 1.87350135e-15,5.32258065 0.483870968,5 C0.903225806,4.67741935 1.58064516,4.77419355 1.90322581,5.19354839 L3.64516129,7.48387097 L8.03225806,0.483870968 C8.32258065,1.42247325e-16 8.96774194,-0.129032258 9.4516129,0.161290323 C9.93548387,0.451612903 10.0645161,1.09677419 9.77419355,1.58064516 L4.61290323,9.83870968 C4.4516129,10.1290323 4.12903226,10.3225806 3.77419355,10.3225806 L3.70967742,10.3225806 C3.41935484,10.3225806 3.12903226,10.1935484 2.90322581,9.90322581 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

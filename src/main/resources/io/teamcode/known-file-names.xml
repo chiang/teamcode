@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<known-file-names>
+    <known-file-name name=".json" extension-only="true" type="application/json" groups="">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+
+    <known-file-name name=".gradle" extension-only="true" type="text/plain" groups="">
+        <description>Gradle</description>
+    </known-file-name>
+
+    <known-file-name name=".csproj" extension-only="true" type="application/xml" groups="">
+        <description>VisualStudio Project Configuration File</description>
+    </known-file-name>
+
+    <known-file-name name=".checkstyle" type="application/xml" groups="">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+
+    <!-- Eclipse Configuration Files -->
+    <known-file-name name=".classpath" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name=".project" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name=".jsdtscope" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.core.resources.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.core.runtime.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.jdt.core.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.jst.j2ee.ejb.annotations.xdoclet.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.ltk.core.refactoring.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.common.component" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.common.project.facet.core.xml" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.jsdt.ui.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.jsdt.ui.superType.container" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.jsdt.ui.superType.name" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.ws.service.policy.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+    <known-file-name name="org.eclipse.wst.xsl.core.prefs" type="application/xml" groups="Eclipse">
+        <description>Eclipse Classpath File</description>
+    </known-file-name>
+</known-file-names>

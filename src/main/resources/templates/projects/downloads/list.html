@@ -1,0 +1,64 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+    <div class="clearfix basic-page-header">
+        <div th:if="${not #lists.isEmpty(attachments)}" class="issuable-header">
+            <h2>파일 공유</h2>
+        </div>
+        <div th:if="${attachments.size() > 0}" class="issuable-actions">
+            <div th:if="${disabledUploads == false}" class="upload-dropzone disable-dropzone">
+                <input class="btn btn-new"
+                       th:attr="data-create-url='/projects/' + ${paramProjectPath} + '/downloads',data-list-url='/projects/' + ${paramProjectPath} + '/downloads'" type="file"/>
+                <a href="#!" class="btn btn-new">파일 업로드하기</a><div class="uploading">업로드 중입니다...</div>
+            </div>
+            <div th:if="${disabledUploads}" class="upload-dropzone disable-dropzone">
+                최대 업로드 개수를 초과해서 더 이상 업로드할 수 없습니다.
+            </div>
+        </div>
+    </div>
+	<div class="prepend-top-20"></div>
+    <th:block th:if="${attachments.size() > 0}">
+      <ul class="table-list download-files">
+        <li th:each="attachment : ${attachments}" class="table-list-row">
+          <div class="table-list-cell">
+            <i class="fa fa-fw" th:classappend="|fa-${attachment.iconClass}|"></i>
+            <a class="commit-row-message item-title" th:href="@{/projects/{projectPath}/downloads/{fileName}(projectPath=${paramProjectPath},fileName=${attachment.originalFileName})}" th:text="${attachment.originalFileName}">filename</a>
+            <div class="description">
+                <a class="commit-author-link has-tooltip" title="admin@example.com" href="#!" th:text="${attachment.author.fullName}">chiang</a>
+                님이
+                <time class="js-timeago" th:attr="datetime=${#dates.format(attachment.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(attachment.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}"  data-toggle="tooltip" data-placement="top" data-container="body">?</time>에 업로드했습니다.
+            </div>
+          </div>
+          <div class="table-list-cell hidden-xs">
+              <span th:text="${attachment.humanReadableSize}">10 KB</span>
+          </div>
+          <!-- div class="table-list-cell hidden-xs">
+              <span th:text="${attachment.downloads}"></span>번 다운로드...
+          </div -->
+          <div class="table-list-cell hidden-xs">
+              <a title="Delete attachment" data-confirm="이 파일을 삭제하시겠습니까?" data-remote="true" rel="nofollow" data-method="delete" th:href="@{/projects/{projectPath}/downloads/{attachmentId}(projectPath=${paramProjectPath},attachmentId=${attachment.id})}">삭제</a>
+          </div>
+        </li>
+      </ul>
+      <form id="form-delete-attachment" method="POST">
+          <input type="hidden" name="_method" value="delete"/>
+      </form>
+    </th:block>
+    <th:block th:if="${attachments.size() == 0}">
+      <div class="empty-state-container">
+        <div class="empty-state">
+          <h3>
+              아직 한 번도 파일을 업로드한 적이 없습니다.
+          </h3>
+          <p class="blank-state--text">
+              팀원들과 공유할 자료를 업로드해 보세요.
+          </p>
+          <div id="upload-dropzone" class="upload-dropzone disable-dropzone">
+              <input class="btn btn-new"
+                     th:attr="data-create-url='/projects/' + ${paramProjectPath} + '/downloads',data-list-url='/projects/' + ${paramProjectPath} + '/downloads'" type="file"/>
+              <a href="#!" class="btn btn-link">첫 번째 파일 업로드하기 <tc-emoji data-name=":wave:" data-unicode-version="6.0"></tc-emoji></a><div class="uploading">업로드 중입니다...</div>
+          </div>
+        </div>
+      </div>
+    </th:block>
+</div>
+</html>

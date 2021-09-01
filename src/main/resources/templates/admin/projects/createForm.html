@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content" class="">
+  <div class="project-edit-container">
+    <div class="project-edit-errors"></div>
+    <div class="row prepend-top-20">
+      <!-- div class="col-lg-2 col-lg-offset-3 profile-settings-sidebar">
+          <h4 class="prepend-top-0" th:text="#{projects.header.new}">New project</h4>
+          <p th:text="#{projects.header.new.desc}">Create or Import your project</p>
+      </div -->
+      <div class="col-lg-offset-3 col-lg-6">
+        <form class="new_project" id="new_project" th:action="@{/admin/projects}" accept-charset="UTF-8" method="post">
+          <!-- fieldset class="append-bottom-0">
+              <div class="form-group col-xs-12 col-sm-6">
+                  <label class="label-light" for="project_namespace_id"><span>Project path</span></label>
+                  <div class="form-group">
+                      <div class="input-group">
+                          <div class="input-group-addon">http://localhost:8585/</div>
+                          <select class="select2 js-select-namespace" tabindex="-1" name="project[namespace_id]" id="project_namespace_id" title="Project path Project name" style="display: none;">
+                              <optgroup label="Groups"></optgroup>
+                              <optgroup label="Users">
+                                  <option data-options-parent="users" selected="selected" value="1">root</option>
+                              </optgroup>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="form-group col-xs-12 col-sm-6 project-path">
+                  <label class="label-light" for="project_namespace_id"><span>Project name</span></label>
+                  <input placeholder="my-awesome-project" class="form-control" tabindex="2" autofocus="autofocus" required="required" type="text" name="name" id="project_path"/>
+              </div>
+          </fieldset -->
+          <div class="form-group project-path">
+              <label class="required" for="project_path"><span th:text="#{labels.project.name}">Project name</span></label>
+              <input placeholder="my-awesome-project" class="form-control" tabindex="1" autofocus="autofocus" required="required" type="text" name="path" id="project_path" autocomplete="off" spellcheck="false"/>
+          </div>
+          <!-- div class="help-block">
+              Want to house several dependent projects under the same namespace?
+              <a th:href="@{/admin/groups?create}">Create a group</a>
+          </div -->
+          <div class="form-group">
+              <label class="required" for="project_description"><th:block th:text="#{labels.project.description}">Project description</th:block>
+              </label>
+              <textarea required="required" tabindex="2" placeholder="가급적 짧고 명료하게 프로젝트를 설명해 주세요" class="form-control" rows="3" maxlength="250" name="description" id="project_description"></textarea>
+          </div>
+          <div class="form-group">
+	          <label class="label-light">프로그래밍 언어</label>
+	          <select name="programmingLanguage" class="form-control js-data-languages" tabindex="3">
+		          <optgroup label="Popular">
+			          <option th:each="pl : ${populars}" th:value="${pl}" th:text="${pl.displayName}"></option>
+		          </optgroup>
+		          <optgroup label="Other">
+			          <option th:each="pl : ${others}" th:value="${pl}" th:text="${pl.displayName}"></option>
+		          </optgroup>
+	          </select>
+	        </div>
+          <input type="submit" name="commit" th:value="#{projects.btn.create}" class="btn btn-create project-submit" tabindex="4"/>
+          <a class="btn btn-cancel" th:href="@{/admin/projects}" th:text="#{btn.cancel}" tabindex="5">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+    <div class="save-project-loader hide">
+        <div class="center">
+            <h2><i class="fa fa-spinner fa-spin"></i>Creating project &amp; repository.</h2>
+            <p>Please wait a moment, this page will automatically refresh when ready.</p>
+        </div>
+    </div>
+</div>
+</html>

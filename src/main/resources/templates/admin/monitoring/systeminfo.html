@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+    <title>System Info</title>
+</head>
+<div layout:fragment="content">
+    <div class="prepend-top-default"></div>
+    <div v-if="loaded" class="row">
+        <div class="col-sm-4">
+            <div class="light-well">
+                <h4>CPU</h4>
+                <div class="data">
+                    <h1>{{metrics.processors}} cores</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="light-well">
+                <h4>Memory</h4>
+                <div class="data">
+                    <!-- h1>701 MB / 1.46 GB</h1 -->
+                    <h1>{{memusage | byteFormat}} / {{metrics.mem * 1024 | byteFormat}}</h1>
+                </div>
+            </div>
+            <div class="light-well">
+                <h4>Heap Memory</h4>
+                <div class="data">
+                    <h1>{{metrics['heap.used'] * 1024 | byteFormat}} / {{(metrics.heap * 1024) | byteFormat}}</h1>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="light-well">
+                <h4>Disks</h4>
+                <div class="data">
+                    <h1>{{(health.diskSpace.total - health.diskSpace.free) | byteFormat}} / {{health.diskSpace.total | byteFormat}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div layout:fragment="content-script">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script th:src="@{/assets/js/vue-utils.js}"></script>
+    <script th:src="@{/assets/js/systeminfo.js}"></script>
+</div>
+</html>

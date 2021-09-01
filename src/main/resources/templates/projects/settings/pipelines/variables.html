@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<span class="project-flash-notice" data-behavior="recording_flash_message_container">
+  <div class="flash-notice flash-notice--undo" data-behavior="flash_notice" data-flash-duration="7" style="display: none;">
+  <div class="flash-notice__content">
+    <span class="flash-notice__icon"></span>
+    The file is in the trash - <a class="flash-notice__link" href="/3757141/buckets/3775418/uploads/529454547">Undo</a>
+  </div>
+</div>
+
+</span>
+	<div id="pipeline-settings-variables" class="project-settings-wrapper"
+	     th:attr="data-endpoint=@{/projects/{path}/admin/pipeline/settings/variables.json(path=${paramProject.path})},data-add-endpoint=@{/projects/{path}/admin/pipeline/settings/variables(path=${paramProject.path})},data-base-endpoint=@{/projects/{path}/admin/pipeline/settings/variables(path=${paramProject.path})}">
+		<div id="vue-pipeline-settings-variables"></div>
+	</div>
+</div>
+</html>

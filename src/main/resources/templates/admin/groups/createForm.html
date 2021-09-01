@@ -1,0 +1,53 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <h3 class="page-title">New group</h3>
+    <hr/>
+    <form class="form-horizontal" id="new_group" enctype="multipart/form-data" th:action="@{/admin/groups}" accept-charset="UTF-8" method="post">
+        <div class="form-group">
+            <label class="control-label" for="group_path">Group path</label>
+            <div class="col-sm-10">
+                <div class="input-group gl-field-error-anchor">
+                    <div class="input-group-addon">http://localhost:8585/</div>
+                    <input placeholder="open-source" class="form-control" required="required" pattern="[a-zA-Z0-9_\.][a-zA-Z0-9_\-\.]*[a-zA-Z0-9_\-]|[a-zA-Z0-9_]" title="Please choose a group name with no special characters." type="text" name="path" id="group_path"/>
+                </div>
+            </div>
+            </div>
+            <div class="form-group group-description-holder">
+                <label class="control-label" for="group_description">Description</label>
+                <div class="col-sm-10">
+                    <textarea maxlength="250" class="form-control js-gfm-input" rows="4" name="description" id="group_description"></textarea>
+                </div>
+            </div>
+            <div class="form-group group-description-holder">
+                <label class="control-label" for="group_avatar">Group avatar</label>
+                <div class="col-sm-10">
+                    <button class="choose-btn btn btn-sm js-choose-group-avatar-button" type="button">
+                        <i class="fa fa-paperclip"></i>
+                        <span>Choose File ...</span>
+                    </button>
+                    &nbsp;
+                    <span class="file_name js-avatar-filename">File name...</span>
+                    <input class="js-group-avatar-input hidden" type="file" name="group[avatar]" id="group_avatar"/>
+                    <div class="light">The maximum file size allowed is 200KB.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <div class="alert alert-info">
+                        <ul>
+                            <li>A group is a collection of several projects</li>
+                            <li>Members of a group may only view projects they have permission to access</li>
+                            <li>Group project URLs are prefixed with the group namespace</li>
+                            <li>Existing projects may be moved into a group</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="submit" name="commit" value="Create group" class="btn btn-create"/>
+                <a class="btn btn-cancel" href="/admin/groups">Cancel</a>
+            </div>
+        </form>
+</div>
+</html>

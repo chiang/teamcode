@@ -1,0 +1,126 @@
+// This file is based off animate.css 3.5.1, available here:
+// https://github.com/daneden/animate.css/blob/3.5.1/animate.css
+//
+// animate.css - http://daneden.me/animate
+// Version - 3.5.1
+// Licensed under the MIT license - http://opensource.org/licenses/MIT
+//
+// Copyright (c) 2016 Daniel Eden
+
+.animated {
+  @include webkit-prefix(animation-duration, 1s);
+  @include webkit-prefix(animation-fill-mode, both);
+
+  &.infinite {
+    @include webkit-prefix(animation-iteration-count, infinite);
+  }
+
+  &.once {
+    @include webkit-prefix(animation-iteration-count, 1);
+  }
+
+  &.hinge {
+    @include webkit-prefix(animation-duration, 2s);
+  }
+
+  &.flipOutX,
+  &.flipOutY,
+  &.bounceIn,
+  &.bounceOut {
+    @include webkit-prefix(animation-duration, .75s);
+  }
+
+  &.short {
+    @include webkit-prefix(animation-duration, 321ms);
+    @include webkit-prefix(animation-fill-mode, none);
+  }
+}
+
+@include keyframes(pulse) {
+  from,
+  to {
+    @include webkit-prefix(transform, scale3d(1, 1, 1));
+  }
+
+  50% {
+    @include webkit-prefix(transform, scale3d(1.05, 1.05, 1.05));
+  }
+}
+
+.pulse {
+  @include webkit-prefix(animation-name, pulse);
+}
+
+/*
+* General hover animations
+*/
+
+
+// Sass multiple transitions mixin | https://gist.github.com/tobiasahlin/7a421fb9306a4f518aab
+// Usage:   @include transition(width, height 0.3s ease-in-out);
+// Output:  -webkit-transition(width 0.2s, height 0.3s ease-in-out);
+//          transition(width 0.2s, height 0.3s ease-in-out);
+//
+// Pass in any number of transitions
+@mixin transition($transitions...) {
+  $unfoldedTransitions: ();
+  @each $transition in $transitions {
+    $unfoldedTransitions: append($unfoldedTransitions, unfoldTransition($transition), comma);
+  }
+
+  transition: $unfoldedTransitions;
+}
+
+@function unfoldTransition ($transition) {
+  // Default values
+  $property: all;
+  $duration: $general-hover-transition-duration;
+  $easing: $general-hover-transition-curve; // Browser default is ease, which is what we want
+  $delay: null; // Browser default is 0, which is what we want
+  $defaultProperties: ($property, $duration, $easing, $delay);
+
+  // Grab transition properties if they exist
+  $unfoldedTransition: ();
+  @for $i from 1 through length($defaultProperties) {
+    $p: null;
+    @if $i <= length($transition) {
+      $p: nth($transition, $i);
+    } @else {
+      $p: nth($defaultProperties, $i);
+    }
+    $unfoldedTransition: append($unfoldedTransition, $p);
+  }
+
+  @return $unfoldedTransition;
+}
+
+.btn,
+.side-nav-toggle {
+  @include transition(background-color, border-color, color, box-shadow);
+}
+
+.dropdown-menu-toggle,
+.avatar-circle,
+.header-user-avatar {
+  @include transition(border-color);
+}
+
+.note-action-button .link-highlight,
+.toolbar-btn,
+.dropdown-toggle-caret,
+.fa:not(.fa-bell) {
+  @include transition(color);
+}
+
+a {
+  @include transition(background-color, color, border);
+}
+
+.tree-table td,
+.well-list > li {
+  @include transition(background-color, border-color);
+}
+
+.stage-nav-item {
+  @include transition(background-color, box-shadow);
+}

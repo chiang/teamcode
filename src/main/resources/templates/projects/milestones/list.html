@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+	<div class="content-wrapper page-with-layout-nav">
+		<div class="content" id="content-body">
+			<div class="container-fluid container-limited">
+				<div class="content-top adjust">
+        	<div class="nav-text">
+        	Labels can be applied to issues and merge requests. Star a label to make it a priority label. Order the prioritized labels to change their relative priority, by dragging.
+        	</div>
+        	<div class="nav-controls">
+        		<a class="btn btn-new" href="/baramboy/jandi-connector/labels/new">New label</a>
+        	</div>
+        </div>
+
+				#if( $labels.size() == 0 )
+        	<div><a href="#!">Generate default set of labels</a></div>
+        #else
+        	<ul class="content-list list-unstyled">
+        		#foreach( $label in $labels )
+        			<li><span class="label color-label" style="background-color: $label.color;">$label.title</span></li>
+        		#end
+        	</ul>
+        #end
+			</div>
+		</div>
+	</div>
+</div>
+</html>

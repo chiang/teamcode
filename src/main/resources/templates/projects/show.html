@@ -1,0 +1,173 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<head>
+    <title>프로젝트 개요</title>
+</head>
+<div layout:fragment="content" style="padding-top: 30px;">
+  <div class="row">
+  	<div class="col-md-8 col-xs-12">
+      <!-- div class="git-clone-holder input-group">
+          <div class="input-group-btn">
+              <a class="clone-dropdown-btn btn" data-toggle="dropdown" href="#" id="clone-dropdown" aria-expanded="false"><span>HTTP</span></a>
+          </div>
+          <input type="text" name="project_clone" id="project_clone" value="http://gitlab.example.com/root/petclinic.git" class="js-select-on-focus form-control" readonly="readonly" />
+          <div class="input-group-btn">
+              <button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-target="#project_clone" data-title="Copy URL to clipboard" type="button" title="Copy URL to clipboard"><i class="fa fa-clipboard"></i></button>
+          </div>
+      </div -->
+      <div th:if="${emptyRevision}" class="onboarding--instructions">
+          <section class="blank-state">
+              <div class="blank-state--image">
+                  <img th:src="@{/assets/images/empty-state-overview@2x.png}" width="260" height="150"/>
+              </div>
+              <h3 class="blank-state--heading">
+                  처음 만든 후 아직 사용하지 않으셨네요! <tc-emoji data-name=":frowning:" data-unicode-version="6.0"></tc-emoji>
+              </h3>
+              <p class="blank-state--text">
+                  새로운 코드나 콘텐츠를 커밋하세요. 그리고 새로운 일을 시작하세요.
+                  <!-- a href="https://confluence.atlassian.com/x/I5FBK" target="_blank">Learn how</a -->
+              </p>
+              <!-- h4 class="onboarding-subheading">
+                  쉽게 시작할 수 있습니다.
+              </h4 -->
+              <!-- p>먼저 README 파일을 만들거나 <strong>svn:global-ignores</strong> 속성을 저장소에 추가해 보세요.</p -->
+              <!-- p>
+                  <a href="#!" class="btn btn-new">Create a README</a>
+                  <a href="#!" class="btn">Create a svn:global-ignores</a>
+              </p -->
+          </section>
+      </div>
+      <div th:if="${emptyRevision == false}">
+        <div class="project-clone-holder">
+          <div class="git-clone-holder input-group">
+            <div class="input-group-btn">
+              <a class="clone-dropdown-btn btn" data-toggle="dropdown" href="#" id="clone-dropdown" style="background-color: #F4F5F6"><span>HTTP</span></a>
+            </div>
+            <input type="text" name="project_clone" id="project_clone" th:value="'http://svn.visang.com/repos/' + ${project.path}" class="js-select-on-focus form-control" readonly="readonly" />
+            <div class="input-group-btn">
+              <button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-target="#project_clone" type="button" title="클립보드에 주소 복사" data-original-title="클립보드에 주소 복사" style="border-bottom-left-radius: 0 !important; border-top-left-radius: 0 !important; padding-top: 7px;"><i aria-hidden="true" class="fa fa-clipboard"></i></button>
+            </div>
+          </div>
+        </div>
+          <div class="project-last-commit">
+              <a class="commit_short_id" th:href="@{/projects/{path}/commits/{revision}(path=${project.path},revision=${lastCommit.revision})}" th:text="|r${lastCommit.revision}|"></a>
+              <a class="commit-row-message" href="#!" th:text="${lastCommit.shortMessage}"></a>
+              ·
+              <a class="commit-author-link has-tooltip" th:title="${lastCommit.author}" href="#!"><span class="commit-author-name" th:text="${lastCommit.author}">Lala</span></a> 님이
+              <time class="js-timeago js-timeago-render" th:attr="datetime=${#dates.format(lastCommit.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(lastCommit.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body"></time>에 커밋했습니다.
+          </div>
+          <div th:if="${readmeContent}" class="" style="margin-top: 30px;">
+              <div class="project-show-readme">
+                  <article class="readme-holder">
+                      <div class="pull-right">
+                      </div>
+                      <div class="file-content wiki" th:utext="${readmeContent}"></div>
+                  </article>
+              </div>
+          </div>
+          <div class="tc-panel" th:unless="${readmeContent}">
+            <div class="tc-panel-body">
+              <h3>README 를 작성해 보세요!</h3>
+              <p>
+                  프로젝트를 설명하는 README 파일을 작성해서 공유하면 프로젝트를 이해하는데 많은 도움이 됩니다. 프로젝트에 대한 설명,
+                빌드하는 방법, 개발 환경 구성 방법 등을 잘 정리해서 공유해 보세요. 파일 포맷은 마크다운 (Markdown) 포맷을 사용하시면 됩니다. <tc-emoji data-name=":wave:" data-unicode-version="6.0"></tc-emoji>
+              </p>
+              <a href="#!" class="btn btn-save">README 만들기</a>
+            </div>
+            <div class="panel-link-container">
+              <a href="https://ko.wikipedia.org/wiki/%EB%A7%88%ED%81%AC%EB%8B%A4%EC%9A%B4" target="_blank" class="panel-link">마크다운 포맷 알아보기</a><span class="spacer"></span><a href="https://ko.wikipedia.org/wiki/%EB%A6%AC%EB%93%9C%EB%AF%B8" target="_blank" class="panel-link">적절한 README 작성법</a>
+            </div>
+          </div>
+      </div>
+  	</div>
+  	<div class="col-md-4">
+  		<div class="sidebar-widget with-cph" style="min-height: 100px;">
+  			<span class="heading-title">Members<button><i class="mycon-add-circle"></i></button></span>
+  			<div class="cph cph-animated-background thin prepend-top-30"></div>
+  			<div class="post-cph">
+  				<div th:if="${overview.totalMembers > 0}" class="photo-pile">
+  					<!-- deprecated. TODO active style -->
+  					<div th:each="member, iter : ${overview.members}" class="photo-pile-slot"
+  					     th:style="|z-index:${iter.size - iter.index}|">
+  						<th:block th:if="${member == null}">
+  							<div class="empty-photo"></div>
+  						</th:block>
+  						<th:block th:unless="${member == null}">
+  							<img th:if="${member.avatarFileName != null}"
+  							     th:attr="data-full-name=${member.fullName},data-user-name=${member.name},data-email=${member.email},data-organization=${member.organization}"
+  							     th:alt="${member.name}" th:src="@{/avatar/users/{userName}/{fileName}(userName=${member.name},fileName=${member.avatarFileName})}" />
+  							<img th:unless="${member.avatarFileName != null}"
+  							     th:attr="data-name=${member.fullName},data-full-name=${member.fullName},data-user-name=${member.name},data-email=${member.email},data-organization=${member.organization}"
+  							     class="profile" />
+  						</th:block>
+  					</div>
+  					<a th:if="${overview.moreMembers}" th:href="@{/{groupPath}/{projectPath}/members(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}" class="more-member" th:text="|+${overview.moreMembersCount}|"></a>
+  				</div>
+  				<th:block th:unless="${overview.totalMembers > 0}">
+  					<span class="text-muted">이 프로젝트 팀 멤버가 한 명도 없습니다.</span>
+            <!-- div>
+              <a href="#!" class="btn btn-link">멤버 추가하기</a>
+            </div -->
+  				</th:block>
+  			</div>
+  		</div>
+  		<div class="sidebar-widget repo-links with-cph">
+        <span class="heading-title">Links
+          <button class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-plus-square-o" aria-hidden="true"></i></button>
+          <div class="dropdown-menu dropdown-form" style="margin-top: 0;">
+             <div class="row">
+                <div class="col-md-12">
+                  팀과 공유할 링크를 등록하세요:
+                   <form class="form" role="form" method="post" accept-charset="UTF-8" id="form-project-link"
+                         th:attr="data-action=@{/projects/{path}/admin/links(path=${paramProject.path})},data-origin=@{/projects/{path}(path=${paramProject.path})}">
+                      <div class="form-group">
+                         <input name="title" type="text" class="form-control" id="input-project-link-title" placeholder="링크 이름 추가..." required="" autocomplete="off" spellcheck="false" maxlength="20"/>
+                      </div>
+                      <div class="form-group">
+                         <input name="link" type="text" class="form-control" id="input-project-link" placeholder="링크 추가..." required="" autocomplete="off" spellcheck="false" maxlength="128"/>
+                      </div>
+
+  	                 <div class="actions prepend-top-20">
+  	                   <a class="btn btn-save" style="display:inline-block;">Save</a><a class="btn btn-secondary" style="display:inline-block;">Cancel</a>
+  	                 </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+        </span>
+  			<div class="cph cph-animated-background cph-md prepend-top-30">
+  				<div class="background-masker line-1"></div>
+  				<div class="background-masker line-1-end"></div>
+  				<div class="background-masker line-2"></div>
+  				<div class="background-masker line-2-end"></div>
+  				<div class="background-masker line-3"></div>
+  			</div>
+  			<div class="links post-cph">
+  				<th:block th:if="${overview.links.size() > 0}">
+  					<a th:each="link : ${overview.links}" th:href="${link.link}" target="_blank">
+  						<span th:text="${link.title}"></span>
+  						<i class="fa fa-times" aria-hidden="true"
+  						   th:attr="data-delete-url=@{/projects/{path}/admin/links/{id}(path=${paramProject.path},id=${link.id})},data-origin=@{/projects/{path}(path=${paramProject.path})}" data-delete-message="이 링크를 삭제하시겠습니까?"></i>
+  					</a>
+  				</th:block>
+  				<th:block th:unless="${overview.links.size() > 0}">
+  					<span class="text-muted">팀원들과 공유할 링크를 추가해 보세요.</span>
+  				</th:block>
+  			</div>
+  		</div>
+  		<div th:if="${not #lists.isEmpty(overview.tags)}" class="sidebar-widget repo-tags with-cph">
+  			<span class="heading-title">Tags<!-- button><i class="fa fa-plus-square-o" aria-hidden="true"></i></button --></span>
+  			<div class="cph cph-animated-background cph-md prepend-top-30">
+  				<div class="background-masker line-1"></div>
+  				<div class="background-masker line-1-end"></div>
+  				<div class="background-masker line-2"></div>
+  				<div class="background-masker line-2-end"></div>
+  				<div class="background-masker line-3"></div>
+  			</div>
+  			<div class="tags post-cph">
+  				<a href="#!" th:each="tag : ${overview.tags}" th:text="${tag.name}"><i class="mycon-close-circle"></i></a>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+</div>
+</html>

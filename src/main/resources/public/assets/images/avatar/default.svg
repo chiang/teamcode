@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256px" height="256px" viewBox="0 0 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>Default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="langs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="teamcode" transform="translate(-424.000000, -415.000000)">
+            <g id="Default" transform="translate(424.000000, 415.000000)">
+                <rect id="Rectangle" fill="#F1DD3F" x="0" y="0" width="256" height="256"></rect>
+                <path d="M89.853,104.732 L94.239,111.526 L70.675,126.576 L94.153,141.54 L89.767,148.42 L60.871,130.876 L60.871,122.62 L89.853,104.732 Z M142.145,82.888 L122.537,158.568 L113.163,158.568 L132.771,82.888 L142.145,82.888 Z M194.609,122.62 L194.609,130.876 L165.713,148.42 L161.327,141.54 L184.805,126.576 L161.241,111.526 L165.627,104.732 L194.609,122.62 Z" id="&lt;/&gt;" fill="#333333"></path>
+            </g>
+        </g>
+    </g>
+</svg>

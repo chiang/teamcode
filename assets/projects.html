@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="public/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+<header class="navbar navbar-fixed-top navbar-tc with-horizontal-nav">
+  <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+  <div class="container-fluid">
+    <div class="header-content">
+      <button aria-label="Toggle global navigation" class="side-nav-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></button>
+      <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="hidden-sm hidden-xs">
+            <div class="has-location-badge search search-form">
+              <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+                <input name="utf8" type="hidden" value="✓">
+                <div class="search-input-container">
+                  <div class="location-badge">This project</div>
+                  <div class="search-input-wrap">
+                    <div class="dropdown" data-url="/search/autocomplete">
+                      <input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options disabled" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://gitlab.com/dashboard/issues" data-mr-path="https://gitlab.com/dashboard/merge_requests" value="">
+                      <div class="dropdown-menu dropdown-select">
+                        <div class="dropdown-content">
+                          <ul>
+                            <li><a class="is-focused dropdown-menu-empty-link">Loading...</a></li>
+                          </ul>
+                        </div>
+                        <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                      </div>
+                      <i class="search-icon"></i>
+                      <i class="clear-icon js-clear-input"></i>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="group_id" id="group_id" class="js-search-group-options">
+                <input type="hidden" name="project_id" id="search_project_id" value="2350390" class="js-search-project-options" data-project-path="jandi-connector" data-name="jandi-connector" data-issues-path="/baramboy/jandi-connector/issues" data-mr-path="/baramboy/jandi-connector/merge_requests">
+                <input type="hidden" name="search_code" id="search_code" value="true">
+                <input type="hidden" name="repository_ref" id="repository_ref">
+                <div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="2350390"></div>
+              </form>
+            </div>
+          </li>
+          <li class="visible-sm visible-xs"><a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a></li>
+          <li><a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a></li>
+          <li class="header-user dropdown">
+            <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img width="26" height="26" class="header-user-avatar" src="https://secure.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon" alt="33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon">
+              <i class="fa fa-caret-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+              <li>
+                <a class="profile-link" aria-label="Profile" data-user="baramboy" href="profile.html">Profile</a>
+              </li>
+              <li>
+                <a aria-label="Settings" href="/profile">Settings</a>
+              </li>
+              <li>
+                <a aria-label="Help" href="/help">Help</a>
+              </li>
+              <li class="divider"></li>
+              <li>
+                <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <h1 class="title"><a href="/baramboy">박영일</a> / <a class="project-item-select-holder" href="/baramboy/jandi-connector">jandi-connector</a><button name="button" type="button" class="dropdown-toggle-caret js-projects-dropdown-toggle" aria-label="Toggle switch project dropdown" data-target=".js-dropdown-menu-projects" data-toggle="dropdown" data-order-by="last_activity_at"><i class="fa fa-chevron-down"></i></button></h1>
+      <div class="header-logo">
+        <a class="home" title="Dashboard" id="logo" href="projects.html">
+          <svg width="36" height="36" class="tanuki-logo">
+            <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+            <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+            <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+            <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+            <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+            <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+            <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+          </svg>
+        </a>
+      </div>
+      <div class="js-dropdown-menu-projects">
+        <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+          <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+          <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+          <div class="dropdown-content"></div>
+          <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="page-with-sidebar">
+  <div class="content-wrapper">
+    <div class="alert-wrapper">
+      <div class="flash-container flash-container-page">
+      </div>
+    </div>
+    <div class="container-fluid container-limited ">
+      <div class="content" id="content-body">
+        <div class="content-top">
+          <ul class="nav-links">
+            <li class="active"><a title="Home" class="shortcuts-activity" data-placement="right" href="/dashboard/projects">Your projects
+            </a></li><li class=""><a title="Starred Projects" data-placement="right" href="/dashboard/projects/starred">Starred projects
+            </a></li><li class=""><a title="Explore" data-placement="right" href="/explore">Explore projects
+            </a></li>
+          </ul>
+          <div class="nav-controls">
+            <form class="project-filter-form" id="project-filter-form" action="/dashboard/projects" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓"><input type="search" name="filter_projects" id="project-filter-form-field" placeholder="Filter by name..." class="project-filter-form-field form-control input-short projects-list-filter" spellcheck="false" tabindex="2" value="">
+            </form>
+            <div class="dropdown inline">
+              <button class="dropdown-menu-toggle " id="sort-projects-dropdown" type="button" data-toggle="dropdown"><span class="dropdown-toggle-text ">Last updated</span><i class="fa fa-chevron-down"></i></button>
+              <ul class="dropdown-menu dropdown-menu-align-right dropdown-menu-selectable">
+                <li class="dropdown-header">Sort by</li>
+                <li><a href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=name_asc&amp;tag=&amp;visibility_level=">Name</a></li>
+                <li><a class="is-active" href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=updated_desc&amp;tag=&amp;visibility_level=">Last updated</a></li>
+                <li><a href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=updated_asc&amp;tag=&amp;visibility_level=">Oldest updated</a></li>
+                <li><a href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=created_desc&amp;tag=&amp;visibility_level=">Last created</a></li>
+                <li>
+                  <a href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=created_asc&amp;tag=&amp;visibility_level=">Oldest created
+                  </a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="is-active" href="/dashboard/projects?archived=&amp;group=&amp;namespace_id=&amp;scope=&amp;sort=updated_desc&amp;tag=&amp;visibility_level=">Hide archived projects
+                  </a>
+                </li>
+                <li>
+                  <a href="/dashboard/projects?archived=true&amp;group=&amp;namespace_id=&amp;scope=&amp;sort=updated_desc&amp;tag=&amp;visibility_level=">Show archived projects
+                  </a></li>
+                <li class="divider"></li>
+                <li>
+                  <a class="is-active" href="/dashboard/projects?group=&amp;namespace_id=&amp;personal=&amp;scope=&amp;sort=updated_desc&amp;tag=&amp;visibility_level=">Owned by anyone
+                  </a></li>
+                <li>
+                  <a href="/dashboard/projects?group=&amp;namespace_id=&amp;personal=true&amp;scope=&amp;sort=updated_desc&amp;tag=&amp;visibility_level=">Owned by me
+                  </a></li>
+              </ul>
+            </div>
+            <a class="btn btn-new" href="/projects/new">New Project</a>
+          </div>
+        </div>
+        <div class="projects-list-holder">
+          <ul class="projects-list content-list">
+            <li class="no-description project-row">
+              <div class="controls">
+                <span><i class="fa fa-star"></i>0</span>
+                <span class="visibility-icon has-tooltip" data-container="body" data-placement="left" title="Private - Project access must be granted explicitly to each user.">
+                  <i class="fa fa-lock fa-fw"></i>
+                </span>
+              </div>
+              <div class="title">
+                <a class="project" href="/baramboy/jandi-connector">
+                    <div class="dash-project-avatar">
+                    <div class="avatar-container s40">
+                      <div class="avatar project-avatar s40 identicon" style="background-color: #FFEBEE; color: #555">J</div>
+                    </div>
+                  </div>
+                  <span class="project-full-name">
+                    <span class="namespace-name">
+                      박영일
+                      /
+                    </span>
+                    <span class="project-name filter-title">
+                      jandi-connector
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <script>
+        //ProjectsList.init();
+        </script>
+      </div>
+    </div>
+  </div>
+</div><!-- .page-with-sidebar -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+<!--
+$('.select2').select2();
+//-->
+</script>
+</body>
+</html>

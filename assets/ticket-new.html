@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="public/css/sd-theme.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+<header id="topnav" class="navbar navbar-default navbar-fixed-top header">
+  <div class="logo-area">
+		<a class="navbar-brand navbar-brand-default hidden-xs" href="/dashboard">
+			Support
+		</a>
+	</div>
+  <ul class="nav navbar-nav toolbar pull-right">
+		<li class="toolbar-icon-bg appear-on-search ov-h" id="trigger-search-close">
+			<a class="toggle-fullscreen"><span class="icon-bg"><i class="material-icons">close</i></span></a>
+		</li>
+		<li class="toolbar-icon-bg hidden-xs" id="trigger-fullscreen">
+			<a href="#" class="toggle-fullscreen"><span class="icon-bg"><i class="material-icons">fullscreen</i></span></a>
+		</li>
+		<li class="toolbar-icon-bg hidden-xs">
+			<a href="/docs" target="_blank" class=""><span class="icon-bg"><i class="material-icons">help</i></span></a>
+		</li>
+		<li class="toolbar-icon-bg">
+			<a href="/logout"><span class="icon-bg"><i class="material-icons">power_settings_new</i></span></a>
+		</li>
+	</ul>
+</header>
+<div id="wrapper">
+  <div id="layout-static">
+    <div class="static-sidebar-wrapper sidebar-cyan">
+      <div class="static-sidebar" style="top: 64px;">
+		    <div class="sidebar">
+			    <div class="widget stay-on-collapse" id="widget-sidebar">
+				    <nav role="navigation" class="widget-body">
+						  <ul class="acc-menu">
+                <li class="active"><a class="withripple" href="/dashboard"><span class="icon"><i class="material-icons">home</i></span><span>대시보드</span></a></li>
+                <li class=""><a class="withripple" href="/dashboard"><span>설정</span></a></li>
+							</ul>
+				    </nav>
+			    </div>
+        </div><!-- .sidebar -->
+      </div><!-- .static-sidebar -->
+    </div><!-- .static-sidebar-wrapper -->
+    <div class="static-content-wrapper">
+      <main>
+        <div class="container-divider"></div>
+        <div class="container">
+          <h1>Submit a request</h1>
+          <section id="ticket-view">
+            <div class="rui-group">
+              <div class="rui-item">
+                <div class="form">
+                  <form id="new_request" data-form="" class="request-form" action="/hc/en-us/requests" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="JdGmzU7GPmFnBCmszb1vUxPpboUcrqhN5248NpDrpLob/7MtD3oTb5lofas6KZLRzNn9tIdV9bTXC0ptymUspA==" type="hidden">
+                    <div class="form-group string  required  request_subject">
+                      <label for="request_subject">Subject</label>
+                      <input name="request[subject]" id="request_subject" class="form-control" maxlength="150" size="150" type="text">
+                    </div>
+                    <div class="suggestion-list" data-hc-class="searchbox" data-hc-suggestion-list="true"></div>
+                    <div class="form-group text  required  request_description">
+                      <label for="request_description">Description</label>
+                      <textarea name="request[description]" id="request_description" class="form-control"></textarea>
+                      <p>Please enter the details of your request. A member of our support staff will respond as soon as possible.</p>
+                    </div>
+                    <div class="form-group string  optional  request_custom_fields_49648708">
+                      <label for="request_custom_fields_49648708">상품</label>
+                      <input name="request[custom_fields][49648708]" id="request_custom_fields_49648708" class="form-control" autocomplete="off" data-tagger="[{&quot;label&quot;:&quot;-&quot;,&quot;value&quot;:&quot;&quot;},{&quot;label&quot;:&quot;하하&quot;,&quot;value&quot;:&quot;하하&quot;}]" type="hidden"><a class="nesty-input" tabindex="0" style="max-width: 100%;">-</a>
+                      <p>테스트 폼</p>
+                    </div>
+                    <div class="form-group">
+                      <label>Attachments</label>
+                      <div id="upload-dropzone" class="upload-dropzone">
+                        <input multiple="true" id="request-attachments" data-fileupload="true" data-dropzone="upload-dropzone" data-error="upload-error" data-create-url="/hc/en-us/request_uploads" data-name="request[attachments][]" data-pool="request-attachments-pool" data-delete-confirm-msg="" type="file">
+                        <span><a>Add file</a> or drop files here</span>
+                      </div>
+                      <div id="upload-error" class="notification notification-error notification-inline" style="display: none;">
+                        <span data-upload-error-message=""></span>
+                      </div>
+                      <ul id="request-attachments" class="request-attachments" data-uploads="null" data-screencasts="null" data-template="upload-template">
+                        <li class="upload-item" data-upload-item="" aria-busy="true">
+                          <a class="upload-link" target="_blank" data-upload-link="" href="javascript:;">스크린샷 2016-12-25 오후 6.49.54.png</a>
+                          <p class="upload-path" data-upload-path="">https://chiang.zendesk.com/attachments/token/DhIDa8WEIxNRKboWyigl4bgeZ/?name=%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2016-12-25+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+6.49.54.png</p>
+                          <span class="upload-remove" data-upload-remove=""></span>
+                          <div class="upload-progress" data-upload-progress="" style="width: 100%;"></div>
+                        </li>
+                        <li class="upload-item" data-upload-item="" aria-busy="false">
+                          <a class="upload-link" target="_blank" data-upload-link="" href="https://chiang.zendesk.com/attachments/token/DhIDa8WEIxNRKboWyigl4bgeZ/?name=%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2016-12-25+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+6.49.54.png">스크린샷 2016-12-25 오후 6.49.54.png</a>
+                          <p class="upload-path" data-upload-path="">https://chiang.zendesk.com/attachments/token/DhIDa8WEIxNRKboWyigl4bgeZ/?name=%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2016-12-25+%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE+6.49.54.png</p>
+                          <span class="upload-remove" data-upload-remove=""></span>
+                          <div class="upload-progress" data-upload-progress="" style="width: 100%;"></div>
+                        </li>
+                      </ul>
+                    </div>
+                    <footer>
+                      <a href="javascript:;" class="btn btn-default">취소</a>
+                      <input name="commit" value="요청 전송하기" type="submit" class="btn btn-primary">
+                    </footer>
+                  </form>
+                </div><!-- .form -->
+              </div>
+              <div class="rui-item sidebar">
+                <form id="new_request" data-form="" class="request-form" action="/hc/en-us/requests" accept-charset="UTF-8" method="post"><input name="utf8" value="✓" type="hidden"><input name="authenticity_token" value="JdGmzU7GPmFnBCmszb1vUxPpboUcrqhN5248NpDrpLob/7MtD3oTb5lofas6KZLRzNn9tIdV9bTXC0ptymUspA==" type="hidden">
+                  <div class="form-group string  required  request_subject">
+                    <label for="request_subject">Requester</label>
+                    <input name="request[subject]" id="request_subject" class="form-control" maxlength="150" size="150" type="text">
+                  </div>
+                  <div class="form-group string  required  request_subject">
+                    <label for="request_subject">Assignee</label>
+                    <input name="request[subject]" id="request_subject" class="form-control" maxlength="150" size="150" type="text">
+                  </div>
+                  <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group string  required  request_subject">
+                          <label for="request_subject">Type</label>
+                          <select class="form-control">
+                            <option>Service Request</option>
+                            <option>Incident</option>
+                            <option>Problem</option>
+                            <option>Change</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group string  required  request_subject">
+                          <label for="request_subject">Priority</label>
+                          <select class="form-control">
+                            <option>Low</option>
+                            <option>Medium</option>
+                            <option>High</option>
+                            <option>Urgent</option>
+                          </select>
+                        </div>
+                      </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+<!--
+$(function(){
+	$('select.form-control').select2({minimumResultsForSearch: -1});
+});
+//-->
+</script>
+</body>
+</html>

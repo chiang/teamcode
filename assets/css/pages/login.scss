@@ -1,0 +1,422 @@
+/* Login Page */
+.login-page {
+	height: 100%;
+
+	#teamcode-logo {
+		margin: 16px;
+		width: 120px;
+		height: 37px;
+		background: url(/66f9/img/slack_logo_240.png) no-repeat;
+		background-size: contain;
+  }
+
+  .container {
+    max-width: 960px;
+  }
+
+  .fs-split {
+		position: absolute;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background-color: #E8E8E8;
+		-webkit-transition: background-color .2s ease-out 0s;
+		   -moz-transition: background-color .2s ease-out 0s;
+		        transition: background-color .2s ease-out 0s;
+
+		h1 {
+			font-size: 2.625rem;
+			line-height: 3rem;
+			font-weight: 300;
+			margin-bottom: 2rem;
+		}
+  }
+
+  .fs-split-pane {
+  	height: 100%;
+
+  	.fs-split-body {
+			padding: 0 12%;
+			position: relative;
+			-webkit-align-self: center;
+			   -moz-align-self: center;
+			-ms-flex-item-align: center;
+			align-self: center;
+			max-width: 100%;
+
+			input[type="text"],input[type="password"] {
+				min-height: 52px;
+				font-size: 17px;
+				line-height: 20px;
+				padding: 0 15px;
+				//border-radius: .25rem;
+				border-radius: 4px;
+      }
+    }
+
+    .fs-split-graphics {
+			position: absolute;
+			height: 100%;
+			width: 76%;
+			background-position: 20%;
+			background-repeat: no-repeat;
+			background-size: contain;
+			-webkit-transition: height .5s ease-out 0s;
+			   -moz-transition: height .5s ease-out 0s;
+			        transition: height .5s ease-out 0s;
+    }
+  }
+
+  .fs-split-pane-left {
+		background-color: #fff;
+		color: #434245;
+		width: 50%;
+		min-width: 486px;
+		max-width: 624px;
+		float: left;
+		z-index: 1;
+		overflow-y: auto;
+		word-wrap: break-word;
+
+		.fs_split_body {
+    	width: 100%;
+    }
+  }
+
+  .fs-split-pane-right {
+     //background-color: #82D1DF;
+     //background-color: #4C8ABC;
+     background-color: #FFFFFF;
+		 width: auto;
+		 overflow: hidden;
+
+     .fs-split-body {
+			 width: 100%;
+			 -ms-flex: 1;
+			 -webkit-flex: 1;
+			 flex: 1;
+			 height: 100%;
+     }
+
+     .fs-split-graphics {
+			 max-height: 500px;
+			 top: 20%;
+			 -webkit-transform: translateY(-20%);
+			    -moz-transform: translateY(-20%);
+			     -ms-transform: translateY(-20%);
+			         transform: translateY(-20%);
+			 margin: 1rem 0;
+     }
+  }
+
+  .copyright-footer {
+  	padding: 0 12%;
+
+  	p {
+  		padding: 16px 6px 6px 6px;
+      margin-bottom: 36px !important;
+  	}
+  }
+
+  .error-message {
+  	display: none;
+  }
+
+  .navbar-gitlab .container {
+    max-width: none;
+  }
+
+  .flash-container {
+    margin-bottom: $gl-padding;
+  }
+
+  .brand-holder {
+    font-size: 18px;
+    line-height: 1.5;
+
+    p {
+      font-size: 16px;
+      color: $login-brand-holder-color;
+    }
+
+    h1:first-child {
+      font-weight: normal;
+      margin-bottom: 0.68em;
+      margin-top: 0;
+      font-size: 34px;
+    }
+
+    h3 {
+      font-size: 22px;
+    }
+
+    img {
+      max-width: 100%;
+      margin-bottom: 30px;
+    }
+
+    a {
+      font-weight: bold;
+    }
+  }
+
+  p {
+    font-size: 13px;
+  }
+
+  .login-box,
+  .omniauth-container {
+    box-shadow: 0 0 0 1px $border-color;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 2px;
+    padding: 15px;
+
+    .login-heading h3 {
+      font-weight: 300;
+      line-height: 1.5;
+      margin: 0 0 10px;
+    }
+
+    .login-footer {
+      margin-top: 10px;
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    a.forgot {
+      float: right;
+      padding-top: 6px;
+    }
+
+    .nav .active a {
+      background: transparent;
+    }
+
+    // Styles the glowing border of focused input for username async validation
+    .login-body {
+      font-size: 13px;
+
+      input + p {
+        margin-top: 5px;
+      }
+
+      .username .validation-success {
+        color: $green-normal;
+      }
+
+      .username .validation-error {
+        color: $red-normal;
+      }
+    }
+  }
+
+  .omniauth-container {
+    p {
+      margin: 0;
+    }
+  }
+
+  .new-session-tabs {
+    display: -webkit-flex;
+    display: flex;
+    box-shadow: 0 0 0 1px $border-color;
+    border-top-right-radius: $border-radius-default;
+    border-top-left-radius: $border-radius-default;
+
+    li {
+      flex: 1;
+      text-align: center;
+      border-left: 1px solid $border-color;
+
+      &:first-of-type {
+        border-left: none;
+        border-top-left-radius: $border-radius-default;
+      }
+
+      &:last-of-type {
+        border-top-right-radius: $border-radius-default;
+      }
+
+      &:not(.active) {
+        background-color: $gray-light;
+      }
+
+      a {
+        width: 100%;
+        font-size: 18px;
+
+        &:hover {
+          border: 1px solid transparent;
+        }
+      }
+
+      &.active {
+        border-bottom: 1px solid $border-color;
+
+        a {
+          border: none;
+          border-bottom: 2px solid $link-underline-blue;
+          color: $black;
+
+          &:hover {
+            border-bottom: 2px solid $link-underline-blue;
+          }
+        }
+      }
+    }
+  }
+
+  // Ldap configurations may need more tabs & the tab labels are user generated (arbitrarily long).
+  // These styles prevent this from breaking the layout, and only applied when providers are configured.
+
+  .new-session-tabs.custom-provider-tabs {
+    flex-wrap: wrap;
+
+    li {
+      min-width: 85px;
+      flex-basis: auto;
+
+      // This styles tab elements that have wrapped to a second line. We cannot easily predict when this will happen.
+      // We are making somewhat of an assumption about the configuration here: that users do not have more than
+      // 3 LDAP servers configured (in addition to standard login) and they are not using especially long names for any
+      // of them. If either condition is false, this will work as expected. If both are true, there may be a missing border
+      // above one of the bottom row elements. If you know a better way, please implement it!
+      &:nth-child(n+5) {
+        border-top: 1px solid $border-color;
+      }
+    }
+
+    a {
+      font-size: 16px;
+    }
+  }
+
+
+  .form-control {
+    &:active,
+    &:focus {
+      background-color: $white-light;
+    }
+  }
+
+  label {
+    font-weight: normal;
+  }
+
+  .submit-container {
+    margin-top: 16px;
+  }
+
+  input[type="submit"] {
+    //@extend .btn-block;
+    margin-bottom: 0;
+    width: 100%;
+  }
+
+  .devise-errors {
+    h2 {
+      margin-top: 0;
+      font-size: 14px;
+      color: $login-devise-error-color;
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .login-page {
+    .col-sm-5.pull-right {
+      float: none !important;
+      margin-bottom: 45px;
+    }
+  }
+}
+
+.oauth-image-link {
+  margin-right: 10px;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.devise-layout-html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+// Fixes footer container to bottom of viewport
+.devise-layout-html body {
+  // offset height of fixed header + 1 to avoid scroll
+  height: calc(100% - 51px);
+  margin: 0;
+  padding: 0;
+
+  .page-wrap {
+    min-height: 100%;
+    position: relative;
+  }
+
+  .footer-container,
+  hr.footer-fixed {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: $white-light;
+  }
+
+  .navless-container {
+    padding: 65px 15px; // height of footer + bottom padding of email confirmation link
+
+    @media (max-width: $screen-xs-max) {
+      padding: 0 15px 65px;
+    }
+  }
+}
+
+//slack styles
+#find-team-graphic {
+	//background-image: url('https://a.slack-edge.com/bfaba/img/signin/find-team@2x.png');
+	//background-image: url('./images/login-teamcode@2x.png');
+	background-image: url('./images/login-teamcode-v2@2x.png');
+}
+@media only screen and (max-width: 767px) {
+	.fs-split {
+		.fs-split-pane-right {
+			display: none;
+		}
+		.fs-split-pane-left {
+			width: 100%;
+			min-width: inherit;
+			max-width: inherit;
+			overflow: scroll;
+			-webkit-overflow-scrolling: touch;
+    }
+	}
+}
+@media only screen and (max-height: 44rem) and (min-width: 767px) {
+	.fs-split {
+		display: table;
+    overflow: scroll;
+		.fs-split-pane {
+			display: table-cell;
+			vertical-align: top;
+			overflow: hidden!important;
+			width: 100%;
+		}
+
+		.fs-split-pane-left {
+			min-height: 100%;
+			width: 486px;
+		}
+	}
+}

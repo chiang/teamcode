@@ -1,0 +1,91 @@
+.ci-status-icon-success {
+  color: $gl-success;
+
+  svg {
+    fill: $gl-success;
+  }
+}
+
+.ci-status-icon-failed {
+  color: $gl-danger;
+
+  svg {
+    fill: $gl-danger;
+  }
+}
+
+.ci-status-icon-pending,
+.ci-status-icon-failed_with_warnings,
+.ci-status-icon-success_with_warnings {
+  color: $gl-warning;
+
+  svg {
+    fill: $gl-warning;
+  }
+}
+
+.ci-status-icon-running {
+  color: $blue-normal;
+
+  svg {
+    fill: $blue-normal;
+  }
+}
+
+.ci-status-icon-canceled,
+.ci-status-icon-disabled,
+.ci-status-icon-not-found {
+  color: $gl-text-color;
+
+  svg {
+    fill: $gl-text-color;
+  }
+}
+
+.ci-status-icon-created,
+.ci-status-icon-skipped {
+  color: $gray-darkest;
+
+  svg {
+    fill: $gray-darkest;
+  }
+}
+
+.ci-status-icon-manual {
+  color: $gl-text-color;
+
+  svg {
+    fill: $gl-text-color;
+  }
+}
+
+.icon-link {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+svg.slds-icon {
+  vertical-align: middle;
+}
+.slds-icon {
+    width: 2rem;
+    height: 2rem;
+    fill: white;
+}
+.slds-icon_large, .slds-icon--large {
+    width: 3rem;
+    height: 3rem;
+}
+.slds-icon_container, .slds-icon__container {
+  display: inline-block;
+  border-radius: 0.25rem;
+}
+[class*='slds-icon-standard-'] .slds-icon, [class*='slds-icon-standard-'].slds-icon, [class*='slds-icon-action-'] .slds-icon, [class*='slds-icon-action-'].slds-icon, [class*='slds-icon-custom-'] .slds-icon, [class*='slds-icon-custom-'].slds-icon {
+    border-radius: 0.25rem;
+}
+.slds-icon_small, .slds-icon--small {
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1;
+}

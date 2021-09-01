@@ -1,0 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+	<div id="admin-user-list"></div>
+  <form id="form-block-unblock-user" method="POST" action="">
+      <input type="hidden" name="_method" value="put"/>
+  </form>
+</div>
+</html>

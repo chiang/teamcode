@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+    <div class="project-edit-errors"></div>
+    <form id="form-project-pipeline-settings" class="" enctype="multipart/form-data" th:action="@{/projects/{path}/admin/pipeline/settings(path=${project.path})}" accept-charset="UTF-8" data-remote="true" method="post">
+      <div class="row">
+        <div class="col-md-9 project-feature">
+            <label class="label-light">파이프라인</label>
+            <span class="help-block">배포 파이프라인을 활성화하면 코드를 빌드하고 배포할 수 있습니다.</span>
+        </div>
+        <div class="col-md-3">
+
+            <!-- select name="pipelineVisibility" id="project_project_feature_attributes_wiki_access_level" class="pull-right form-control " data-field="wiki_access_level">
+                <option th:selected="${project.pipelineVisibility.name() == 'HIDDEN'}" value="HIDDEN">숨김</option>
+                <option th:selected="${project.pipelineVisibility.name() == 'DISABLED'}" value="DISABLED">사용 안함</option>
+                <option th:selected="${project.pipelineVisibility.name() == 'ENABLED'}" value="ENABLED">사용</option>
+            </select -->
+        </div>
+        <div class="col-md-12 prepend-top-20">
+          <ul class="content-list table-list pipeline-settings">
+	          <li class="table-list-row bordered">
+		          <div class="table-list-cell" style="padding-top: 20px;">
+			          파이프라인 활성화
+		          </div>
+		          <div class="table-list-cell pipeline-settings-action" style="width: 90px; padding-top: 20px;">
+		            <input id="toggle-pipeline" name="enabled" type="checkbox" class="tc-tgl tc-tgl-flat" th:checked="${project.pipelineVisibility.name() == 'ENABLED'}"/>
+		            <label class="tc-tgl-btn" for="toggle-pipeline"/>
+		          </div>
+	          </li>
+          </ul>
+	        <ul id="pipeline-config-path-settings" class="content-list table-list pipeline-settings prepend-top-20" th:style="${project.pipelineVisibility.name() == 'ENABLED' ? '' : 'display: none;'}">
+		        <li class="table-list-row bordered">
+			        <div class="table-list-cell">
+				        파이프라인 설정 파일 경로
+			        </div>
+			        <div class="table-list-cell pipeline-settings-action" style="width: 300px; padding-top: 20px;">
+				        <input id="input-pipeline-config-path" name="pipelineConfigPath" type="text" class="form-control" maxlength="100" th:value="${project.resolvedPipelineConfigPath}"/>
+			        </div>
+			        <div class="table-list-cell pipeline-settings-action" style="width: 100px; padding-top: 20px;">
+				        <a id="btn-update-pipeline-config-path" href="#!" class="btn btn-save">경로 저장</a>
+			        </div>
+		        </li>
+	        </ul>
+          <div class="col-md-12 prepend-top-20">
+					  <a th:href="@{/projects/{path}/pipelines(path=${project.path})}" class="btn btn-save">teamcode-pipelines.yml 설정하기</a>
+          </div>
+        </div>
+      </div>
+      <!-- a type="submit" name="commit" value="Save changes" class="btn btn-save" href="#!">변경 사항 저장</a -->
+    </form>
+		<form id="form-update-pipeline-config-path" th:action="@{/projects/{path}/admin/pipeline/settings/config-path(path=${project.path})}" method="POST">
+			<input type="hidden" name="_method" value="patch"/>
+			<input type="hidden" name="pipelineConfigPath"/>
+		</form>
+  </div>
+</div>
+</html>

@@ -1,0 +1,276 @@
+.project-settings-header {
+	margin: 20px 40px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #e1eef4;
+	color: #394f5a;
+	font-size: 2rem;
+}
+
+.project-settings-container {
+	height: 100%;
+	padding-left: 25px;
+	padding-right: 70px;
+	display: table;
+	width: 100%;
+
+	.project-settings-nav {
+  	display: table-cell;
+  	width: 210px;
+  	padding-right: 25px;
+  	//border-right: 1px solid #f2f2f2;
+  	//TODO to common?
+  	.nav-heading {
+  		padding: 7px 15px;
+  		color: #707070;
+  	}
+
+  	.nav {
+  		> li {
+  		  //padding-bottom: 7px;
+				margin-bottom: 4px;
+  			&.active > a {
+					background-color: rgb(234, 243, 251);
+			    border-radius: 3px;
+  			}
+				&:hover > a {
+					background-color: rgb(234, 243, 251);
+			    border-radius: 3px;
+  			}
+				&.active {
+					> a {
+  					color: #000;
+  				}
+				}
+
+  			> a {
+  				padding: 7px 15px;
+  				text-decoration: none;
+  				color: #000;
+  			}
+  		}
+  	}
+  }
+
+  .project-settings-wrapper {
+    display: table-cell;
+    padding: 30px;
+		background-color: #fff;
+		border-radius: 4px;
+		border: 1px solid #F1F2F5;
+
+	  &.integration-config {
+	    padding: 0;
+
+	    .integration-config-header, .integration-config-body {
+	      padding: 30px;
+	    }
+
+	    .integration-config-header {
+	      border-bottom: 1px solid $border-color;
+	    }
+	  }
+  }
+}
+
+
+.pipeline-settings {
+	&.table-list {
+		.table-list-cell {
+			vertical-align: middle;
+		}
+	}
+	.pipeline-settings-action {
+		width: 50%;
+		text-align: right;
+	}
+}
+
+.table.pipeline-variables {
+	thead {
+		th {
+			background-color: #eee;
+		}
+	}
+}
+
+#pipeline-settings-variables {
+	.help-block-more {
+		display: none;
+	}
+
+  #input-pipeline-variable-name {
+    text-transform: uppercase;
+  }
+
+  #cb-pipeline-variable-secret {
+    margin-right: 7px;
+  }
+
+  #cb-pipeline-variable-secret+label {
+    margin-right: 7px;
+    user-select: none;
+  }
+
+  table.variables {
+    thead {
+      tr.variable-form {
+        th {
+          background-color: #f4f5f6;
+        }
+      }
+    }
+
+    tbody {
+      &.updating {
+        tr {
+	        td {
+	          color: #ccc;
+
+	          .fa-spinner {
+	            color: #333;
+	          }
+	        }
+
+	        &:hover {
+	          .edit+i.fa {
+              display: none;
+            }
+	        }
+        }
+      }
+
+      tr {
+        td {
+          .fa-spinner {
+            display: none;
+          }
+        }
+      }
+    }
+
+    tr:not(.editing):hover {
+      .edit+i.fa {
+        display: inline-block;
+       }
+    }
+
+    td {
+      height: 56px;
+      position: relative;
+    }
+    .editing {
+      .edit {
+        display: block;
+      }
+
+      .variable-label {
+        display: none;
+      }
+
+      td .btn:not(.btn-remove) {
+        display: inline-block;
+      }
+
+      .btn-remove {
+        display: none;
+      }
+
+      .edit+i.fa {
+        display: none;
+      }
+    }
+    .edit {
+      display: none;
+      &.variable-name {
+				text-transform: uppercase;
+      }
+    }
+    .edit+i.fa {
+      display: none;
+      position: absolute;
+      right: 0;
+      color: #ccc;
+      z-index: 100;
+      top: 50%;
+      margin-top: -10px;
+    }
+
+    td .btn:not(.btn-remove) {
+      display: none;
+    }
+    .variable-label {
+      padding-left: 11px;
+      display: inline-block;
+      width: 100%;
+    }
+  }
+}
+
+.project-integration-services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    background-color: #fff;
+    margin-bottom: 15px;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px -5px;
+      transform: translateY(-2px);
+      border-color: #49b882;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 20px 30px;
+      display: block;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+
+      .service-logo {
+        margin-right: 16px;
+        width: 56px;
+
+        img {
+          width: 32px;
+          height: 32px;
+        }
+      }
+
+      .service-activated {
+        margin-left: auto;
+
+        &:before {
+          content: "";
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 100%;
+          margin-right: 8px;
+          background: #8fa1b3;
+        }
+
+        &.activated {
+          &:before {
+            background: #49b882;
+          }
+        }
+      }
+
+      h1 {
+        font-size: 13px;
+        font-weight: 600;
+        color: #193652;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

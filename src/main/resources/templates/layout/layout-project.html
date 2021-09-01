@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/emojione.min.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/select2.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+  <link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+  <!-- title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">My website</title -->
+  <title layout:title-pattern="$CONTENT_TITLE">TeamCode</title>
+</head>
+<body th:attr="data-project-path=${paramProjectPath}">
+<div id="project-list-bar">
+  <a th:href="@{/dashboard}" class="brand-logo">
+	  <img th:src="@{/assets/images/teamcode.png}"/>
+  </a>
+  <br/>
+	<!-- div class="help-quick-menu dropdown">
+		<svg data-toggle="dropdown" width="26" height="26" viewBox="11 11 18 18" focusable="false" class="" role="img" aria-labelledby="title-vp1b0nn"><title id="title-vp1b0nn">Help</title><path d="M11 20a9 9 0 1 0 18 0 9 9 0 0 0-18 0zm8.858 5.25h-.047c-.733-.023-1.251-.563-1.23-1.286.021-.71.55-1.227 1.26-1.227l.043.001c.753.022 1.265.557 1.244 1.3-.022.713-.542 1.211-1.27 1.211zm3.086-6.124c-.173.244-.552.55-1.03.922l-.527.363c-.288.225-.463.437-.527.645-.053.163-.077.207-.082.54v.084h-2.01l.005-.17c.025-.698.042-1.11.332-1.45.454-.533 1.457-1.18 1.5-1.207a1.56 1.56 0 0 0 .355-.363c.21-.292.304-.52.304-.744a1.45 1.45 0 0 0-.275-.858c-.176-.25-.51-.374-.995-.374-.48 0-.809.152-1.005.465-.202.32-.304.657-.304 1v.087h-2.073l.004-.09c.053-1.268.507-2.183 1.345-2.716.528-.338 1.185-.51 1.95-.51 1.002 0 1.85.244 2.515.724.676.486 1.018 1.216 1.018 2.166 0 .532-.168 1.032-.5 1.486z" fill="currentColor" fill-rule="evenodd" role="presentation"></path></svg>
+		<ul class="dropdown-menu up" aria-labelledby="dLabel">
+			<li class="dropdown-header">Help</li>
+			<li>
+				<a th:href="@{/help/faq}" aria-label="Quick Answers" target="_blank">빠른 답변!</a>
+			</li>
+			<li>
+				<a th:href="@{/help}" aria-label="Documentation" target="_blank">사용자 매뉴얼</a>
+			</li>
+		</ul>
+	</div -->
+  <div class="profile-quick-menu dropdown">
+      <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <!-- img th:attr="data-name=${commit.author}" class="avatar comment-avatar profile" / -->
+          <!-- img class="avatar has-tooltip s36 hidden-xs" alt="Administrator's avatar" title="Administrator" data-container="body" th:src="@{/assets/images/chiang.png}"/ -->
+          <img th:if="${session.currentUser.avatarFileName != null}" th:alt="${session.currentUser.name}" class="avatar header-user-avatar s36" th:src="@{/avatar/users/{userName}/{fileName}(userName=${session.currentUser.name},fileName=${session.currentUser.avatarFileName})}" />
+          <img th:if="${session.currentUser.avatarFileName == null}" th:attr="data-name=${session.currentUser.fullName}" class="avatar header-user-avatar profile s36" />
+      </a>
+      <ul class="dropdown-menu up" aria-labelledby="dLabel">
+        <li>
+            <a aria-label="전체 프로젝트" data-user="baramboy" th:href="@{/}">내 프로젝트</a>
+        </li>
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/admin}">관리자</a>
+        </li>
+        <li>
+            <a class="profile-link" aria-label="Profile" data-user="baramboy" th:href="@{/profile}">프로필</a>
+        </li>
+        <li>
+            <a aria-label="Settings" href="/profile">설정</a>
+        </li>
+        <li>
+            <a class="sign-out-link" aria-label="Sign out" rel="nofollow" th:href="@{/logout}">로그아웃</a>
+        </li>
+      </ul>
+  </div>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+  <ul class="nav sidebar-nav">
+    <li class="sidebar-brand">
+      <a href="#">
+	      <img th:if="${paramProject.avatarFileName != null}" class="avatar project-avatar s40" th:src="@{/avatar/projects/{projectPath}/{fileName}(projectPath=${paramProject.path},fileName=${paramProject.avatarFileName})}"/>
+	      <img th:if="${paramProject.avatarFileName == null}" class="avatar project-avatar s40" th:src="@{/avatar/langs/{fileName}.svg(fileName=${paramProject.programmingLanguageIcon})}"/>
+          <h1 th:text="${paramProject.name}">
+          Project Name
+          </h1>
+      </a>
+    </li>
+    <li>
+        <a title="Overview" class="shortcuts-project" th:href="@{/{groupPath}/{projectPath}(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-description@2x.png}"/>
+          <span>개요</span>
+        </a>
+    </li>
+    <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/files')} ? 'active': ''">
+        <a title="Sources" class="shortcuts-tree" th:href="@{/{groupPath}/{projectPath}/files(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-insert_tag_field@2x.png}"/>
+          소스
+        </a>
+    </li>
+    <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/commits')} ? 'active': ''">
+        <a title="Commits" class="shortcuts-tree" th:href="@{/{groupPath}/{projectPath}/commits(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-commit@2x.png}" />
+          커밋
+        </a>
+    </li>
+    <!-- li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/graphs')} ? 'active' : ''">
+        <a title="파일 공유" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/downloads(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><i class="fa fa-bar-chart" aria-hidden="true"></i><span style="margin-left: 10px;">그래프</span></a>
+    </li -->
+    <li th:if="${paramProject.pipelineVisibility.name() != 'HIDDEN'}" th:classappend="${#httpServletRequest.requestURI.matches('/[^/].*/[^/].*/pipelines(.)*')} ? 'active' : ''">
+        <a title="파이프라인" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/pipelines(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-product_transfer@2x.png}"/>
+          파이프라인
+        </a>
+    </li>
+    <li th:if="${paramProject.attachmentsVisibility.name() != 'HIDDEN'}" th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/downloads')} ? 'active' : ''">
+      <a title="파일 공유" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/downloads(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+        <img th:src="@{/assets/images/icons/icon-tc-download@2x.png}"/>
+        파일
+      </a>
+    </li>
+    <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/activity')} ? 'active': ''">
+        <a title="Activity" class="shortcuts-project-activity" th:href="@{/{groupPath}/{projectPath}/activity(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-feed@2x.png}"/>
+          활동 이력
+        </a>
+    </li>
+    <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/members')} ? 'active' : ''">
+      <a title="Members" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/members(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+        <img th:src="@{/assets/images/icons/icon-tc-people@2x.png}"/>
+         멤버
+      </a>
+    </li>
+    <li th:if="${paramm}" th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin(.)*')} ? 'active' : ''">
+        <a title="프로젝트 설정" class="shortcuts-issues" th:href="@{/{groupPath}/{projectPath}/admin?edit(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">
+          <img th:src="@{/assets/images/icons/icon-tc-settings@2x.png}"/>
+          프로젝트 설정
+        </a>
+    </li>
+  </ul>
+</nav>
+<div id="page-content-wrapper">
+    <div id="content">
+        <!-- div layout:fragment="content" th:class="'container-fluid ' + (${session.currentUser.layout.name() == 'FIXED'} ? 'container-limited' : '')" -->
+        <div layout:fragment="content" th:class="'container-fluid container-limited'">
+            <h1>Static content for prototyping purposes only</h1>
+        </div>
+    </div>
+</div>
+<script th:src="@{/assets/js/libs/vue.min.js}"></script>
+<script th:src="@{/assets/js/vue-utils.js}"></script>
+<script th:src="@{/assets/js/main.js}"></script>
+<th:block layout:fragment="content-script"></th:block>
+</body>
+</html>

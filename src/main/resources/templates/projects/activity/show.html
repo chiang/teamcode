@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" style="padding: 70px;">
+	<div class="content_list project-activity col-lg-8 col-lg-offset-2" data-href="/root/tester/activity">
+		<div th:each="activity : ${activities}" class="event-inline event-item">
+	    <div class="event-item-timestamp">
+		    <time class="js-timeago" th:attr="datetime=${#dates.format(activity.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(activity.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body">about 1 hours ago</time>
+	    </div>
+	    <a href="#!">
+          <img th:if="${activity.author.avatarFileName != null}" th:alt="${activity.author.name}" data-container="body" class="avatar has-tooltip s26 hidden-xs" th:src="@{/avatar/users/{userName}/{fileName}(userName=${activity.author.name},fileName=${activity.author.avatarFileName})}"/>
+          <img th:if="${activity.author.avatarFileName == null}" th:attr="data-name=${activity.author.fullName}" data-container="body" class="avatar has-tooltip s26 profile hidden-xs"/>
+      </a>
+	    <div th:if="${activity.action.name() == 'CREATED'}" class="event-title">
+		    <span class="author_name"><a th:title="${activity.author.fullName}" href="#!" th:text="${activity.author.fullName}">Author Name</a> 님이 </span>
+              <span class="created">프로젝트 </span> <span class="project-name" th:text="${activity.project.name}">Project Name</span>
+              를 만들었습니다.
+	    </div>
+			<div th:if="${activity.action.name() == 'JOINED'}" class="event-title">
+	      <span class="author_name"><a th:title="${activity.author.fullName}" href="#!" th:text="${activity.targetEntity.fullName}">Author Name</a></span> 님이 프로젝트에 참여했습니다.
+			</div>
+		</div>
+	</div>
+</div>
+<script layout:fragment="content-script">
+<!--
+$(function(){
+    localTimeAgo('.js-timeago');
+});
+//-->
+</script>
+</html>

@@ -1,0 +1,28 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+    <title>Requests Profiles</title>
+</head>
+<div layout:fragment="content">
+    <h3 class="page-title">
+        Requests Profiles
+    </h3>
+    <div class="bs-callout clearfix">
+        최근 100 개의 요청 정보를 보여줍니다.
+    </div>
+    <ul v-if="present" v-for="trace in traces" class="content-list">
+        <li>
+            <div>{{trace.timestamp | moment}} &dash; <span v-response-status="trace.info.headers.response.status">{{trace.info.headers.response.status}}</span> <span style="color: rgba(0,0,0,0.55);">{{trace.info.method}}</span> <a href="javascript:;" v-on:click="toggle">{{trace.info.path}}</a></div>
+            <div class="raw" style="word-break: break-all; color: rgba(0,0,0,0.55); display: none;">{{trace | stringify}}</div>
+        </li>
+    </ul>
+    <p v-else="">
+        No profiles found
+    </p>
+</div>
+<div layout:fragment="content-script">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script th:src="@{/assets/js/vue-utils.js}"></script>
+    <script th:src="@{/assets/js/requests-profiles.js}"></script>
+</div>
+</html>

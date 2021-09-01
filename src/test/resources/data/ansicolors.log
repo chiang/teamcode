@@ -1,0 +1,3 @@
+\\033[0;33mUsing Docker executor with image openjdk:8 ...[0;m[0KUsing docker image %s ID=%s for %s container... openjdk:8 sha256:4c3d59cc5179d41d161dd8bafc8c887b3bb3a61be1200f41c8e72079cd082955 build[0;mRunning on runner-a4f9043d-project-1-concurrent-0...
+[0KGetting source code[0;m[0KChecked out revision 242.
+[0;m

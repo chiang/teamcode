@@ -1,0 +1,12 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+		<div class="">
+			<label class="label-light">마일스톤</label>
+			<p class="help-block">빌드 및 배포 시 Runner 가 사용하는 변수입니다. 자주 사용하는 정보를 등록해서 사용해 보세요.</p>
+		</div>
+
+	</div>
+</div>
+</html>

@@ -1,0 +1,38 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-help">
+<div layout:fragment="content">
+  <div class="documentation wiki">
+	  <h1 dir="auto"><a id="user-content-permissions" class="anchor" href="#permissions" aria-hidden="true"></a>파이프라인 살펴보기</h1>
+	  <p>처음으로 프로젝트 파이프라인 메뉴로 이동하면, 파이프라인이 비활성화되어 있습니다. 파이프라인을 사용하기 위해서는 먼저 파이프라인을 활성화해야 합니다.</p>
+	  <blockquote class="warning" dir="auto">
+		  <p><strong>Note:</strong>
+			  파이프라인 활성화 (혹은 비활성화)는 해당 프로젝트에서 관리자 권한을 가진 사용자나 팀코드를 관리하는 시스템 관리자만 할 수 있습니다.</p>
+	  </blockquote>
+
+    <p dir="auto"><code>.teamcode-pipelines.yml</code> 파일은 팀코드 서버가 어떤 일을 할 수 있는지를. 기본적으로 세 가지 Stage 로 구성합니다.
+        <a href="../yaml/README.md#stages">stages</a>: <code>build</code>, <code>test</code>, and <code>deploy</code> 입니다.
+        여러분은 모든 Stage 를 사용할 필요가 없습니다. 실행할 Stage 가 없다면 해당 파이프라인은 무시됩니다.</p>
+
+    <h2 dir="auto">
+	    <a id="user-content-creating-a-simple-gitlab-ciyml-file" class="anchor" href="#creating-a-simple-gitlab-ciyml-file" aria-hidden="true"></a>심플한 <code>.tc-pipelines.yml</code> 파일 만들기
+    </h2>
+
+	  <p dir="auto">서브버전 저장소 최상위에 <code>.teamcode-pipeline.yml</code> 을 만듭니다. 아래는 자바 프로젝트를 빌드, 배포하는 예로 작성한 파일입니다.</p>
+    <pre class="code highlight js-syntax-highlight yaml white" v-pre="true">
+	    <code>
+		    <span class="na">before_script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">apt-get update -qq &amp;&amp; apt-get install -y -qq sqlite3 libsqlite3-dev nodejs</span>
+        <span class="pi">-</span> <span class="s">ruby -v</span>
+        <span class="pi">-</span> <span class="s">which ruby</span>
+        <span class="pi">-</span> <span class="s">gem install bundler --no-ri --no-rdoc</span>
+        <span class="pi">-</span> <span class="s">bundle install --jobEntries $(nproc)  "${FLAGS[@]}"</span>
+        <span class="na">rspec</span><span class="pi">:</span>
+        <span class="na">script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">bundle exec rspec</span>
+        <span class="na">rubocop</span><span class="pi">:</span>
+        <span class="na">script</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">bundle exec rubocop</span>
+      </code>
+    </pre>
+    </div>
+</div>
+</html>

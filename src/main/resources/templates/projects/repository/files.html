@@ -1,0 +1,109 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+  <div class="tree-holder clearfix" id="tree-holder">
+    <div class="nav-block">
+      <div class="tree-ref-holder">
+          <!-- form class="project-refs-form" action="/root/petclinic/refs/switch" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="destination" id="destination" value="tree">
+              <input type="hidden" name="path" id="path" value="">
+              <div class="dropdown">
+                  <button class="dropdown-menu-toggle js-project-refs-dropdown" type="button" data-toggle="dropdown" data-selected="master" data-ref="master" data-refs-url="/root/petclinic/refs" data-field-name="ref" data-submit-form-on-click="true"><span class="dropdown-toggle-text ">master</span><i class="fa fa-chevron-down"></i></button>
+                  <div class="dropdown-menu dropdown-menu-selectable">
+                      <div class="dropdown-title"><span>Switch branch/tag</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                      <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search branches and tags" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+                      <div class="dropdown-content"></div>
+                      <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                  </div>
+              </div>
+          </form -->
+        </div>
+      <ul class="breadcrumb repo-breadcrumb" style="margin-left: 15px;">
+        <li th:each="breadcrumb : ${repositoryBrowseContent.breadcrumbs}">
+          <a th:href="${breadcrumb.path}" th:text="${breadcrumb.name}">petclinic</a>
+        </li>
+          <!-- li>
+              <span class="dropdown">
+                  <a class="dropdown-toggle btn add-to-tree" data-toggle="dropdown" href="#"><i class="fa fa-plus"></i></a>
+                  <ul class="dropdown-menu">
+                      <li><a href="/root/petclinic/new/master"><i class="fa fa-pencil fa-fw"></i>New file</a></li>
+                      <li>
+                          <a data-target="#modal-upload-blob" data-toggle="modal" href="#modal-upload-blob"><i class="fa fa-file fa-fw"></i>Upload file</a>
+                      </li>
+                      <li>
+                          <a data-target="#modal-create-new-dir" data-toggle="modal" href="#modal-create-new-dir"><i class="fa fa-folder fa-fw"></i>New directory</a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                          <a href="/root/petclinic/branches/new"><i class="fa fa-code-fork fa-fw"></i>New branch</a>
+                      </li>
+                      <li>
+                          <a href="/root/petclinic/tags/new"><i class="fa fa-tags fa-fw"></i>New tag</a>
+                      </li>
+                  </ul>
+              </span>
+          </li -->
+      </ul>
+    </div>
+    <div class="tree-content-holder">
+      <table class="table table_da39a3ee5e6b4b0d3255bfef95601890afd80709 tree-table" id="tree-slider">
+        <thead>
+          <tr>
+              <th>이름</th>
+              <th class="hidden-xs">
+                  &nbsp;
+                  <!-- div class="pull-left">Last commit</div>
+                  <div class="last-commit hidden-sm pull-left">
+                      <i class="fa fa-angle-right"></i>
+                      <small class="light">
+                          <a class="monospace" href="/gitlab-org/gitlab-ce/commit/0eff4f14ccae7d979e6fa20f0bb875e4591351e8">0eff4f14</a>
+                          <button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-text="0eff4f14ccae7d979e6fa20f0bb875e4591351e8" data-title="Copy commit SHA to clipboard" type="button" title="Copy commit SHA to clipboard"><i aria-hidden="true" class="fa fa-clipboard"></i></button>
+                          <time class="js-timeago js-timeago-render" title="" datetime="2017-03-17T23:06:12Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Mar 18, 2017 8:06am GMT+0900">about 7 hours ago</time>
+                      </small>
+                  </div>
+                  <small class="commit-history-link-spacer">|</small>
+                  <a class="commit-history-link" href="/gitlab-org/gitlab-ce/commits/master">History</a -->
+              </th>
+              <th class="text-right">&nbsp;</th>
+              <th class="text-right">마지막 업데이트</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="entry : ${repositoryBrowseContent.entries}" class="tree-item file_4c40eab00f24304ca400313319c58d461788ff5e">
+              <td class="tree-item-file-name">
+                  <i class="fa fa-fw" th:if="${entry.type.name() != 'UP_LINK'}" th:classappend="|fa-${entry.iconClass}|"></i>
+                  <th:block th:if="${entry.type.name() == 'UP_LINK'}">
+                    <a th:href="${entry.path}"><i class="fa fa-caret-up" aria-hidden="true"></i> ..</a>
+                  </th:block>
+                  <th:block th:unless="${entry.type.name() == 'UP_LINK'}">
+                    <a th:if="${repositoryBrowseContent.revision == -1}" th:title="${entry.name}" th:href="@{/projects/{path}/files?path={entryPath}(path=${paramProjectPath},entryPath=${entry.absolutePath})}"><span class="str-truncated" th:text="${entry.displayName}">file.txt</span></a>
+                    <a th:if="${repositoryBrowseContent.revision > 0}" th:title="${entry.name}" th:href="@{/projects/{projectPath}/files(projectPath=${paramProjectPath},path=${entry.absolutePath},revision=${repositoryBrowseContent.revision})}"><span class="str-truncated" th:text="${entry.displayName}">file.txt</span></a>
+                  </th:block>
+              </td>
+              <td class="hidden-xs tree-commit">
+                  &nbsp;
+                  <!-- span th:if="${entry.type.name() != 'UP_LINK'}"  class="str-truncated">
+                      <a class="tree-commit-link" href="/gitlab-org/gitlab-ce/commit/7722caf9d5be1ca419d9c672187fb62c6d21caed" th:text="${entry.log}">Commit message</a>
+                  </span>
+                  <span th:if="${entry.type.name() == 'UP_LINK'}">&nbsp;</span -->
+              </td>
+              <td class="text-right">
+                  <span th:if="${entry.type.name() == 'FILE'}" th:text="${entry.byteSize}"></span>
+                  <span th:if="${entry.type.name() == 'DIRECTORY'}">&nbsp;</span>
+              </td>
+              <td class="tree-time-ago text-right">
+                  <time th:if="${entry.type.name() != 'UP_LINK'}" class="js-timeago" th:attr="datetime=${#dates.format(entry.lastModifiedAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(entry.lastModifiedAt, 'yyyy년 MM월 dd일 HH시 mm분')}"  data-toggle="tooltip" data-placement="top" data-container="body"></time>
+                  <span th:if="${entry.type.name() == 'UP_LINK'}">&nbsp;</span>
+              </td>
+          </tr>
+          <th:block th:if="${repositoryBrowseContent.emptyDirectory}">
+            <tr>
+              <td colspan="4" class="center">
+                이 디렉터리는 비어 있습니다.
+              </td>
+            </tr>
+          </th:block>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</html>

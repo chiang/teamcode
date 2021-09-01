@@ -1,0 +1,387 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+    <title>Messages</title>
+</head>
+<div layout:fragment="content">
+    <h3 class="page-title">Broadcast Messages</h3>
+    <p class="light">
+        Broadcast messages are displayed for every user and can be used to notify
+        users about scheduled maintenance, recent upgrades and more.
+    </p>
+    <div class="broadcast-message-preview" style="background-color: #E75E40; color: #FFFFFF">
+        <i class="fa fa-bullhorn"></i>
+        <div class="js-broadcast-message-preview">Your message here</div>
+    </div>
+    <form class="broadcast-message-form form-horizontal js-quick-submit js-requires-input" id="new_broadcast_message" action="/admin/broadcast_messages" accept-charset="UTF-8" method="post">
+        <div class="form-group">
+            <label class="control-label" for="broadcast_message_message">Message</label>
+            <div class="col-sm-10">
+                <textarea class="form-control js-autosize" required="required" data-preview-path="/admin/broadcast_messages/preview" name="broadcast_message[message]" id="broadcast_message_message" style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 54px;"></textarea>
+            </div>
+        </div>
+        <div class="form-group js-toggle-colors-container">
+            <div class="col-sm-10 col-sm-offset-2">
+                <a class="js-toggle-colors-link" href="#">Customize colors</a>
+            </div>
+        </div>
+        <div class="form-group js-toggle-colors-container hide">
+            <label class="control-label" for="broadcast_message_color">Background Color</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value="#E75E40" name="broadcast_message[color]" id="broadcast_message_color"/>
+            </div>
+        </div>
+        <div class="form-group js-toggle-colors-container hide">
+            <label class="control-label" for="broadcast_message_font">Font Color</label>
+            <div class="col-sm-10">
+                <input class="form-control" type="text" value="#FFFFFF" name="broadcast_message[font]" id="broadcast_message_font"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Starts at</label>
+            <div class="col-sm-10 datetime-controls">
+                <select id="broadcast_message_starts_at_1i" name="broadcast_message[starts_at(1i)]" class="form-control form-control-inline">
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017" selected="selected">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+                <select id="broadcast_message_starts_at_2i" name="broadcast_message[starts_at(2i)]" class="form-control form-control-inline">
+                    <option value="1">January</option>
+                    <option value="2" selected="selected">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select id="broadcast_message_starts_at_3i" name="broadcast_message[starts_at(3i)]" class="form-control form-control-inline">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14" selected="selected">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                — <select id="broadcast_message_starts_at_4i" name="broadcast_message[starts_at(4i)]" class="form-control form-control-inline">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12" selected="selected">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+                : <select id="broadcast_message_starts_at_5i" name="broadcast_message[starts_at(5i)]" class="form-control form-control-inline">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27" selected="selected">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Ends at</label>
+            <div class="col-sm-10 datetime-controls">
+                <select id="broadcast_message_ends_at_1i" name="broadcast_message[ends_at(1i)]" class="form-control form-control-inline">
+                    <option value="2012">2012</option>
+                    <option value="2013">2013</option>
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017" selected="selected">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                </select>
+                <select id="broadcast_message_ends_at_2i" name="broadcast_message[ends_at(2i)]" class="form-control form-control-inline">
+                    <option value="1">January</option>
+                    <option value="2" selected="selected">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+                <select id="broadcast_message_ends_at_3i" name="broadcast_message[ends_at(3i)]" class="form-control form-control-inline">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14" selected="selected">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+                — <select id="broadcast_message_ends_at_4i" name="broadcast_message[ends_at(4i)]" class="form-control form-control-inline">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12" selected="selected">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                </select>
+                : <select id="broadcast_message_ends_at_5i" name="broadcast_message[ends_at(5i)]" class="form-control form-control-inline">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27" selected="selected">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" name="commit" value="Add broadcast message" class="btn btn-create disabled" disabled="disabled"/>
+        </div>
+    </form>
+    <br class="clearfix"/>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Status</th>
+            <th>Preview</th>
+            <th>Starts</th>
+            <th>Ends</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                Expired
+            </td>
+            <td>
+                <div class="broadcast-message" style="background-color: #E75E40; color: #FFFFFF"><i class="fa fa-bullhorn"></i> <p>곧 점검에 들어가오니 준비들 하세요.</p></div>
+            </td>
+            <td>
+                2017-02-05 07:22:00 UTC
+            </td>
+            <td>
+                2017-02-05 19:22:00 UTC
+            </td>
+            <td>
+                <a title="Edit" class="btn btn-xs" href="/admin/broadcast_messages/2/edit"><i class="fa fa-pencil-square-o"></i></a>
+                <a title="Remove" class="js-remove-tr btn btn-xs btn-danger" data-remote="true" rel="nofollow" data-method="delete" href="/admin/broadcast_messages/2"><i class="fa fa-times"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div layout:fragment="content-script">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script th:src="@{/assets/js/vue-utils.js}"></script>
+    <script th:src="@{/assets/js/monitoring-health.js}"></script>
+</div>
+</html>

@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="project-settings-nav" th:classappend="project-settings-nav">
+	<!-- h4 class="prepend-top-0" th:text="#{projects.menu.settings}">Project settings</h4 -->
+	<aside class="" id="project-settings-nav">
+		<nav class="">
+			<div class="aui-navgroup-inner">
+				<div class="nav-heading prepend-top-10">
+					<strong>General</strong>
+				</div>
+				<ul class="nav" resolved="">
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin')} ? 'active' : ''">
+						<a class="execute pjax" th:href="@{/{groupPath}/{projectPath}/admin?edit(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">기본 설정</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/access')} ? 'active' : ''">
+						<a class="execute pjax" th:href="@{/{groupPath}/{projectPath}/admin/access(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">멤버 관리</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/path')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/path(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">이름 및 경로 변경</a>
+					</li>
+					<!-- li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/archive')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/archive(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">프로젝트 아카이브</a>
+					</li -->
+				</ul>
+				<!-- div class="nav-heading prepend-top-30"><strong>이슈 관리</strong></div>
+				<ul class="nav" resolved="">
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/pipeline/settings')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/pipeline/settings(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">이슈 트래커</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/issues/labels')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/issues/labels(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">이슈 레이블</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/milestones')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/milestones(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">마일스톤</a>
+					</li>
+				</ul -->
+				<div class="nav-heading prepend-top-30"><strong>파이프라인</strong></div>
+				<ul class="nav" resolved="">
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/pipeline/settings')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/pipeline/settings(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">설정</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/pipeline/settings/variables')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/pipeline/settings/variables(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">파이프라인 환경 변수</a>
+					</li>
+				</ul>
+				<div class="nav-heading prepend-top-30"><strong>외부 연동</strong></div>
+				<ul class="nav" resolved="">
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/pipeline/settings')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/pipeline/settings(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">Web Hook</a>
+					</li>
+					<li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/admin/settings/integration.*')} ? 'active' : ''">
+						<a th:href="@{/{groupPath}/{projectPath}/admin/settings/integrations(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">서비스 구성</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</aside>
+</div>
+</html>

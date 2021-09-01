@@ -1,0 +1,152 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+  <style>
+      .hunk-start {
+          counter-reset: fl tl;
+      }
+      .diff-line-num.old_line.line-numbers a:before {
+          content:counter(fl);
+        counter-increment:fl;
+      }
+      .diff-line-num.new_line.line-numbers a:before {
+          content:counter(tl);
+        counter-increment:tl;
+      }
+  </style>
+	<div class="page-content-header">
+		<div class="header-main-content">
+			<strong></strong>
+			<span th:text="|r${commitDetails.revision}|"></span> &middot;
+            <a href="#!">
+                <img th:alt="${commitDetails.author}" class="avatar s24 hidden-xs has-tooltip" data-container="body" th:src="@{/avatar/users/{userName}/{fileName}(userName=${commitDetails.author},fileName=${commitDetails.author})}"/>
+            </a>
+            <strong>
+                <a class="commit-author-link has-tooltip" th:title="${commitDetails.author}" href="#!"><span class="commit-author-name" th:text="${commitDetails.author}"></span></a>
+            </strong> 님이
+            <time class="js-timeago" th:attr="datetime=${#dates.format(commitDetails.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(commitDetails.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body"></time>에 커밋했습니다.
+		</div>
+		<div class="header-action-buttons">
+			<a class="btn btn-default append-right-10 hidden-xs hidden-sm" th:href="@{/projects/{path}/files?revision={revision}(path=${paramProjectPath},revision=${commitDetails.revision})}">Browse Files</a>
+            <!-- div class="dropdown inline">
+			    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span>Options</span><i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu dropdown-menu-align-right">
+                    <li class="visible-xs-block visible-sm-block">
+                        <a href="/root/petclinic/tree/e48c4b26d6ca938829874fb22465fa76983c173d">Browse Files
+                        </a></li>
+                    <li class="clearfix">
+                        <a data-toggle="modal" data-container="body" class=" " href="#modal-revert-commit">Revert</a>
+                    </li>
+                    <li class="clearfix">
+                        <a data-toggle="modal" data-container="body" class=" " href="#modal-cherry-pick-commit">Cherry-pick</a>
+                    </li>
+                    <li class="clearfix">
+                        <a href="/root/petclinic/tags/new?ref=e48c4b26d6ca938829874fb22465fa76983c173d">Tag</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">
+                        Download
+                    </li>
+                    <li><a href="/root/petclinic/commit/e48c4b26d6ca938829874fb22465fa76983c173d.patch">Email Patches</a></li>
+                    <li><a href="/root/petclinic/commit/e48c4b26d6ca938829874fb22465fa76983c173d.diff">Plain Diff</a></li>
+                </ul>
+            </div -->
+		</div>
+	</div>
+	<div class="commit-box">
+		<h3 class="commit-title" th:text="${commitDetails.message}">Add new file</h3>
+	</div>
+	<div class="block-connector"></div>
+	<div class="content-block oneline-block files-changed">
+		<!-- div class="inline-parallel-buttons">
+			<a class="hidden-xs btn btn-default" href="/root/petclinic/commit/e48c4b26d6ca938829874fb22465fa76983c173d?view=inline&amp;w=1">Hide whitespace changes</a>
+			<div class="btn-group">
+				<a id="inline-diff-btn" class="btn active" data-view-type="inline" href="/root/petclinic/commit/e48c4b26d6ca938829874fb22465fa76983c173d?view=inline">Inline</a>
+				<a id="parallel-diff-btn" class="btn" data-view-type="parallel" href="/root/petclinic/commit/e48c4b26d6ca938829874fb22465fa76983c173d?view=parallel">Side-by-side</a>
+			</div>
+		</div -->
+		<div class="js-toggle-container">
+			<div class="commit-stat-summary">
+				<a class="js-toggle-button" href="#"><strong><span th:text="${commitDetails.diffs.size()}">1</span> 개 파일</strong></a> 에서
+                <strong class="cgreen"><span th:text="${commitDetails.totalAdditions}">0</span> 개 항목</strong>이 추가되고
+				<strong class="cred"><span th:text="${commitDetails.totalDeletions}">0</span> 개 항목</strong>이 삭제되었습니다.
+			</div>
+			<div class="file-stats js-toggle-content hide">
+				<ul>
+					<li><span class="new-file"><a href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46"><i class="fa fa-plus"></i>license.txt</a></span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="files" data-can-create-note="">
+		<div th:each="diff : ${commitDetails.diffs}" class="diff-file file-holder" data-blob-diff-path="/root/petclinic/blob/e48c4b26d6ca938829874fb22465fa76983c173d/license.txt/diff" data-view="inline" id="930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46">
+			<div class="file-title">
+				<i class="fa diff-toggle-caret fa-fw fa-caret-down"></i>
+				<a href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46"><i class="fa fa-fw" th:classappend="|fa-${diff.iconClass}|"></i>
+					<strong th:text="${diff.path}">file.txt</strong>
+				</a>
+				<!-- small>0 → 100644</small -->
+				<div class="file-actions hidden-xs">
+					<!-- a class="btn view-file js-view-file btn-file-option" href="#!">r<span class="commit-short-id" th:text="${commitDetails.revision}">e48c4b2</span> 버전 파일 보기</a -->
+				</div>
+			</div>
+            <div th:if="${diff.cannotDisplay}" class="diff-content diff-wrap-lines">
+                <div th:if="${diff.image == false}" class="nothing-here-block">이 파일 유형은 미리보기를 할 수 없습니다.</div>
+                <div th:if="${diff.image}" class="image">
+                    <span class="wrap">
+                        <div class="added frame">
+                            <img alt="train-821500_1920.jpg" th:src="${diff.rawRelativePath}"/>
+                        </div>
+                        <!-- p class="image-info">0 KB</p -->
+                    </span>
+                </div>
+            </div>
+			<div th:if="${diff.cannotDisplay == false}" class="diff-content diff-wrap-lines">
+				<table class="code js-syntax-highlight text-file white" data-commit-id="e48c4b26d6ca938829874fb22465fa76983c173d" data-noteable-type="Commit">
+					<tbody>
+                        <th:block th:each="hunk: ${diff.hunks}">
+                            <tr class="line_holder match hunk-start" th:style="'counter-reset: fl ' + ${hunk.fromFileRange.lineStart - 1} + ' tl ' + ${hunk.fromFileRange.lineStart - 1}">
+                                <td class="diff-line-num unfold js-unfold old_line" data-linenumber="669">...</td><td class="diff-line-num unfold js-unfold new_line" data-linenumber="669">...</td><td class="line_content match" th:text="${hunk}">@@ -669,7 +669,7 @@ GEM</td>
+                            </tr>
+                            <tr th:each="line, iterator: ${hunk.lines}" class="line_holder" th:classappend="${line.lineType.cssClassName}" id="930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2">
+                                <th:block th:if="${line.lineType.name() == 'NEUTRAL'}">
+                                    <td class="diff-line-num old_line line-numbers" th:attr="data-linenumber=${hunk.fromFileRange.lineStart}">
+                                        <a class="neutral-line" href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                    <td class="diff-line-num new_line line-numbers" th:attr="data-linenumber=${hunk.toFileRange.lineStart}">
+                                        <a class="neutral-line" href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                </th:block>
+                                <th:block th:if="${line.lineType.name() == 'FROM'}">
+                                    <td class="diff-line-num old_line line-numbers" th:classappend="${line.lineType.cssClassName}" th:attr="data-linenumber=${hunk.fromFileRange.lineStart}">
+                                        <a th:attr="data-linenumber=${hunk.fromFileRange.lineStart + iterator.index}" href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                    <td class="diff-line-num new_line" th:classappend="${line.lineType.cssClassName}" th:attr="data-linenumber=${hunk.fromFileRange.lineStart}">
+                                        <a href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                </th:block>
+                                <th:block th:if="${line.lineType.name() == 'TO'}">
+                                    <td class="diff-line-num old_line" th:classappend="${line.lineType.cssClassName}" th:attr="data-linenumber=${hunk.toFileRange.lineStart}">
+                                        <a href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                    <td class="diff-line-num new_line line-numbers" th:classappend="${line.lineType.cssClassName}" th:attr="data-linenumber=${hunk.toFileRange.lineStart}">
+                                        <a th:attr="data-linenumber=${hunk.toFileRange.lineStart + iterator.index}" href="#930ff9e732755d92ad4ffb21bc49b7e5e3e6ad46_0_2"></a>
+                                    </td>
+                                </th:block>
+                                <td class="line_content noteable_line" th:classappend="${line.lineType.cssClassName}"><span class="" th:text="${line.content}"></span></td>
+                            </tr>
+                            <tr class="line_holder">
+                                <td class="diff-line-num unfold js-unfold js-unfold-bottom old_line" data-linenumber="310">...</td><td class="diff-line-num unfold js-unfold js-unfold-bottom new_line" data-linenumber="310">...</td><td class="line_content match "></td>
+                            </tr>
+                        </th:block>
+					</tbody>
+                </table>
+			</div>
+            <div class="diff-content diff-wrap-lines" style="display: none;">
+                <div class="nothing-here-block diff-collapsed">This diff is collapsed. <a class="click-to-expand">Click to expand it.</a></div>
+            </div>
+		</div>
+
+	</div>
+
+</div>
+</html>

@@ -1,0 +1,57 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+	<div class="col-md-8 col-md-offset-2">
+    <h3 class="page-title">새 사용자를 추가합니다.</h3>
+    <hr/>
+    <div class="user_new">
+      <form class="fieldset-form" id="new_user" enctype="multipart/form-data" th:action="@{/admin/users}" accept-charset="UTF-8" method="post">
+        <fieldset>
+          <legend>Account</legend>
+	        <div class="form-group">
+		        <label class="required" for="user_username" th:text="#{labels.user.userName}">Username</label>
+		        <input required="required" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="form-control" type="text" name="name" id="user_username"/>
+	        </div>
+          <div class="form-group">
+            <label class="required" for="user_name" th:text="#{labels.user.name}">Name</label>
+	          <input required="required" autocomplete="off" class="form-control" type="text" name="fullName" id="user_name"/>
+          </div>
+          <div class="form-group">
+              <label class="required" for="user_email" th:text="#{labels.email}">Email</label>
+              <input required="required" autocomplete="off" class="form-control" type="email" value="" name="email" id="user_email"/>
+          </div>
+	        <div class="form-group">
+		        <label class="required" th:text="#{labels.user.password}">Password</label>
+		        <input required="required" autocomplete="off" class="form-control" type="text" value="" name="password" id="user_password"/>
+	        </div>
+        </fieldset>
+        <fieldset>
+            <legend>부가 정보</legend>
+		        <div class="form-group">
+			        <label class="required" for="user_organization">팀, 부서 혹은 회사를 입력하세요.</label>
+			        <input class="form-control" type="text" name="organization" id="user_organization" placeholder="예) IT 서비스 팀" required="required" />
+		        </div>
+        </fieldset>
+        <!-- fieldset>
+            <legend>Access</legend -->
+            <!-- div class="form-group">
+                <label class="control-label" for="user_projects_limit">Projects limit</label>
+                <div class="col-sm-10"><input min="0" class="form-control" type="number" value="10" name="user[projects_limit]" id="user_projects_limit"/></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="user_can_create_group">Can create group</label>
+                <div class="col-sm-10"><input name="user[can_create_group]" type="hidden" value="0"/><input type="checkbox" value="1" checked="checked" name="user[can_create_group]" id="user_can_create_group"/></div>
+            </div -->
+            <!-- div class="form-group">
+                <label class="control-label" for="user_admin">Admin</label>
+                <div class="col-sm-10"><input name="user[admin]" type="hidden" value="0"/><input type="checkbox" value="1" name="user[admin]" id="user_admin"/></div>
+            </div>
+        </fieldset -->
+        <div class="form-actions">
+            <input type="submit" name="commit" value="Create user" class="btn btn-create"/>
+            <a class="btn btn-cancel" th:href="@{/admin/users}" th:text="#{btn.cancel}">Cancel</a>
+        </div>
+      </form>
+    </div>
+	</div>
+</div>
+</html>

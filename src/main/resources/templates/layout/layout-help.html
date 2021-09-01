@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+  <link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+  <link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+  <link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+  <title layout:title-pattern="$CONTENT_TITLE &middot; $DECORATOR_TITLE">도움말 - TeamCode</title>
+</head>
+<body class="support-documentation faq">
+	<div class="container container-limited" style="margin-bottom: 70px;">
+		<header class="nav" role="banner" id="top">
+			<h1><a th:href="@{/help}">TeamCode Help</a></h1>
+
+			<nav role="navigation">
+				<ul class="nav-menu">
+					<li class=""><a th:href="@{/help/faq}">빠른 답변!</a></li>
+					<li class=""><a th:href="@{/help}">사용자 매뉴얼</a></li>
+				</ul>
+			</nav>
+
+			<hr class="nav-break"/>
+		</header>
+		<div class="row">
+			<div class="col-md-3">
+				<aside class="help-navigation" role="navigation">
+					<h3 class="perma-navigation__title">
+						<span class="navigation-crumbs"><a th:href="@{/help}">The Manual</a> &gt;</span>
+						<a href="/help/3/guides/projects/">Working in Projects</a>
+					</h3>
+					<ul id="perma-navigation__toggle">
+						<li class="perma-navigation__item perma-navigation__item--current">
+							<span class="perma-navigation__reading">Reading article 1 of 15:</span>
+							Campfires
+						</li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/messages/">Message Board</a></li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/to-dos/">To-Dos</a></li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/schedule/">Schedule</a></li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/checkins/">Automatic Check-ins</a></li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/docs-and-files/">Docs &amp; Files</a></li>
+						<li class="perma-navigation__item perma-navigation__item--available"><a href="/help/3/guides/projects/forwards/">Forwards</a></li>
+						<li class="perma-navigation__toggle"><a href="#perma-navigation__toggle">See all 15 articles →</a></li>
+					</ul>
+				</aside>
+			</div>
+			<div class="col-md-9">
+				<div id="content" layout:fragment="content"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

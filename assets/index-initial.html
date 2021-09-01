@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="public/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="navbar navbar-fixed-top navbar-tc with-horizontal-nav">
+    <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+    <div class="container-fluid">
+      <div class="header-content">
+        <button aria-label="Toggle global navigation" class="side-nav-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></button>
+        <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden-sm hidden-xs">
+              <div class="has-location-badge search search-form">
+                <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+                  <input name="utf8" type="hidden" value="✓">
+                  <div class="search-input-container">
+                    <div class="location-badge">This project</div>
+                    <div class="search-input-wrap">
+                      <div class="dropdown" data-url="/search/autocomplete">
+                        <input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options disabled" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://gitlab.com/dashboard/issues" data-mr-path="https://gitlab.com/dashboard/merge_requests" value="">
+                        <div class="dropdown-menu dropdown-select">
+                          <div class="dropdown-content">
+                            <ul>
+                              <li><a class="is-focused dropdown-menu-empty-link">Loading...</a></li>
+                            </ul>
+                          </div>
+                          <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                        </div>
+                        <i class="search-icon"></i>
+                        <i class="clear-icon js-clear-input"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="group_id" id="group_id" class="js-search-group-options">
+                  <input type="hidden" name="project_id" id="search_project_id" value="2350390" class="js-search-project-options" data-project-path="jandi-connector" data-name="jandi-connector" data-issues-path="/baramboy/jandi-connector/issues" data-mr-path="/baramboy/jandi-connector/merge_requests">
+                  <input type="hidden" name="search_code" id="search_code" value="true">
+                  <input type="hidden" name="repository_ref" id="repository_ref">
+                  <div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="2350390"></div>
+                </form>
+              </div>
+            </li>
+            <li class="visible-sm visible-xs"><a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a></li>
+            <li><a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a></li>
+            <li class="header-user dropdown">
+              <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img width="26" height="26" class="header-user-avatar" src="https://secure.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon" alt="33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon">
+                <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+                <li>
+                  <a class="profile-link" aria-label="Profile" data-user="baramboy" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a aria-label="Settings" href="/profile">Settings</a>
+                </li>
+                <li>
+                  <a aria-label="Help" href="/help">Help</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h1 class="title"><a href="/baramboy">박영일</a> / <a class="project-item-select-holder" href="/baramboy/jandi-connector">jandi-connector</a><button name="button" type="button" class="dropdown-toggle-caret js-projects-dropdown-toggle" aria-label="Toggle switch project dropdown" data-target=".js-dropdown-menu-projects" data-toggle="dropdown" data-order-by="last_activity_at"><i class="fa fa-chevron-down"></i></button></h1>
+        <div class="header-logo">
+          <a class="home" title="Dashboard" id="logo" href="projects.html">
+            <svg width="36" height="36" class="tanuki-logo">
+              <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+              <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+              <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+              <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+              <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+              <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+              <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="js-dropdown-menu-projects">
+          <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+            <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+            <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+            <div class="dropdown-content"></div>
+            <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page-with-sidebar">
+    <div class="sidebar-wrapper nicescroll">
+      <div class="sidebar-action-buttons">
+        <div class="nav-header-btn toggle-nav-collapse" title="Open/Close">
+          <span class="sr-only">Toggle navigation</span>
+          <i class="fa fa-bars"></i>
+        </div>
+        <div class="nav-header-btn pin-nav-btn has-tooltip  js-nav-pin" data-container="body" data-placement="right" title="" data-original-title="Pin navigation">
+          <span class="sr-only">Toggle navigation pinning</span>
+          <i class="fa fa-fw fa-thumb-tack"></i>
+        </div>
+      </div>
+      <div class="nav-sidebar" tabindex="2" style="overflow: hidden; outline: none;">
+        <ul class="nav">
+          <li class="home active"><a title="Projects" class="dashboard-shortcuts-projects" href="/dashboard/projects"><span>Projects</span></a></li>
+          <li class=""><a class="dashboard-shortcuts-activity" title="Activity" href="/dashboard/activity"><span>Activity</span></a></li>
+          <li class=""><a title="Groups" href="/dashboard/groups"><span>Groups</span></a></li>
+          <li class=""><a title="Milestones" href="/dashboard/milestones"><span>Milestones</span></a></li>
+          <li class=""><a title="Issues" class="dashboard-shortcuts-issues" href="/dashboard/issues?assignee_id=1"><span>Issues<span class="count">0</span></span></a></li>
+          <li class=""><a title="Merge Requests" class="dashboard-shortcuts-merge_requests" href="/dashboard/merge_requests?assignee_id=1"><span>Merge Requests<span class="count">0</span></span></a></li>
+          <li class=""><a title="Snippets" href="/dashboard/snippets"><span>Snippets</span></a></li>
+          <a title="About GitLab CE" class="about-gitlab" href="/help"><span>About GitLab CE</span></a>
+        </ul>
+      </div>
+      <div id="ascrail2002" class="nicescroll-rails nicescroll-rails-vr" style="width: 7px; z-index: 1000; cursor: default; position: absolute; top: 50px; left: 213px; height: 210px; touch-action: none; display: block; opacity: 0;">
+        <div class="nicescroll-cursors" style="position: relative; top: 0px; float: right; width: 5px; height: 228px; background-color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px; touch-action: none;"></div>
+      </div>
+      <div id="ascrail2002-hr" class="nicescroll-rails nicescroll-rails-hr" style="height: 7px; z-index: 1000; top: 253px; left: 0px; position: absolute; cursor: default; display: none; width: 213px; opacity: 0;"><div class="nicescroll-cursors" style="position: absolute; top: 0px; height: 5px; width: 220px; background-color: rgb(255, 255, 255); border: 1px solid rgb(255, 255, 255); background-clip: padding-box; border-radius: 5px;">
+      </div>
+    </div>
+  </div>
+  <div class="content-wrapper">
+    <div class="alert-wrapper">
+      <div class="broadcast-message" style="background-color: #E75E40; color: #FFFFFF"><i class="fa fa-bullhorn"></i> <p>곧 점검에 들어가오니 준비들 하세요.</p></div>
+      <div class="flash-container flash-container-page"></div>
+    </div>
+    <div class="container-fluid container-limited ">
+      <div class="content" id="content-body">
+        <div class="blank-state blank-state-welcome">
+          <h2 class="blank-state-welcome-title">Welcome to GitLab</h2>
+          <p class="blank-state-text">Code, test, and deploy together</p>
+        </div>
+        <div class="blank-state">
+          <div class="blank-state-icon">
+            <svg width="50" height="50" viewBox="0 0 16 16">
+              <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Group" fill="#303030">
+                <path d="M15.6667,10.0105 L10.3337,10.0105 C10.1497,10.0105 9.9997,10.1775 9.9997,10.3845 L9.9997,15.6145 C9.9997,15.8215 10.1497,15.9885 10.3337,15.9885 L15.6667,15.9885 C15.8507,15.9885 15.9997,15.8215 15.9997,15.6145 L15.9997,10.3845 C15.9997,10.1775 15.8507,10.0105 15.6667,10.0105 L15.6667,10.0105 L15.6667,10.0105 Z M11.9997,14.0105 L13.9997,14.0105 L13.9997,12.0105 L11.9997,12.0105 L11.9997,14.0105 L11.9997,14.0105 Z" id="Fill-11"></path>
+                <path d="M5.6667,10.0105 L0.3337,10.0105 C0.1497,10.0105 -0.0003,10.1775 -0.0003,10.3845 L-0.0003,15.6145 C-0.0003,15.8215 0.1497,15.9885 0.3337,15.9885 L5.6667,15.9885 C5.8507,15.9885 5.9997,15.8215 5.9997,15.6145 L5.9997,10.3845 C5.9997,10.1775 5.8507,10.0105 5.6667,10.0105 L5.6667,10.0105 L5.6667,10.0105 Z M1.9997,14.0105 L3.9997,14.0105 L3.9997,12.0105 L1.9997,12.0105 L1.9997,14.0105 L1.9997,14.0105 Z" id="Fill-8"></path>
+                <polygon id="Stroke-1" points="12.5 7.5834 3.5 7.5834 3.5 9.5834 12.5 9.5834"></polygon>
+                <polygon id="Stroke-3" points="9 9.0834 9 5.0834 7 5.0834 7 9.0834"></polygon>
+                <polygon id="Stroke-4" points="4 11.0834 4 7.5834 2 7.5834 2 11.0834"></polygon>
+                <polygon id="Stroke-6" points="14 11.0834 14 7.5834 12 7.5834 12 11.0834"></polygon>
+                <path d="M11.6667,6.21724894e-15 L4.3337,6.21724894e-15 C4.1497,6.21724894e-15 3.9997,0.167 3.9997,0.374 L3.9997,6.604 C3.9997,6.811 4.1497,6.978 4.3337,6.978 L11.6667,6.978 C11.8507,6.978 11.9997,6.811 11.9997,6.604 L11.9997,0.374 C11.9997,0.167 11.8507,6.21724894e-15 11.6667,6.21724894e-15 L11.6667,6.21724894e-15 L11.6667,6.21724894e-15 Z M5.9997,5 L9.9997,5 L9.9997,2 L5.9997,2 L5.9997,5 L5.9997,5 Z" id="Fill-14"></path>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h3 class="blank-state-title">You can create a group for several dependent projects.</h3>
+          <p class="blank-state-text">Groups are the best way to manage projects and members.</p>
+          <a class="btn btn-new" href="/groups/new">New group</a>
+        </div>
+        <div class="blank-state">
+          <div class="blank-state-icon">
+            <svg width="50" height="50" viewBox="0 0 16 16">
+              <path d="M6,6 L12,6 L12,5 L6,5 L6,6 Z M6,8 L12,8 L12,7 L6,7 L6,8 Z M6,10 L12,10 L12,9 L6,9 L6,10 Z M6,12 L12,12 L12,11 L6,11 L6,12 Z M4,6 L5,6 L5,5 L4,5 L4,6 Z M4,8 L5,8 L5,7 L4,7 L4,8 Z M4,10 L5,10 L5,9 L4,9 L4,10 Z M4,12 L5,12 L5,11 L4,11 L4,12 Z M13,3 L10,3 L10,4 L6,4 L6,3 L3,3 L3,13 L13,13 L13,3 Z M2,14 L14,14 L14,2 L2,2 L2,14 Z M1,0 C0.448,0 0,0.448 0,1 L0,15 C0,15.552 0.448,16 1,16 L15,16 C15.552,16 16,15.552 16,15 L16,1 C16,0.448 15.552,0 15,0 L1,0 Z" fill="#7F7E7E" fill-rule="evenodd"></path>
+            </svg>
+          </div>
+          <h3 class="blank-state-title">You don't have access to any projects right now</h3>
+          <p class="blank-state-text">You can create up to<strong>10</strong>projects.</p>
+          <a class="btn btn-new" href="admin/project-new.html">New project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- .page-with-sidebar -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+<!--
+$('.select2').select2();
+//-->
+</script>
+</body>
+</html>

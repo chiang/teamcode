@@ -1,0 +1,68 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content" class="admin-dashboard mt">
+  <div class="row">
+    <div class="col-md-4">
+      <h4>서비스 현황</h4>
+      <hr/>
+      <p>프로젝트<span class="light pull-right" th:text="${adminOverviewView.projectsCount}">0</span></p>
+      <p>전체 사용자<span class="light pull-right" th:text="${adminOverviewView.usersCount}">0</span></p>
+      <p>활성화된 사용자<span class="light pull-right" th:text="${adminOverviewView.activeUsersCount}">0</span></p>
+      <p>첨부파일<span class="light pull-right" th:text="${adminOverviewView.attachmentsCount}">0</span></p>
+    </div>
+    <div class="col-md-4">
+        <h4>설정된 기능</h4>
+        <hr/>
+        <p>다이제스트 인증<span class="light pull-right"><i class="fa fa-circle cgreen"></i></span></p>
+        <p>SSL<span class="light pull-right"><i class="fa fa-power-off clgray"></i></span></p>
+        <!-- p>OmniAuth<span class="light pull-right"><i class="fa fa-power-off clgray"></i></span></p>
+        <p>Reply by email<span class="light pull-right"><i class="fa fa-power-off clgray"></i></span></p>
+        <p>Container Registry<span class="light pull-right"><i class="fa fa-power-off clgray"></i></span></p -->
+    </div>
+    <div class="col-md-4">
+        <h4>시스템 컴포넌트
+            <!-- div class="pull-right">
+                <img src="https://version.gitlab.com/check.svg?gitlab_info=eyJ2ZXJzaW9uIjoiOC4xNi40In0=" alt="Check"/>
+            </div -->
+        </h4>
+        <hr/>
+        <p>Java<span class="pull-right" th:text="${adminOverviewView.javaVersion}"></span></p>
+        <p>Java Vendor<span class="pull-right" th:text="${adminOverviewView.javaVendor}"></span></p>
+        <p>HTTPD<span class="pull-right" th:text="${adminOverviewView.httpdVersion}"></span></p>
+        <p>Subversion<span class="pull-right" th:text="${adminOverviewView.subversionVersion}"></span></p>
+        <p>Python<span class="pull-right" th:text="${adminOverviewView.pythonVersion}"></span></p>
+        <p th:if="${adminOverviewView.databaseProductName != null}" th:text="${adminOverviewView.databaseProductName}">PostgreSQL<span class="pull-right" th:text="${adminOverviewView.databaseVersion}"></span></p>
+    </div>
+	</div>
+	<hr/>
+	<div class="row">
+    <div class="col-sm-4">
+      <div class="light-well well-centered text-center">
+        <h4>전체 프로젝트</h4>
+        <div class="data">
+          <a th:href="@{/admin/projects}"><h1 th:text="${adminOverviewView.projectsCount}">0</h1></a>
+          <hr/>
+          <a class="btn btn-new" th:href="@{/admin/projects?create}" th:text="#{btn.projects.new}">New Project</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="light-well well-centered text-center">
+            <h4>전체 사용자</h4>
+            <div class="data">
+                <a th:href="@{/admin/users}"><h1 th:text="${adminOverviewView.usersCount}">1</h1></a>
+                <hr/>
+                <a class="btn btn-new" href="/admin/users?create">새 사용자</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="light-well well-centered text-center" style="min-height: 197px;">
+            <h4>아카이브</h4>
+            <div class="data">
+                <a th:href="@{/admin/archives}"><h1>0</h1></a>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+</html>

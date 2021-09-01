@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}" />
+	<link rel="stylesheet" th:href="@{/assets/css/application.css}" />
+	<link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+	<title>Help</title>
+</head>
+<body class="support-documentation faq">
+	<div class="container container-limited">
+		<header class="nav" role="banner" id="top">
+			<h1><a th:href="@{/help}">TeamCode Help</a></h1>
+
+			<nav role="navigation">
+				<ul class="nav-menu">
+					<li class=""><a th:href="@{/help/faq}">빠른 답변!</a></li>
+					<li class=""><a th:href="@{/help}">사용자 매뉴얼</a></li>
+				</ul>
+			</nav>
+
+			<hr class="nav-break"/>
+		</header>
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="section-introduction">
+					<h1>빠른 답변 <tc-emoji data-name=":muscle:" data-unicode-version="6.0"></tc-emoji></h1>
+				</div>
+				<section class="quick-answers">
+					<article>
+						<h2><a href="#!"><i class="fa fa-question-circle" aria-hidden="true"></i>로그인을 할 수 없는 경우 어떻게 해야 하나요?</a></h2>
+						<p>평상 시 문제 없이 로그인하여 사용하시다가 문제가 생긴 경우에는 관리자에 의해서 접속이 차단된 것이 원인일 수 있습니다. 관리자는 보안 상의 목적을 위해서
+						팀코드 사용에 제한을 둘 수 있습니다. 계속 사용을 원하시는 경우 팀코드 관리자에게 계정 활성화를 요청하시면 됩니다.</p>
+						<p>비밀번호가 기억이 나지 않는다면 팀코드 관리자에게 문의해서 초기화를 할 수 있습니다. 초기화 후에는 반드시 비밀번호를 변경하신 후 사용하시는 것이 안전합니다.
+						팀코드에서는 민감한 개인 정보를 보관하지는 않지만 기업 보안 상 중요한 프로그램 소스 코드, 시스템 정보를 열람할 수 있는 권한이 사용자 계정에 따라 부여되기 때문에
+						그에 따른 책임도 부여될 수 있습니다. 따라서 계정 관리에 주의를 하시는 것이 좋습니다.</p>
+						<p>만약 접속할 계정이 없는 경우 팀코드 관리자에게 새로운 계정을 요청하시기 바랍니다.</p>
+					</article>
+					<article>
+						<h2><a href="#!"><i class="fa fa-question-circle" aria-hidden="true"></i>내가 원하는 프로젝트에 참여하는 방법은 무엇인가요?</a></h2>
+						<p>
+							프로젝트 멤버로 참여하여 소스 코드를 열람하거나 커밋하는 등의 작업을 하려면 팀코드 시스템 관리자 혹은 해당 프로젝트 Master 권한을 가진 사용자가 여러분을 추가해 줘야 합니다.
+							해당 담당자에게 추가 요청을 하시기 바랍니다.
+						</p>
+						<p>현재 조직에 어떤 프로젝트들이 있는지에 대한 정보는 정책 상 공개하지 않습니다.</p>
+					</article>
+					<article>
+						<h2><a href="#!"><i class="fa fa-question-circle" aria-hidden="true"></i>왜 사용할 수 있는 웹 브라우저에 제한이 있나요?</a></h2>
+						<p>
+							팀코드는 HTML5, CSS3 를 지원하는 웹 브라우저에서 사용 가능합니다. 그 외의 웹 브라우저에서는 접속 시 문제가 생길 수 있습니다. 팀코드는
+							향상된 사용자 경험을 제공하기 위해서 이러한 결정을 했으며 따라서 팀코드 사용자 여러분은 유사한 다른 웹 애플리케이션 보다 더 나은 경험을 하실 수 있습니다.
+						</p>
+					</article>
+					<article>
+						<h2><a href="#!"><i class="fa fa-question-circle" aria-hidden="true"></i>서브버전 클라이언트 버전은 몇 버전부터 사용이 가능한가요?</a></h2>
+						<p>
+							팀코드는 성능이 향상된 서브버전 1.9 버전을 기반으로 기능을 제공하고 있습니다. 이에 따라 서브버전 클라이언트는 1.8 이상부터 사용이 가능하지만 가급적 1.9 이상을
+							사용하시기를 권장드립니다. 서브버전 클라이언트 1.8 버전은 서브버전 서버 1.9 버전과 호환이 되기는 하지만 일부 기능에 제약이 있습니다.
+						</p>
+						<p>서브버전 클라이언트는 1.7 이하 버전은 지원하지 않습니다.</p>
+					</article>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{/assets/js/main.js}"></script>
+</body>
+</html>

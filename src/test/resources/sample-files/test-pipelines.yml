@@ -1,0 +1,4 @@
+
+# Path 는 Subversion Repository 를 기준으로 어떤 경로를 Checkout 할 지를 지정합니다.
+# 기본 값은 .teamcode-pipelines.yml 이 있는 디렉터리입니다. 아래 값은 해당 설정을 Override 합니다.
+path: /trunk

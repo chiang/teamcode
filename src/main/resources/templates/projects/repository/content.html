@@ -1,0 +1,66 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+    <div class="tree-holder" id="tree-holder">
+        <div class="nav-block">
+            <ul class="breadcrumb repo-breadcrumb">
+                <li th:each="breadcrumb : ${repositoryBrowseContent.breadcrumbs}">
+                    <a th:href="${breadcrumb.path}">
+                        <strong th:if="${breadcrumb.last}" th:text="${breadcrumb.name}">README.md</strong>
+                        <span th:if="${!breadcrumb.last}" th:text="${breadcrumb.name}">README.md</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <ul class="blob-commit-info table-list hidden-xs">
+            <li class="commit table-list-row js-toggle-container" id="commit-c8c738ba">
+                <div class="table-list-cell avatar-cell hidden-xs">
+                    <a href="#!">
+                        <img th:alt="${repositoryBrowseContent.oneEntryIfFileContent.author}" class="avatar s26 hidden-xs has-tooltip" data-container="body" th:src="@{/avatar/users/{userName}/{fileName}(userName=${repositoryBrowseContent.oneEntryIfFileContent.author},fileName=${repositoryBrowseContent.oneEntryIfFileContent.author})}"/>
+                    </a>
+                </div>
+                <div class="table-list-cell commit-content">
+                    <a class="commit-row-message item-title" href="#!" th:text="${repositoryBrowseContent.oneEntryIfFileContent.log}">add README</a>
+                    <span class="commit-row-message visible-xs-inline">·c8c738ba</span>
+                    <div class="commiter">
+                        <a class="commit-author-link has-tooltip"  href="#!" th:text="${repositoryBrowseContent.oneEntryIfFileContent.author}">user</a> 님이
+                        <time class="js-timeago" th:attr="datetime=${#dates.format(repositoryBrowseContent.oneEntryIfFileContent.lastModifiedAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(repositoryBrowseContent.oneEntryIfFileContent.lastModifiedAt, 'yyyy년 MM월 dd일 HH시 mm분')}"  data-toggle="tooltip" data-placement="top" data-container="body">3 weeks ago</time>에 커밋했습니다.
+                    </div>
+                </div>
+                <div class="table-list-cell commit-actions hidden-xs">
+                    <!-- button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-text="c8c738ba88c838ad5670a2e0633f55deb1071ae4" type="button" title="Copy to clipboard"><i class="fa fa-clipboard"></i></button //-->
+                    <!-- a class="commit-short-id btn btn-transparent" href="/root/petclinic/commit/c8c738ba88c838ad5670a2e0633f55deb1071ae4">c8c738ba</a -->
+                    <a th:if="${repositoryBrowseContent.revision == -1}" class="commit-short-id btn btn-transparent" href="#!">HEAD</a>
+                    <a th:if="${repositoryBrowseContent.revision > 0}" class="commit-short-id btn btn-transparent" href="#!" th:text="r + ${repositoryBrowseContent.revision}"></a>
+                </div>
+            </li>
+
+        </ul>
+        <div class="blob-content-holder" id="blob-content-holder" style="margin-bottom: 20px;">
+          <article class="file-holder">
+            <div class="file-title">
+              <i class="fa fa-fw" th:classappend="|fa-${repositoryBrowseContent.oneEntryIfFileContent.iconClass}|"></i>
+              <strong th:text="${repositoryBrowseContent.oneEntryIfFileContent.name}">README.md</strong>
+              <small th:text="${repositoryBrowseContent.oneEntryIfFileContent.byteSize}">0 Bytes</small>
+              <div id="vue-file-actions"
+                   th:attr="data-group-path=${paramGroupPath},data-project-path=${paramProjectPath},data-download-url=${repositoryBrowseContent.fileEntry.downloadPath},data-file-name=${repositoryBrowseContent.fileEntry.name},data-path=${repositoryBrowseContent.fileEntry.path}"></div>
+            </div>
+              <th:block th:if="${repositoryBrowseContent.displayableIfFileContent}">
+                  <div th:if="${repositoryBrowseContent.oneEntryIfFileContent.image}" class="file-content image_file">
+                      <img th:alt="${repositoryBrowseContent.oneEntryIfFileContent.name}" th:src="@{/projects/{projectPath}/raw?(projectPath=${paramProjectPath},path=${repositoryBrowseContent.oneEntryIfFileContent.path})}" />
+                  </div>
+                  <div th:if="${repositoryBrowseContent.oneEntryIfFileContent.image == false}" class="file-content white" th:classappend="${repositoryBrowseContent.wiki} ? 'wiki' : 'code js-syntax-highlight white'" th:utext="${repositoryBrowseContent.content}">
+                  </div>
+              </th:block>
+              <div th:if="${repositoryBrowseContent.displayableIfFileContent == false}" class="file-content blob_file blob-no-preview">
+                  <div class="center">
+                      <a th:href="@{/projects/{projectPath}/raw?(projectPath=${paramProjectPath},path=${repositoryBrowseContent.oneEntryIfFileContent.path})}">
+                          <h1 class="light"><i class="fa fa-download"></i></h1>
+                          <h4>다운로드 (<span th:text="${repositoryBrowseContent.oneEntryIfFileContent.byteSize}"></span>)</h4>
+                      </a>
+                  </div>
+              </div>
+          </article>
+        </div>
+    </div>
+</div>
+</html>

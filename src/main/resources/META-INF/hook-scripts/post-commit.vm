@@ -1,0 +1,11 @@
+#!/bin/sh
+
+REPOS="$1"
+REV="$2"
+TXN="$3"
+
+# TODO daily rolling logging
+curl --insecure "${BITCOVE_ENDPOINT}/repository/$REPO_NAME/hooks/postcommit" -d "revision=$REV" >> "${BITCOVE_HOME}/logs/commit-hook.log"
+
+# example
+# curl --insecure "http://localhost/repository/$REPOS/hooks/postcommit" -d "revision=$REV >> "$BITCOVE_HOME/logs/commit-hook.log"

@@ -1,0 +1,170 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" style="padding-right: 0;">
+	<div class="content-block build-header top-area">
+		<div class="header-content">
+				<span class="job-status-view">
+					<job-status th:attr="'job-status'=${jobView.job.status.text},'job-status-icon'=${jobView.job.status.icon},'job-status-group'=${jobView.job.status.group}"></job-status>
+				</span>
+			Job
+			<strong class="js-build-id" th:text="|#${jobView.job.id}|"></strong>
+			in pipeline
+			<a th:href="${jobView.pipelineLink}"><strong th:text="|#${jobView.pipelineId}|"></strong></a> for commit
+			<a href="/baramboy/jandi-connector/commit/7119a1f88d36b33ca93db59688bd7c43325ea63d"><strong th:text="|r${jobView.commit.revision}|">7119a1f8</strong>
+			</a>by
+			<a href="/baramboy">
+					<span class="hidden-xs">
+						<img th:alt="${jobView.commit.author}" class="avatar s24" th:src="@{/avatar/users/{userName}/{fileName}(userName=${jobView.commit.author},fileName=${jobView.commit.author})}"/>
+						<strong data-placement="top" data-title="@baramboy" data-toggle="tooltip">박영일</strong>
+					</span>
+				<strong class="visible-xs-inline">@baramboy</strong>
+			</a>
+			<!-- time class="js-timeago js-timeago-render" title="" datetime="2017-04-25T06:03:11Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Apr 25, 2017 3:03pm GMT+0900">3 weeks ago</time -->
+		</div>
+		<!-- div class="nav-controls">
+			<a class="btn btn-inverted-secondary" rel="nofollow" data-method="post" href="/baramboy/jandi-connector/builds/14955524/retry">Retry job</a>
+		</div -->
+		<button class="btn btn-default pull-right visible-xs-block visible-sm-block build-gutter-toggle js-sidebar-build-toggle" role="button" type="button">
+			<i class="fa fa-angle-double-left"></i>
+		</button>
+	</div>
+	<div class="build-page" th:attr="data-trace-link=${jobView.jobTraceLink}">
+		<div class="prepend-top-default">
+			<div class="scroll-controls sidebar-expanded" id="js-build-scroll">
+				<div class="scroll-step">
+					<!-- a class="scroll-link scroll-top" href="#up-build-trace" id="scroll-top" title="Scroll to top" style="display: block;">
+						<svg width="16" height="33" class="gitlab-icon-scroll-up" viewBox="0 0 16 33" xmlns="http://www.w3.org/2000/svg">
+							<path fill="#ffffff" d="M1.385 14.534v12.47a4.145 4.145 0 0 0 4.144 4.15h4.942a4.151 4.151 0 0 0 4.144-4.15v-12.47a4.145 4.145 0 0 0-4.144-4.15H5.53a4.151 4.151 0 0 0-4.144 4.15zM8.88 2.609V6.96a.688.688 0 0 1-.69.688.687.687 0 0 1-.69-.688V2.627L6.155 3.972a.69.69 0 0 1-.976-.976L7.705.47a.685.685 0 0 1 .494-.2.685.685 0 0 1 .493.2l2.526 2.526a.69.69 0 1 1-.976.976L8.88 2.609zM0 14.534A5.536 5.536 0 0 1 5.529 9h4.942A5.53 5.53 0 0 1 16 14.534v12.47a5.536 5.536 0 0 1-5.529 5.534H5.53A5.53 5.53 0 0 1 0 27.005V14.534zm7 1.01a1 1 0 1 1 2 0v2.143a1 1 0 1 1-2 0v-2.143z" fill-rule="evenodd"></path>
+						</svg>
+						<svg width="16" height="33" class="gitlab-icon-scroll-up-hover" viewBox="0 0 16 33" xmlns="http://www.w3.org/2000/svg">
+							<path fill="#ffffff" d="M8.88 2.646l1.362 1.362a.69.69 0 0 0 .976-.976L8.692.507A.685.685 0 0 0 8.2.306a.685.685 0 0 0-.494.2L5.179 3.033a.69.69 0 1 0 .976.976L7.5 2.663v4.179c0 .38.306.688.69.688.381 0 .69-.306.69-.688V2.646zM0 14.534A5.536 5.536 0 0 1 5.529 9h4.942A5.53 5.53 0 0 1 16 14.534v12.47a5.536 5.536 0 0 1-5.529 5.534H5.53A5.53 5.53 0 0 1 0 27.005V14.534zm7 1.01a1 1 0 1 1 2 0v2.143a1 1 0 1 1-2 0v-2.143z" fill-rule="evenodd"></path>
+						</svg>
+					</a>
+					<a class="scroll-link scroll-bottom" href="#down-build-trace" id="scroll-bottom" title="Scroll to bottom" style="display: none;">
+						<svg width="16" height="33" class="gitlab-icon-scroll-down" viewBox="0 0 16 33" xmlns="http://www.w3.org/2000/svg">
+							<path fill="#ffffff" d="M1.385 5.534v12.47a4.145 4.145 0 0 0 4.144 4.15h4.942a4.151 4.151 0 0 0 4.144-4.15V5.535a4.145 4.145 0 0 0-4.144-4.15H5.53a4.151 4.151 0 0 0-4.144 4.15zM8.88 30.27v-4.351a.688.688 0 0 0-.69-.688.687.687 0 0 0-.69.688v4.334l-1.345-1.346a.69.69 0 0 0-.976.976l2.526 2.526a.685.685 0 0 0 .494.2.685.685 0 0 0 .493-.2l2.526-2.526a.69.69 0 1 0-.976-.976L8.88 30.27zM0 5.534A5.536 5.536 0 0 1 5.529 0h4.942A5.53 5.53 0 0 1 16 5.534v12.47a5.536 5.536 0 0 1-5.529 5.534H5.53A5.53 5.53 0 0 1 0 18.005V5.534zm7 1.01a1 1 0 1 1 2 0v2.143a1 1 0 1 1-2 0V6.544z" fill-rule="evenodd"></path>
+						</svg>
+						<svg width="16" height="33" class="gitlab-icon-scroll-down-hover" viewBox="0 0 16 33" xmlns="http://www.w3.org/2000/svg">
+							<path fill="#ffffff" d="M8.88 30.27v-4.351a.688.688 0 0 0-.69-.688.687.687 0 0 0-.69.688v4.334l-1.345-1.346a.69.69 0 0 0-.976.976l2.526 2.526a.685.685 0 0 0 .494.2.685.685 0 0 0 .493-.2l2.526-2.526a.69.69 0 1 0-.976-.976L8.88 30.27zM0 5.534A5.536 5.536 0 0 1 5.529 0h4.942A5.53 5.53 0 0 1 16 5.534v12.47a5.536 5.536 0 0 1-5.529 5.534H5.53A5.53 5.53 0 0 1 0 18.005V5.534zm7 1.01a1 1 0 1 1 2 0v2.143a1 1 0 1 1-2 0V6.544z" fill-rule="evenodd"></path>
+						</svg>
+					</a -->
+				</div>
+			</div>
+			<div id="up-build-trace"></div>
+			<pre class="build-trace" id="build-trace">
+				<div class="js-truncated-info truncated-info hidden sidebar-expanded">Showing last<span class="js-truncated-info-size truncated-info-size"></span>KiB of log -<a class="js-raw-link raw-link" href="/baramboy/jandi-connector/builds/14955524/raw">Complete Raw</a></div>
+				<div class="build-loader-animation js-build-refresh" style="display: none;"></div>
+				<code class="bash js-build-output"></code>
+			</pre>
+			<div id="down-build-trace"></div>
+		</div>
+	</div>
+	<aside class="right-sidebar right-sidebar-expanded build-sidebar js-build-sidebar js-right-sidebar affix" data-offset-top="153" data-spy="affix" tabindex="0" style="overflow: hidden; outline: none; height: 100%; margin-top: 31px;">
+		<div class="block build-sidebar-header visible-xs-block visible-sm-block append-bottom-default">
+			Job
+			<strong>#14955524</strong>
+			<a class="gutter-toggle pull-right js-sidebar-build-toggle" href="#">
+				<i class="fa fa-angle-double-right"></i>
+			</a>
+		</div>
+		<div class="blocks-container">
+			<div class="block block-first">
+				<div class="title">
+					Job details
+					<a class="pull-right retry-link" rel="nofollow" data-method="post" href="/baramboy/jandi-connector/builds/14955524/retry">Retry job</a>
+				</div>
+				<p class="build-detail-row">
+					<span class="build-light-text">Created:</span>
+					<time class="js-timeago js-timeago-render" th:attr="datetime=${#dates.format(jobView.job.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(jobView.job.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body"></time>
+				</p>
+				<p th:if="${jobView.job.resolveDuration() != null}" class="build-detail-row">
+					<span class="build-light-text">Duration:</span>
+					<span th:text="${jobView.job.resolveDuration()}"></span>
+				</p>
+				<p th:if="${jobView.job.finishedAt != null}" class="build-detail-row">
+					<span class="build-light-text">Finished:</span>
+					<time class="js-timeago js-timeago-render" th:attr="datetime=${#dates.format(jobView.job.finishedAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(jobView.job.finishedAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body"></time>
+				</p>
+				<!-- p class="build-detail-row">
+					<span class="build-light-text">Runner:</span>
+					#40786
+				</p -->
+				<!-- div class="btn-group btn-group-justified" role="group">
+					<a class="btn btn-sm btn-default" href="/baramboy/jandi-connector/builds/14955524/raw">Raw</a>
+				</div -->
+			</div>
+			<div class="block">
+				<div class="title">Commit title</div>
+				<p class="build-light-text append-bottom-0" th:text="${jobView.commit.message}"></p>
+			</div>
+			<div th:if="${not jobView.job.failedOrCanceled and not jobView.job.active and jobView.job.artifactsFile != null}" class="block">
+				<div class="title">Artifacts</div>
+				<div th:each="artifact: ${jobView.job.artifactsFileName}">
+					<i class="fa fa-download" aria-hidden="true" style="margin-right: 7px;"></i><a th:href="@{/projects/{path}/jobs/{jobId}/artifacts/download(path=${paramProject.path},jobId=${jobView.job.id})}" th:text="${artifact}"></a>
+				</div>
+			</div>
+			<!-- div class="dropdown build-dropdown">
+				<div class="title">Stage</div>
+				<button class="dropdown-menu-toggle" data-toggle="dropdown" type="button">
+					<span class="stage-selection">build</span>
+					<i class="fa fa-chevron-down"></i>
+				</button>
+				<ul class="dropdown-menu">
+					<li th:each="stage : ${jobView.stages}">
+						<a class="stage-item" th:text="${stage.name}"></a>
+					</li>
+				</ul>
+			</div -->
+		</div>
+		<!-- div class="builds-container">
+			<div class="build-job" data-stage="build" style="display: block;">
+				<a href="/baramboy/jandi-connector/builds/14955525"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-manual">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M10.5 7.63V6.37l-.787-.13c-.044-.175-.132-.349-.263-.61l.481-.652-.918-.913-.657.478a2.346 2.346 0 0 0-.612-.26L7.656 3.5H6.388l-.132.783c-.219.043-.394.13-.612.26l-.657-.478-.918.913.437.652c-.131.218-.175.392-.262.61l-.744.086v1.261l.787.13c.044.218.132.392.263.61l-.438.651.92.913.655-.434c.175.086.394.173.613.26l.131.783h1.313l.131-.783c.219-.043.394-.13.613-.26l.656.478.918-.913-.48-.652c.13-.218.218-.435.262-.61l.656-.13zM7 8.283a1.285 1.285 0 0 1-1.313-1.305c0-.739.57-1.304 1.313-1.304.744 0 1.313.565 1.313 1.304 0 .74-.57 1.305-1.313 1.305z"></path></g></svg>
+					</span>
+					<span>chiang</span>
+				</a>
+			</div>
+			<div class="build-job" data-stage="deploy" style="display: none;">
+				<a href="/baramboy/jandi-connector/builds/14955529"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-success">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M6.278 7.697L5.045 6.464a.296.296 0 0 0-.42-.002l-.613.614a.298.298 0 0 0 .002.42l1.91 1.909a.5.5 0 0 0 .703.005l.265-.265L9.997 6.04a.291.291 0 0 0-.009-.408l-.614-.614a.29.29 0 0 0-.408-.009L6.278 7.697z"></path></g></svg>
+					</span>
+					<span>deploy_tc</span>
+				</a>
+			</div>
+			<div class="build-job" data-stage="test" style="display: none;">
+				<a href="/baramboy/jandi-connector/builds/14955528"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-success">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M6.278 7.697L5.045 6.464a.296.296 0 0 0-.42-.002l-.613.614a.298.298 0 0 0 .002.42l1.91 1.909a.5.5 0 0 0 .703.005l.265-.265L9.997 6.04a.291.291 0 0 0-.009-.408l-.614-.614a.29.29 0 0 0-.408-.009L6.278 7.697z"></path></g></svg>
+					</span>
+					<span>chiangpero</span>
+				</a>
+			</div>
+			<div class="build-job" data-stage="test" style="display: none;">
+				<a href="/baramboy/jandi-connector/builds/14955527"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-success">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M6.278 7.697L5.045 6.464a.296.296 0 0 0-.42-.002l-.613.614a.298.298 0 0 0 .002.42l1.91 1.909a.5.5 0 0 0 .703.005l.265-.265L9.997 6.04a.291.291 0 0 0-.009-.408l-.614-.614a.29.29 0 0 0-.408-.009L6.278 7.697z"></path></g></svg>
+					</span>
+					<span>aboy</span>
+				</a>
+			</div>
+			<div class="active build-job" data-stage="build" style="display: block;">
+				<a href="/baramboy/jandi-connector/builds/14955524"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-success">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M6.278 7.697L5.045 6.464a.296.296 0 0 0-.42-.002l-.613.614a.298.298 0 0 0 .002.42l1.91 1.909a.5.5 0 0 0 .703.005l.265-.265L9.997 6.04a.291.291 0 0 0-.009-.408l-.614-.614a.29.29 0 0 0-.408-.009L6.278 7.697z"></path></g></svg>
+					</span>
+					<span>myjob</span>
+				</a>
+			</div>
+			<div class="build-job" data-stage="build" style="display: block;">
+				<a href="/baramboy/jandi-connector/builds/14955526"><i class="fa fa-arrow-right"></i>
+					<span class="ci-status-icon-success">
+						<svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg"><g fill-rule="evenodd"><path d="M0 7a7 7 0 1 1 14 0A7 7 0 0 1 0 7z"></path><path d="M13 7A6 6 0 1 0 1 7a6 6 0 0 0 12 0z" fill="#FFF"></path><path d="M6.278 7.697L5.045 6.464a.296.296 0 0 0-.42-.002l-.613.614a.298.298 0 0 0 .002.42l1.91 1.909a.5.5 0 0 0 .703.005l.265-.265L9.997 6.04a.291.291 0 0 0-.009-.408l-.614-.614a.29.29 0 0 0-.408-.009L6.278 7.697z"></path></g></svg>
+					</span>
+					<span>pero</span>
+				</a>
+			</div>
+		</div -->
+	</aside>
+</div>
+</html>

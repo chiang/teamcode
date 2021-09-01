@@ -1,0 +1,67 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+	<title>Emails &middot; User Settings</title>
+</head>
+<div layout:fragment="content" class="row mt">
+	<div class="col-lg-3 profile-settings-sidebar">
+		<h4 class="mt-n">Emails</h4>
+		<p th:text="#{profile.emails.header.help}">Control emails linked to your account</p>
+	</div>
+	<div class="col-lg-9">
+		<h4 class="mt-n" th:text="#{profile.emails.add.header}">Add email address</h4>
+		<form th:action="@{/profile/emails}" accept-charset="UTF-8" method="post">
+			<div class="form-group">
+				<label class="label-light" for="email_email" th:text="#{labels.email}">Email</label>
+				<input class="form-control" type="text" name="email" id="email_email" autocomplete="off"/>
+			</div>
+			<div class="prepend-top-default">
+				<input type="submit" name="commit" th:value="#{profile.emails.add.btn}" class="btn btn-create"/>
+			</div>
+		</form>
+		<hr/>
+		<!-- h4 class="mt-n" th:text="#{profile.emails.labels.linkedEmails}">Linked emails <span th:text="'(' + ${userEmails.size() + 1} + ')'" th:remove="tag"></span></h4>
+		<div class="account-well append-bottom-default">
+			<ul>
+				<li th:text="#{profile.emails.help.1}">Your Primary Email will be used for web based operations, such as edits and merges.</li>
+				<li th:text="#{profile.emails.help.2}">Your Notification Email will be used for account notifications.</li>
+			</ul>
+		</div -->
+		<ul class="well-list">
+			<li>
+				<span th:text="${session.currentUser.email}" th:remove="tag"></span>
+				<span class="pull-right">
+					<span class="label label-success" th:text="#{profile.emails.primary.label}">Primary Email</span>
+					<span th:if="${session.currentUser.email == session.currentUser.notificationEmail}" class="label label-info" th:text="#{profile.emails.notification.label}">Notification Email</span>
+				</span>
+			</li>
+			<li th:each="email : ${userEmails}">
+				<span th:text="${email.email}" th:remove="tag"></span>
+				<span class="pull-right">
+                    <span th:if="${email.email == session.currentUser.notificationEmail}" class="label label-info">Notification Email</span>
+					<a data-confirm="정말 삭제하시겠습니까?" class="btn btn-sm btn-warning prepend-left-10" rel="nofollow" data-method="delete" th:href="@{/profile/emails/{emailId}(emailId=${email.id})}" th:text="#{profile.emails.remove.btn}">Remove</a>
+				</span>
+			</li>
+		</ul>
+	</div>
+	<form id="form-delete-email" method="POST" action="">
+		<input type="hidden" name="_method" value="DELETE"/>
+	</form>
+</div>
+<script layout:fragment="content-script">
+<!--
+$(function(){
+	$("a[data-method='delete']").click(function(){
+		var _this = $(this);
+		if(confirm(_this.data('confirm'))) {
+			$('#form-delete-email').attr('action', _this.attr('href')).submit();
+
+			return false;
+		}
+		else {
+			return false;
+		}
+	});
+});
+//-->
+</script>
+</html>

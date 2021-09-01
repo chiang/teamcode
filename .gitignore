@@ -1,0 +1,7 @@
+.idea
+teamcode.iml
+logs
+node_modules
+app.js
+build
+out

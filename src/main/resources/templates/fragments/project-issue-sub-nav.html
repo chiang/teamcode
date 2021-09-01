@@ -1,0 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="sub-nav" class="scrolling-tabs-container sub-nav-scroll">
+    <div class="fade-left">
+        <i class="fa fa-angle-left"></i>
+    </div>
+    <div class="fade-right">
+        <i class="fa fa-angle-right"></i>
+    </div>
+    <div class="nav-links sub-nav scrolling-tabs">
+        <ul class="container-fluid container-limited">
+            <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/issues')} ? 'active' : ''">
+                <a title="Issues" th:href="@{/{groupPath}/{projectPath}/issues(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Issues</span></a>
+            </li>
+            <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/labels')} ? 'active' : ''">
+                <a title="Labels" th:href="@{/{groupPath}/{projectPath}/labels(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Labels</span></a>
+            </li>
+            <li th:classappend="${#httpServletRequest.requestURI.matches('/.*/.*/milestones')} ? 'active' : ''">
+                <a title="Milestones" th:href="@{/{groupPath}/{projectPath}/milestones(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}"><span>Milestones</span></a>
+            </li>
+        </ul>
+    </div>
+</div><!-- .sub-nav-scroll -->
+</html>

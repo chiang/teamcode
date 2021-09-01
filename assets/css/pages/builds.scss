@@ -1,0 +1,376 @@
+@keyframes fade-out-status {
+  0%, 50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes blinking-dots {
+  0% {
+    background-color: rgba($white-light, 1);
+    box-shadow: 12px 0 0 0 rgba($white-light,0.2),
+                24px 0 0 0 rgba($white-light,0.2);
+  }
+
+  25% {
+    background-color: rgba($white-light, 0.4);
+    box-shadow: 12px 0 0 0 rgba($white-light,2),
+                24px 0 0 0 rgba($white-light,0.2);
+  }
+
+  75% {
+    background-color: rgba($white-light, 0.4);
+    box-shadow: 12px 0 0 0 rgba($white-light,0.2),
+                24px 0 0 0 rgba($white-light,1);
+  }
+
+  100% {
+    background-color: rgba($white-light, 1);
+    box-shadow: 12px 0 0 0 rgba($white-light,0.2),
+                24px 0 0 0 rgba($white-light,0.2);
+  }
+}
+
+.build-page {
+	margin-right: 300px;
+  pre.trace {
+    background: $builds-trace-bg;
+    color: $white-light;
+    font-family: $monospace_font;
+    white-space: pre-wrap;
+    overflow: auto;
+    overflow-y: hidden;
+    font-size: 12px;
+
+    .fa-refresh {
+      font-size: 24px;
+      margin-left: 20px;
+    }
+  }
+
+  .environment-information {
+    background-color: $gray-light;
+    border: 1px solid $border-color;
+    padding: 12px $gl-padding;
+    border-radius: $border-radius-default;
+
+    svg {
+      position: relative;
+      top: 1px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.scroll-controls {
+  height: 100%;
+
+  .scroll-step {
+    width: 31px;
+    margin: 0 0 0 auto;
+  }
+
+  .scroll-link,
+  .autoscroll-container {
+    right: 25px;
+    z-index: 1;
+  }
+
+  .scroll-link {
+    position: fixed;
+    display: block;
+    margin-bottom: 10px;
+
+    &.scroll-top .gitlab-icon-scroll-up-hover,
+    &.scroll-top:hover .gitlab-icon-scroll-up,
+    &.scroll-bottom .gitlab-icon-scroll-down-hover,
+    &.scroll-bottom:hover .gitlab-icon-scroll-down {
+      display: none;
+    }
+
+    &.scroll-top:hover .gitlab-icon-scroll-up-hover,
+    &.scroll-bottom:hover .gitlab-icon-scroll-down-hover {
+      display: inline-block;
+    }
+
+    &.scroll-top {
+      top: 110px;
+    }
+
+    &.scroll-bottom {
+      bottom: -2px;
+    }
+  }
+
+  .autoscroll-container {
+    position: absolute;
+  }
+
+  &.sidebar-expanded {
+
+    .scroll-link,
+    .autoscroll-container {
+      right: ($gutter_width + ($gl-padding * 2));
+    }
+  }
+}
+
+.status-message {
+  display: inline-block;
+  color: $white-light;
+
+  .status-icon {
+    display: inline-block;
+    width: 16px;
+    height: 33px;
+  }
+
+  .status-text {
+    float: left;
+    opacity: 0;
+    margin-right: 10px;
+    font-weight: normal;
+    line-height: 1.8;
+    transition: opacity 1s ease-out;
+
+    &.animate {
+      animation: fade-out-status 2s ease;
+    }
+  }
+
+  &:hover .status-text {
+    opacity: 1;
+  }
+}
+
+.build-header {
+  position: relative;
+  padding: 0;
+  padding-right: 20px;
+  display: flex;
+  min-height: 58px;
+  align-items: center;
+
+  @media (max-width: $screen-sm-max) {
+    padding-right: 40px;
+    margin-top: 6px;
+
+    .btn-inverted {
+      display: none;
+    }
+  }
+
+  .header-content {
+    flex: 1;
+
+    a {
+      color: $gl-text-color;
+
+      &:hover {
+        color: $gl-link-color;
+        text-decoration: none;
+      }
+    }
+  }
+
+  code {
+    color: $code-color;
+  }
+
+  .avatar {
+    float: none;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+}
+
+.build-trace {
+  background: $black;
+  color: $gray-darkest;
+  white-space: pre;
+  overflow-x: auto;
+  font-size: 12px;
+
+  .fa-refresh {
+    font-size: 24px;
+  }
+
+  .bash {
+    display: block;
+  }
+
+  .build-loader-animation {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    margin: auto auto 12px 2px;
+    border-radius: 50%;
+    animation: blinking-dots 1s linear infinite;
+  }
+}
+
+.right-sidebar.build-sidebar {
+  padding: $gl-padding 0;
+
+  &.right-sidebar-collapsed {
+    display: none;
+  }
+
+  .blocks-container {
+    padding: 0 $gl-padding;
+  }
+
+  .block {
+    width: 100%;
+
+    &.coverage {
+      padding: 0 16px 11px;
+    }
+
+    .btn-group-justified {
+      margin-top: 5px;
+    }
+  }
+
+  .js-build-variable {
+    color: $code-color;
+  }
+
+  .js-build-value {
+    padding: 2px 4px;
+    color: $black;
+    background-color: $white-light;
+  }
+
+  .build-sidebar-header {
+    padding: 0 $gl-padding $gl-padding;
+
+    .gutter-toggle {
+      margin-top: 0;
+    }
+  }
+
+  .retry-link {
+    color: $gl-link-color;
+    display: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      display: block;
+    }
+  }
+
+  .stage-item {
+    cursor: pointer;
+
+    &:hover {
+      color: $gl-text-color;
+    }
+  }
+
+  .build-dropdown {
+    padding: $gl-padding 0;
+
+    .dropdown-menu-toggle {
+      margin-top: 8px;
+    }
+
+    .dropdown-menu {
+      right: $gl-padding;
+      left: $gl-padding;
+      width: auto;
+    }
+  }
+
+  .builds-container {
+    background-color: $white-light;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    max-height: 300px;
+    overflow: auto;
+
+    svg {
+      position: relative;
+      top: 2px;
+      margin-right: 3px;
+      height: 13px;
+    }
+
+    a {
+      display: block;
+      padding: $gl-padding 10px $gl-padding 40px;
+      width: 270px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      &:hover {
+        color: $gl-text-color;
+      }
+    }
+
+    .build-jobEntry {
+      position: relative;
+
+      .fa-arrow-right {
+        position: absolute;
+        left: 15px;
+        top: 20px;
+        display: none;
+      }
+
+      &.active {
+        font-weight: bold;
+
+        .fa-arrow-right {
+          display: block;
+        }
+      }
+
+      &.retried {
+        background-color: $gray-lightest;
+      }
+
+      &:hover {
+        background-color: $row-hover;
+      }
+
+      .fa-refresh {
+        font-size: 13px;
+        margin-left: 3px;
+      }
+    }
+  }
+}
+
+.build-sidebar {
+  .container-fluid.container-limited {
+    max-width: 100%;
+  }
+}
+
+.build-detail-row {
+  margin-bottom: 5px;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+.build-light-text {
+  color: $gl-text-color-secondary;
+}
+
+.build-gutter-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -17px;
+}
+
+@media (min-width: $screen-md-min) {
+  .sub-nav.build {
+    width: calc(100% + #{$gutter_width});
+  }
+}

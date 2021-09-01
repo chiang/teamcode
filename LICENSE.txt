@@ -1,0 +1,20 @@
+
+
+compile group: 'eu.bitwalker', name: 'UserAgentUtils', version: '1.20'
+
+
+# Javascript Libraries
+
+## Emojione
+
+https://github.com/Ranks/emojione
+
+## Page Visibility API
+
+https://github.com/ai/visibilityjs
+
+## Autosize
+Autosize 3.0.14
+	license: MIT
+	http://www.jacklmoore.com/autosize
+

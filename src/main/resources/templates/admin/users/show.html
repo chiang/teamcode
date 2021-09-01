@@ -1,0 +1,143 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <h3 class="page-title">
+        <span th:text="${user.name}" th:remove="tag"></span>
+        <div class="pull-right">
+            <a class="btn btn-nr btn-grouped" th:href="@{/admin/users/{name}?edit(name=${user.name})}">수정하기</a>
+        </div>
+    </h3>
+    <hr/>
+    <ul class="nav-links">
+        <li class="active"><a th:href="@{/admin/users/{name}(name=${user.name})}">계정 정보</a></li>
+        <!-- li class=""><a th:href="@{/admin/users/{name}/projects(name=${user.name})}">속해 있는 프로젝트</a></li -->
+    </ul>
+    <div class="append-bottom-default"></div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    chiang
+                </div>
+                <ul class="well-list">
+                    <li>
+                        <img th:if="${user.avatarFileName != null}" th:alt="${user.name}" class="avatar s60" th:src="@{/avatar/users/{userName}/{fileName}(userName=${user.name},fileName=${user.avatarFileName})}"/>
+                        <img th:if="${user.avatarFileName == null}" th:attr="data-name=${user.fullName}" class="avatar s60 profile"/>
+                    </li>
+                    <!-- li>
+                        <span class="light">Profile page:</span>
+                        <strong><a href="/chiangpero" th:text="${user.name}"></a></strong>
+                    </li -->
+                </ul>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Account:
+                </div>
+                <ul class="well-list">
+                    <li><span class="light">이름: </span><strong th:text="${user.fullName}"></strong></li>
+                    <li>
+                        <span class="light">아이디: </span><strong th:text="${user.name}"></strong>
+                    </li>
+                    <li>
+                        <span class="light">이메일: </span><strong><a th:href="|mailto:${user.email}|" th:text="${user.email}"></a></strong>
+                    </li>
+                    <li>
+                        <span class="light">부서: </span><strong th:text="${user.organization}"></strong>
+                    </li>
+                    <!-- li>
+                        <span class="light">Member since:</span>
+                        <strong>
+                            Feb 5, 2017 7:15am
+                        </strong>
+                    </li>
+                    <li>
+                        <span class="light">Confirmed at:</span>
+                        <strong>
+                            Feb 5, 2017 7:15am
+                        </strong>
+                    </li>
+                    <li>
+                        <span class="light">Current sign-in IP:</span>
+                        <strong>never</strong>
+                    </li>
+                    <li>
+                        <span class="light">Current sign-in at:</span>
+                        <strong>never</strong>
+                    </li -->
+                    <li>
+                        <span class="light">마지막 로그인 IP</span>
+                        <strong th:if="${user.lastSignInIp != null}" th:text="${user.lastSignInIp}"></strong>
+                        <strong th:unless="${user.lastSignInIp != null}">never</strong>
+                    </li>
+                    <!-- li>
+                        <span class="light">Last sign-in at:</span>
+                        <strong>never</strong>
+                    </li -->
+                    <li>
+                        <span class="light">로그인 횟수:</span>
+                        <strong th:text="${user.signInCount}"></strong>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div th:if="${user.id != session.currentUser.id}" class="col-md-6">
+            <div class="panel" th:classappend="${user.state.name() == 'BLOCKED'} ? 'panel-info' : 'panel-warning'">
+                <div th:if="${user.state.name() == 'ACTIVE'}" class="panel-heading">이 사용자 접근 차단</div>
+                <div th:if="${user.state.name() == 'BLOCKED'}" class="panel-heading">이 사용자는 차단되었습니다.</div>
+                <div class="panel-body">
+                    <th:block th:if="${user.state.name() == 'ACTIVE'}">
+                        <p th:text="#{admin.users.block.effects.help}">Blocking user has the following effects:</p>
+                        <ul>
+                            <li th:text="#{admin.users.block.effects1}">User will not be able to login</li>
+                            <li th:text="#{admin.users.block.effects2}">User will not be able to access subversion repositories</li>
+                        </ul>
+                    </th:block>
+                    <th:block th:if="${user.state.name() == 'BLOCKED'}">
+                        <p th:text="#{admin.users.unblock.effects.help}">A blocked user cannot:</p>
+                        <ul>
+                            <li th:text="#{admin.users.unblock.effects1}">Log in</li>
+                            <li th:text="#{admin.users.unblock.effects2}">Access Subversion repositories</li>
+                        </ul>
+                    </th:block>
+                    <br/>
+                    <a th:if="${user.state.name() == 'ACTIVE'}" data-confirm="사용자가 접속 차단됩니다. 정말 차단하시겠습니까?" class="btn btn-warning" rel="nofollow" data-method="put" th:href="@{/admin/users/{userName}/block(userName=${user.name})}" th:text="#{admin.users.block.btn.text}">Block User</a>
+                    <a th:if="${user.state.name() == 'BLOCKED'}" data-confirm="차단된 사용자를 차단 해제하시겠습니까?" class="btn btn-info" rel="nofollow" data-method="put" th:href="@{/admin/users/{userName}/unblock(userName=${user.name})}" th:text="#{admin.users.unblock.btn.text}">Unlock User</a>
+                </div>
+            </div>
+            <!-- div class="panel panel-danger">
+                <div class="panel-heading">
+                    Remove user
+                </div>
+                <div class="panel-body">
+                    <p>Deleting a user has the following effects:</p>
+                    <ul>
+                        <li>All user content like authored issues, snippets, comments will be removed</li>
+                    </ul>
+                    <br/>
+                    <a data-confirm="USER chiang WILL BE REMOVED! Are you sure?" class="btn btn-remove" rel="nofollow" data-method="delete" href="/admin/users/chiangpero">Remove user</a>
+                </div>
+            </div -->
+        </div>
+    </div>
+    <form id="form-block-unblock-user" method="POST" action="">
+        <input type="hidden" name="_method" value="put"/>
+    </form>
+</div>
+<script layout:fragment="content-script">
+<!--
+$(function(){
+	$("a[data-method='put']").click(function(){
+		var _this = $(this);
+		if(confirm(_this.data('confirm'))) {
+			$('#form-block-unblock-user').attr('action', _this.attr('href')).submit();
+
+			return false;
+		}
+		else {
+			return false;
+		}
+	});
+});
+//-->
+</script>
+</html>

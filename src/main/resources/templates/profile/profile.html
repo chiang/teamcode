@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+	<title>User Settings</title>
+</head>
+<form layout:fragment="content" class="edit-user mt" enctype="multipart/form-data" th:action="@{/profile}" accept-charset="UTF-8" method="post">
+	<input type="hidden" name="_method" value="put"/>
+	<div class="row">
+		<div class="col-lg-3 profile-settings-sidebar">
+			<h4 class="mt-n">아바타 설정</h4>
+		</div>
+		<div class="col-lg-9">
+            <div class="form-group">
+                <div class="clearfix avatar-image append-bottom-default">
+                    <img th:if="${profile.avatarFileName != null}" th:alt="${profile.name}" class="avatar s60" th:src="@{/avatar/users/{userName}/{fileName}(userName=${profile.name},fileName=${profile.avatarFileName})}"/>
+                    <img th:if="${profile.avatarFileName == null}" th:attr="data-name=${profile.fullName}" class="avatar s60 profile"/>
+                </div>
+                <h5 class="mt-n" th:text="#{profile.labels.upload_new_avatar}">Upload new avatar</h5>
+                <div class="prepend-top-5 append-bottom-10">
+                    <div class="avatar-upload-zone">
+                        <a href="#!" class="choose-btn btn js-choose-avatar-button" style="position:relative;"><span th:text="#{btn.browse_file}">Browse file...</span><input name="avatar" accept="image/*" th:attr="data-create-url='/projects/' + ${paramProjectPath} + '/downloads',data-list-url='/projects/' + ${paramProjectPath} + '/downloads'" type="file"/></a><div class="uploading">업로드 중입니다...</div>
+                    </div>
+                    <span class="file_name prepend-left-default js-avatar-filename" th:text="#{labels.unselected_file}">No file chosen</span>
+                </div>
+                <div th:if="${alertType != 'MAX_SIZE'}" class="help-block" th:text="#{labels.limit_avatar_file_size}">The maximum file size allowed is 200KB.</div>
+                <p th:if="${alertType == 'MAX_SIZE'}" class="label-size-exceeded text-danger" style="color: #d31a48;">첨부된 파일이 200KB를 넘었습니다. 다른 파일을 선택해 주세요.</p>
+                <p th:if="${alertType != 'MAX_SIZE'}" class="label-size-exceeded text-danger" style="color: #d31a48; display: none;">첨부된 파일이 200KB를 넘었습니다. 다른 파일을 선택해 주세요.</p>
+            </div>
+		</div>
+	</div>
+	<hr />
+	<div class="row">
+		<div class="col-lg-3 profile-settings-sidebar">
+			<h4 class="prepend-top-0" th:text="#{profile.settings.main.header}">기본 설정</h4>
+			<p th:text="#{profile.settings.main.header.help}">This information will appear on your profile.</p>
+		</div>
+		<div class="col-lg-9">
+			<div class="form-group">
+				<label class="required" for="user_full_name">이름</label>
+				<input class="form-control" required="required" type="text" th:attr="data-full-name=${profile.fullName}" th:value="${profile.fullName}" name="fullName" id="user_full_name" autocomplete="off" spellcheck="false"/>
+				<!-- span class="help-block" th:text="#{profile.settings.main.username.help}">Enter your name, so people you know can recognize you.</span -->
+			</div>
+			<div class="form-group">
+				<label class="required" for="user_email">이메일 주소</label>
+				<input class="form-control" required="required" type="text" th:value="${profile.email}" name="email" id="user_email" />
+				<!-- span class="help-block">We also use email for avatar detection if no avatar is uploaded.</span -->
+			</div>
+			<div class="form-group">
+				<label class="label-light" for="user_organization">팀, 부서 혹은 회사를 입력하세요.</label>
+				<input class="form-control" type="text" name="organization" th:value="${profile.organization}" id="user_organization" placeholder="예) IT 서비스 팀" />
+			</div>
+			<div class="form-group">
+				<label class="label-light" for="user_bio">Bio</label>
+				<textarea rows="4" class="form-control" maxlength="250" name="bio" id="user_bio" th:value="${profile.bio}"></textarea>
+				<span class="help-block">나를 설명하는 글을 250 자 이내로 작성해 주세요.</span>
+			</div>
+			<div class="prepend-top-default append-bottom-default">
+                <a name="commit" class="btn btn-save" href="#!" th:text="#{profile.settings.main.btn}">Update profile settings</a>
+				<a class="btn btn-cancel" th:href="@{/}" th:text="#{btn.cancel}">Cancel</a>
+			</div>
+		</div>
+	</div>
+</form>
+</html>

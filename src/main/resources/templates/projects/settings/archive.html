@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+    <h4 class="prepend-top-0 danger-title" th:text="#{projects.menu.archive.header}">Remove project</h4>
+    <p class="append-bottom-0" th:text="#{projects.menu.archive.header.help}">
+      Removing the project will delete its repository and all related resources including issues, etc.
+    </p>
+    <form id="form-remove-project" th:action="@{/admin/projects/{path}/archive(path=${project.path})}" accept-charset="UTF-8" method="post">
+        <input type="hidden" name="_method" value="put"/>
+        <!-- p><strong>Removed projects cannot be restored!</strong></p -->
+        <input class="btn btn-remove js-confirm-danger" data-confirm-danger-message="" type="submit" th:value="#{projects.menu.archive.btn.text}"/>
+    </form>
+  </div>
+  <div class="modal" id="modal-confirm-danger" tabindex="-1">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <a class="close" data-dismiss="modal" href="#">×</a>
+                  <h3 class="page-title">프로젝트 아카이브 확인</h3>
+              </div>
+              <div class="modal-body">
+                  <p class="text-danger js-confirm-text">이 프로젝트를 정말로 아카이브하시겠습니까?</p>
+                  <p>
+                      아카이브 후에는 어떤 사용자도 이 프로젝트에 접근할 수 없습니다.
+                      이 작업을 신중하게 처리하실 수 있도록 확인하는 과정을 거치게 됩니다.
+                      <br/>
+                      아카이브를 하기 위해서 프로젝트 경로
+                      <code class="js-confirm-danger-match" th:text="${project.path}">petclinic</code>
+                      를 입혁하시거나 작업을 취소하려면 이 창을 닫으시면 됩니다.
+                  </p>
+                  <div class="form-group">
+                      <input type="text" name="confirm_name_input" id="confirm_name_input" value="" class="form-control js-confirm-danger-input"/>
+                  </div>
+                  <div class="form-actions">
+                      <input type="submit" name="commit" value="Confirm" class="btn btn-danger js-confirm-danger-submit"/>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+</html>

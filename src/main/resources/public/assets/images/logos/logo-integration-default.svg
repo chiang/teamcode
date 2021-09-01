@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="46px" viewBox="0 0 50 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.4.4 (17248) - http://www.bohemiancoding.com/sketch -->
+    <title>logo-integration-default</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="logos" sketch:type="MSArtboardGroup" transform="translate(-258.000000, -587.000000)">
+            <g id="logo-integration-default" sketch:type="MSLayerGroup" transform="translate(258.000000, 587.000000)">
+                <g id="Illustration-/-Sources-/-Website" sketch:type="MSShapeGroup">
+                    <g id="Page-1">
+                        <g id="Illustration-/-Sources-/-Website">
+                            <g id="Group">
+                                <g id="Rectangle">
+                                    <g id="path-1-link" fill="#FFFFFF">
+                                        <rect id="path-1" x="0" y="0" width="50" height="46" rx="3"></rect>
+                                    </g>
+                                    <rect id="Rectangle-path" stroke="#56748F" stroke-width="2" x="1" y="1" width="48" height="44" rx="3"></rect>
+                                </g>
+                                <path d="M3,2 L47,2 L47,2 C47.5522847,2 48,2.44771525 48,3 L48,9 L2,9 L2,3 L2,3 C2,2.44771525 2.44771525,2 3,2 L3,2 Z" id="Rectangle" fill="#E1E7ED"></path>
+                                <g transform="translate(4.000000, 4.000000)" id="Oval" fill="#56748F">
+                                    <circle cx="1.5" cy="1.5" r="1.5"></circle>
+                                    <circle cx="5.5" cy="1.5" r="1.5"></circle>
+                                    <circle cx="9.5" cy="1.5" r="1.5"></circle>
+                                </g>
+                                <g id="Rectangle" transform="translate(1.000000, 9.000000)">
+                                    <g id="path-2-link" fill="#7894AD">
+                                        <rect id="path-2" x="0" y="0" width="48" height="2"></rect>
+                                    </g>
+                                    <rect id="Rectangle-path" stroke="#56748F" x="0.5" y="0.5" width="47" height="1"></rect>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

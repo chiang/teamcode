@@ -1,0 +1,43 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+  <div class="col-md-8 col-md-offset-2">
+    <h3 class="page-title">사용자 정보 업데이트</h3>
+	  <div class="user_new">
+	    <form class="fieldset-form" id="new_user" enctype="multipart/form-data" th:action="@{/admin/users/{userName}(userName=${user.name})}" accept-charset="UTF-8" method="post">
+	        <input type="hidden" name="_method" value="put"/>
+	        <input type="hidden" name="name" id="user_username_hidden" th:value="${user.name}"/>
+	        <fieldset>
+	          <legend>기본 정보</legend>
+		        <div class="form-group">
+			        <label class="" for="user_username" th:text="#{labels.user.userName}">Username</label>
+			        <input class="form-control fcl-md" type="text" name="name2" id="user_username" disabled="disabled" th:value="${user.name}"/>
+		        </div>
+	          <div class="form-group">
+	            <label class="required" for="user_name" th:text="#{labels.user.name}">Name</label>
+	            <input required="required" autocomplete="off" class="form-control fcl-md" type="text" name="fullName" id="user_name" th:value="${user.fullName}"/>
+	          </div>
+	          <div class="form-group">
+	            <label class="required"  for="user_email" th:text="#{labels.email}">Email</label>
+	            <input required="required" autocomplete="off" class="form-control fcl-md" type="email" value="" name="email" id="user_email" th:value="${user.email}"/>
+	          </div>
+		        <div class="form-group">
+			        <label class="required" th:text="#{labels.user.password}">Password</label>
+			        <input autocomplete="off" class="form-control fcl-md" type="text" value="" name="password" id="user_password"/>
+		        </div>
+	        </fieldset>
+			    <fieldset>
+				    <legend>부가 정보</legend>
+				    <div class="form-group">
+					    <label class="required" for="user_organization">팀, 부서 혹은 회사를 입력하세요.</label>
+					    <input class="form-control" type="text" name="organization" id="user_organization" th:value="${user.organization}" placeholder="예) IT 서비스 팀" required="required" />
+				    </div>
+			    </fieldset>
+	        <div class="form-actions" style="margin-bottom: 25px;">
+	            <input type="submit" name="commit" value="사용자 정보 업데이트" class="btn btn-create"/>
+	            <a class="btn btn-cancel" th:href="@{/admin/users}" th:text="#{btn.cancel}">Cancel</a>
+	        </div>
+	    </form>
+	  </div>
+  </div>
+</div>
+</html>

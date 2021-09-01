@@ -1,0 +1,149 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+  <div class="page-content-header pt-n">
+    <div class="header-main-content">
+      <a class="ci-status" th:classappend="|ci-${pipeline.details.status.text}|" href="#!">
+        <span th:utext="${#appearances.renderIcon(pipeline.details.status.icon)}"></span>
+        <span th:text="${pipeline.details.status.text}"></span>
+      </a>
+      <strong>Pipeline #<span th:text="${pipeline.id}"></span></strong>
+      triggered
+	    <time class="js-timeago js-timeago-render" th:attr="datetime=${#dates.format(pipeline.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(pipeline.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body"></time>
+      by
+      <a href="#!">
+        <img class="avatar has-tooltip s24 "
+             th:alt="|${pipeline.commit.author}'s avatar|"
+             th:title="${pipeline.commit.author}"
+             data-container="body"
+             th:src="@{/avatar/users/{userName}/{fileName}(userName=${pipeline.commit.author},fileName=${pipeline.commit.author})}"/>
+      </a>
+	    <!-- TODO title to user email -->
+      <a th:title="${pipeline.commit.author}" class="has-tooltip commit-committer-link" href="#!" th:text="${pipeline.commit.author}"></a>
+    </div>
+    <div class="header-action-buttons"></div>
+  </div>
+  <div class="commit-box">
+      <h3 class="commit-title" th:text="${pipeline.commit.message}"></h3>
+  </div>
+  <div class="info-well">
+    <div class="well-segment pipeline-info">
+      <div class="icon-container"><i class="fa fa-clock-o"></i></div>
+      <span th:text="${pipeline.countJobs()}"></span> jobs <!-- span in 71 minutes 36 seconds (queued for 39 seconds) -->
+    </div>
+    <div class="well-segment branch-info">
+      <div class="icon-container commit-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 18" enable-background="new 0 0 36 18"><path d="m34 7h-7.2c-.9-4-4.5-7-8.8-7s-7.9 3-8.8 7h-7.2c-1.1 0-2 .9-2 2 0 1.1.9 2 2 2h7.2c.9 4 4.5 7 8.8 7s7.9-3 8.8-7h7.2c1.1 0 2-.9 2-2 0-1.1-.9-2-2-2m-16 7c-2.8 0-5-2.2-5-5s2.2-5 5-5 5 2.2 5 5-2.2 5-5 5"></path></svg>
+      </div>
+      <a class="monospace js-details-short"
+         th:href="@{/projects/{path}/commits/{revision}(path=${paramProjectPath},revision=${pipeline.commit.revision})}" th:text="|r${pipeline.commit.revision}|"/>
+    </div>
+  </div>
+  <div class="tabs-holder">
+      <ul class="pipelines-tabs nav-links no-top no-bottom">
+          <li class="js-pipeline-tab-link active">
+              <a data-target="div#js-tab-pipeline" data-action="pipelines" data-toggle="tab" class="pipeline-tab" href="/gitlab-org/gitlab-ce/pipelines/7664576" aria-expanded="true">Pipeline</a>
+          </li>
+          <li class="js-builds-tab-link">
+            <a data-target="div#js-tab-builds" data-action="builds" data-toggle="tab" class="builds-tab" href="/gitlab-org/gitlab-ce/pipelines/7664576/builds">Jobs <span class="badge js-builds-counter" th:text="${pipeline.countJobs()}">0</span></a>
+          </li>
+      </ul>
+  </div>
+  <div class="tab-content">
+    <div class="tab-pane active" id="js-tab-pipeline">
+      <div class="build-content middle-block js-pipeline-graph">
+        <div class="pipeline-visualization pipeline-graph">
+          <ul class="stage-column-list">
+            <li th:each="stage, iterator : ${pipeline.details.stages}" class="stage-column" th:classappend="${iterator.index > 0 and stage.jobs.size() > 1 ? 'left-margin' : ''}">
+              <div class="stage-name">
+                <a name="prepare"></a>
+                <span th:text="${stage.name}">Prepare</span>
+              </div>
+              <div class="builds-container">
+                <ul>
+                  <li th:each="job, iterator : ${stage.jobs}" class="build" id="ci-badge-knapsack" th:classappend="${iterator.size > 1 and iterator.index == 0 ? 'left-connector': ''}">
+                    <div class="curve"></div>
+                    <a class="build-content has-tooltip" data-toggle="tooltip"
+                       th:attr="data-title=${job.name + ' - ' + job.status.text}"
+                       data-container="body"
+                       th:href="@{/projects/{path}/jobs/{jobId}(path=${paramProject.path},jobId=${job.id})}"
+                       data-original-title="" title="">
+                      <span class="ci-status-icon" th:classappend="|ci-status-icon-${job.status.text} js-ci-status-icon-${job.status.text}|"
+                            th:utext="${#appearances.renderIcon(job.status.icon)}">
+                      </span>
+                      <div class="ci-status-text" th:text="${job.name}">jobName</div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="js-tab-builds">
+      <div class="table-holder pipeline-holder">
+        <table class="table ci-table pipeline">
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Job ID</th>
+              <th>Name</th>
+              <th></th>
+              <!-- th>Coverage</th -->
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <th:block th:each="stage : ${pipeline.details.stages}">
+              <tr>
+                <th colspan="10">
+                  <strong>
+                    <a name="prepare"></a>
+                    <span class="ci-status-link" th:classappend="|ci-status-icon-${stage.status.text}|" th:utext="${#appearances.renderIcon(stage.status.icon)}"></span>
+                    &nbsp;
+                    <span th:text="${stage.name}"></span>
+                  </strong>
+                </th>
+              </tr>
+              <tr th:each="job : ${stage.jobs}" class="build commit">
+                <td class="status">
+                    <a class="ci-status" th:classappend="|ci-${job.status.text}|" th:href="@{/projects/{path}/jobs/{jobId}(path=${paramProject.path},jobId=${job.id})}">
+                      <span th:utext="${#appearances.renderIcon(job.status.icon)}"></span>
+                      <span th:text="${job.status.text}"></span>
+                    </a>
+                </td>
+                <td class="branch-commit">
+                    <a href="https://gitlab.com/gitlab-org/gitlab-ce/builds/14417733"><span class="build-link">#<span th:text="${job.id}"></span></span></a>
+                </td>
+                <td th:text="${job.name}"></td>
+                <td>
+                  <p th:if="${job.duration != null}" class="duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><g fill="#8F8F8F" fill-rule="evenodd"><path d="M29.513 10.134A15.922 15.922 0 0 0 23 7.28V6h2.993C26.55 6 27 5.552 27 5V2a1 1 0 0 0-1.007-1H14.007C13.45 1 13 1.448 13 2v3a1 1 0 0 0 1.007 1H17v1.28C9.597 8.686 4 15.19 4 23c0 8.837 7.163 16 16 16s16-7.163 16-16c0-3.461-1.099-6.665-2.967-9.283l1.327-1.58a2.498 2.498 0 0 0-.303-3.53 2.499 2.499 0 0 0-3.528.315l-1.016 1.212zM20 34c6.075 0 11-4.925 11-11s-4.925-11-11-11S9 16.925 9 23s4.925 11 11 11z"></path><path d="M19 21h-4.002c-.552 0-.998.452-.998 1.01v1.98c0 .567.447 1.01.998 1.01h7.004c.274 0 .521-.111.701-.291a.979.979 0 0 0 .297-.704v-8.01c0-.54-.452-.995-1.01-.995h-1.98a.997.997 0 0 0-1.01.995V21z"></path></g></svg>
+                    <span th:text="${job.duration}"></span>
+                  </p>
+                  <p th:if="${job.finishedAt != null}" class="finished-at">
+                    <i class="fa fa-calendar"></i>
+                    <span><time class="js-timeago js-timeago-render" title="" datetime="2017-04-16T04:00:28Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Apr 16, 2017 1:00pm GMT+0900">about 7 hours ago</time></span>
+                  </p>
+                </td>
+                <!-- td class="coverage"></td -->
+                <td>
+                  &nbsp;
+                  <!-- div class="pull-right">
+                    <a rel="nofollow" download="" title="DownlartifactsFileacts" class="btn btn-build" href="/gitlab-org/gitlab-ce/builds/14417artifactsFileacts/download"><i class="fa fa-download"></i></a>
+                  </div -->
+                </td>
+              </tr>
+              <tr>
+                  <td colspan="10">
+                      &nbsp;
+                  </td>
+              </tr>
+            </th:block>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="public/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/font-awesome.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="navbar navbar-fixed-top navbar-tc with-horizontal-nav">
+    <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+    <div class="container-fluid">
+      <div class="header-content">
+        <button aria-label="Toggle global navigation" class="side-nav-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></button>
+        <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden-sm hidden-xs">
+              <div class="has-location-badge search search-form">
+                <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+                  <input name="utf8" type="hidden" value="✓">
+                  <div class="search-input-container">
+                    <div class="location-badge">This project</div>
+                    <div class="search-input-wrap">
+                      <div class="dropdown" data-url="/search/autocomplete">
+                        <input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options disabled" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://gitlab.com/dashboard/issues" data-mr-path="https://gitlab.com/dashboard/merge_requests" value="">
+                        <div class="dropdown-menu dropdown-select">
+                          <div class="dropdown-content">
+                            <ul>
+                              <li><a class="is-focused dropdown-menu-empty-link">Loading...</a></li>
+                            </ul>
+                          </div>
+                          <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                        </div>
+                        <i class="search-icon"></i>
+                        <i class="clear-icon js-clear-input"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="group_id" id="group_id" class="js-search-group-options">
+                  <input type="hidden" name="project_id" id="search_project_id" value="2350390" class="js-search-project-options" data-project-path="jandi-connector" data-name="jandi-connector" data-issues-path="/baramboy/jandi-connector/issues" data-mr-path="/baramboy/jandi-connector/merge_requests">
+                  <input type="hidden" name="search_code" id="search_code" value="true">
+                  <input type="hidden" name="repository_ref" id="repository_ref">
+                  <div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="2350390"></div>
+                </form>
+              </div>
+            </li>
+            <li class="visible-sm visible-xs"><a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a></li>
+            <li><a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a></li>
+            <li class="header-user dropdown">
+              <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img width="26" height="26" class="header-user-avatar" src="https://secure.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon" alt="33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon">
+                <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+                <li>
+                  <a class="profile-link" aria-label="Profile" data-user="baramboy" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a aria-label="Settings" href="/profile">Settings</a>
+                </li>
+                <li>
+                  <a aria-label="Help" href="/help">Help</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h1 class="title"><a href="/baramboy">박영일</a> / <a class="project-item-select-holder" href="/baramboy/jandi-connector">jandi-connector</a><button name="button" type="button" class="dropdown-toggle-caret js-projects-dropdown-toggle" aria-label="Toggle switch project dropdown" data-target=".js-dropdown-menu-projects" data-toggle="dropdown" data-order-by="last_activity_at"><i class="fa fa-chevron-down"></i></button></h1>
+        <div class="header-logo">
+          <a class="home" title="Dashboard" id="logo" href="projects.html">
+            <svg width="36" height="36" class="tanuki-logo">
+              <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+              <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+              <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+              <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+              <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+              <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+              <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="js-dropdown-menu-projects">
+          <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+            <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+            <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+            <div class="dropdown-content"></div>
+            <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page-with-sidebar">
+    <div class="layout-nav">
+      <div class="container-fluid">
+        <div class="nav-control scrolling-tabs-container">
+          <div class="fade-left">
+          <i class="fa fa-angle-left"></i>
+          </div>
+          <div class="fade-right">
+          <i class="fa fa-angle-right"></i>
+          </div>
+          <ul class="nav-links scrolling-tabs">
+            <li class="home"><a title="Project" class="shortcuts-project" href="profile.html"><span>Profile</span></a></li>
+    				<li class=""><a title="Graphs" class="shortcuts-graphs" href="emails.html"><span>Emails</span></a></li>
+    				<li class=""><a title="Issues" class="shortcuts-issues" href="password.html"><span>Password</span></a></li>
+    				<li class=""><a title="Merge Requests" class="shortcuts-merge_requests" href="notifications.html"><span>Notifications</span></a></li>
+    				<li class=""><a title="Snippets" class="shortcuts-snippets" href="preferences.html"><span>Preferences</span></a></li>
+    				<li class=""><a title="Snippets" class="shortcuts-snippets" href="audit.html"><span>Audit Log</span></a></li>
+          </ul>
+        </div>
+      </div><!-- .container-fluid -->
+    </div>
+    <div class="content-wrapper page-with-layout-nav">
+      <div class="alert-wrapper">
+        <div class="flash-container flash-container-page">
+          <div class="flash-alert">
+            <div class="container-fluid container-limited">
+              <span>Email has already been taken</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid container-limited ">
+        <div class="content" id="content-body">
+          <div class="row prepend-top-default">
+            <div class="col-lg-3 profile-settings-sidebar">
+              <h3 class="prepend-top-0">Audit Log</h3>
+              <p>This is a security log of important events involving your account.</p>
+            </div>
+            <div class="col-lg-9">
+              <h5 class="prepend-top-0">History of authentications</h5>
+              <ul class="well-list">
+                <li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    1 day ago
+                  </span>
+                </li>
+                <li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    1 day ago
+                  </span>
+                </li>
+                <li>
+                  <span class="description">
+                    <i class="fa fa-key append-right-5"></i>
+                    Signed in with
+                    standard
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    2 days ago
+                  </span>
+                </li>
+                <li>
+                  <span class="description">
+                    <i class="fa fa-bitbucket append-right-5"></i>
+                    Signed in with
+                    bitbucket
+                    authentication
+                  </span>
+                  <span class="pull-right">
+                    15 days ago
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .page-with-sidebar -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+<!--
+$('.select2').select2();
+//-->
+</script>
+</body>
+</html>

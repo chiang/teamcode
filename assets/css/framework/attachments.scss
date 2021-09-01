@@ -1,0 +1,73 @@
+.avatar-upload-zone {
+	display: inline-block;
+
+	a {
+		position: relative;
+		input[type="file"] {
+			filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+			opacity: 0;
+			position: absolute;
+			top: 0;
+			left: 0;
+			cursor: pointer;
+			font-size: 250px;
+			height: 100%;
+			display: inline-block;
+			width: 100%;
+		}
+	}
+
+	.uploading {
+		display: none;
+		margin-left: 16px;
+
+		&.ing {
+			display: inline-block;
+		}
+	}
+}
+.upload-dropzone {
+  border: 1px solid #ddd;
+  font-size: 12px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+
+  &.disable-dropzone {
+  	border: none;
+  	display: inline-block;
+
+  	input[type="file"] {
+  		display: inline-block;
+  		left: 0;
+  		right: inherit;
+  		width: 100%;
+  	}
+  }
+
+  .uploading {
+  	display: none;
+  	margin-left: 16px;
+
+  	&.ing {
+			display: inline-block;
+  	}
+  }
+}
+.upload-dropzone input[type="file"] {
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+	cursor: pointer;
+	font-size: 250px;
+	height: 100%;
+}
+.upload-dropzone span {
+	color: #d1d1d1;
+	color: #666;
+	display: inline-block;
+	line-height: 24px;
+	padding: 10px;
+}

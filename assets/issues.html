@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="public/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="public/css/font-awesome.min.css">
+</head>
+<body>
+  <header class="navbar navbar-fixed-top navbar-tc with-horizontal-nav">
+    <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+    <div class="container-fluid">
+      <div class="header-content">
+        <button aria-label="Toggle global navigation" class="side-nav-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></button>
+        <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden-sm hidden-xs">
+              <div class="has-location-badge search search-form">
+                <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+                  <input name="utf8" type="hidden" value="✓">
+                  <div class="search-input-container">
+                    <div class="location-badge">This project</div>
+                    <div class="search-input-wrap">
+                      <div class="dropdown" data-url="/search/autocomplete">
+                        <input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options disabled" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://gitlab.com/dashboard/issues" data-mr-path="https://gitlab.com/dashboard/merge_requests" value="">
+                        <div class="dropdown-menu dropdown-select">
+                          <div class="dropdown-content">
+                            <ul>
+                              <li><a class="is-focused dropdown-menu-empty-link">Loading...</a></li>
+                            </ul>
+                          </div>
+                          <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                        </div>
+                        <i class="search-icon"></i>
+                        <i class="clear-icon js-clear-input"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="group_id" id="group_id" class="js-search-group-options">
+                  <input type="hidden" name="project_id" id="search_project_id" value="2350390" class="js-search-project-options" data-project-path="jandi-connector" data-name="jandi-connector" data-issues-path="/baramboy/jandi-connector/issues" data-mr-path="/baramboy/jandi-connector/merge_requests">
+                  <input type="hidden" name="search_code" id="search_code" value="true">
+                  <input type="hidden" name="repository_ref" id="repository_ref">
+                  <div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="2350390"></div>
+                </form>
+              </div>
+            </li>
+            <li class="visible-sm visible-xs"><a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a></li>
+            <li><a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a></li>
+            <li class="header-user dropdown">
+              <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img width="26" height="26" class="header-user-avatar" src="https://secure.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon" alt="33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon">
+                <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+                <li>
+                  <a class="profile-link" aria-label="Profile" data-user="baramboy" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a aria-label="Settings" href="/profile">Settings</a>
+                </li>
+                <li>
+                  <a aria-label="Help" href="/help">Help</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h1 class="title"><a href="/baramboy">박영일</a> / <a class="project-item-select-holder" href="/baramboy/jandi-connector">jandi-connector</a><button name="button" type="button" class="dropdown-toggle-caret js-projects-dropdown-toggle" aria-label="Toggle switch project dropdown" data-target=".js-dropdown-menu-projects" data-toggle="dropdown" data-order-by="last_activity_at"><i class="fa fa-chevron-down"></i></button></h1>
+        <div class="header-logo">
+          <a class="home" title="Dashboard" id="logo" href="/">
+            <svg width="36" height="36" class="tanuki-logo">
+              <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+              <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+              <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+              <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+              <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+              <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+              <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="js-dropdown-menu-projects">
+          <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+            <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+            <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+            <div class="dropdown-content"></div>
+            <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page-with-sidebar">
+    <div class="layout-nav">
+      <div class="container-fluid">
+        <div class="nav-control scrolling-tabs-container">
+          <div class="fade-left">
+          <i class="fa fa-angle-left"></i>
+          </div>
+          <div class="fade-right">
+          <i class="fa fa-angle-right"></i>
+          </div>
+          <ul class="nav-links scrolling-tabs">
+            <li class="home"><a title="Project" class="shortcuts-project" href="/gitlab-org/gitlab-ce"><span>Project</span></a></li>
+            <li class=""><a title="Activity" class="shortcuts-project-activity" href="/gitlab-org/gitlab-ce/activity"><span>Activity</span></a></li>
+            <li class="active"><a title="Repository" class="shortcuts-tree" href="/gitlab-org/gitlab-ce/tree/master"><span>Repository</span></a></li>
+            <li class=""><a title="Pipelines" class="shortcuts-pipelines" href="/gitlab-org/gitlab-ce/pipelines"><span>Pipelines</span></a></li>
+            <li class=""><a title="Graphs" class="shortcuts-graphs" href="/gitlab-org/gitlab-ce/graphs/master"><span>Graphs</span></a></li>
+            <li class=""><a title="Issues" class="shortcuts-issues" href="/gitlab-org/gitlab-ce/issues"><span>Issues<span class="badge count issue_counter">5,931</span></span></a></li>
+            <li class=""><a title="Merge Requests" class="shortcuts-merge_requests" href="/gitlab-org/gitlab-ce/merge_requests"><span>Merge Requests<span class="badge count merge_counter">431</span></span></a></li>
+            <li class=""><a title="Snippets" class="shortcuts-snippets" href="/gitlab-org/gitlab-ce/snippets"><span>Snippets</span></a></li>
+          </ul>
+        </div>
+      </div><!-- .container-fluid -->
+    </div>
+    <div class="content-wrapper page-with-layout-nav">
+      <div class="scrolling-tabs-container sub-nav-scroll">
+        <div class="fade-left">
+        <i class="fa fa-angle-left"></i>
+        </div>
+        <div class="fade-right">
+        <i class="fa fa-angle-right"></i>
+        </div>
+
+        <div class="nav-links sub-nav scrolling-tabs">
+        <ul class="container-fluid container-limited">
+        <li class="active"><a title="Issues" href="/baramboy/jandi-connector/issues"><span>
+        Issues
+        </span>
+        </a></li><li class=""><a title="Board" href="/baramboy/jandi-connector/boards"><span>
+        Board
+        </span>
+        </a></li><li class=""><a title="Labels" href="/baramboy/jandi-connector/labels"><span>
+        Labels
+        </span>
+        </a></li><li class=""><a title="Milestones" href="/baramboy/jandi-connector/milestones"><span>
+        Milestones
+        </span>
+        </a></li></ul>
+        </div>
+      </div>
+      <div class="content" id="content-body">
+        <div class="container-fluid container-limited">
+          <div class="content-top">
+            <ul class="nav-links issues-state-filters">
+              <li class="active">
+                <a id="state-opened" title="Filter by issues that are currently opened." href="/baramboy/jandi-connector/issues?scope=all&amp;state=opened"><span>Open</span> <span class="badge">1</span></a>
+              </li>
+              <li class="">
+                <a id="state-all" title="Filter by issues that are currently closed." href="/baramboy/jandi-connector/issues?scope=all&amp;state=closed"><span>Closed</span> <span class="badge">1</span></a>
+              </li>
+              <li class="">
+                <a id="state-all" title="Show all issues." href="/baramboy/jandi-connector/issues?scope=all&amp;state=all"><span>All</span> <span class="badge">2</span></a>
+              </li>
+            </ul>
+            <div class="nav-controls">
+              <a class="btn append-right-10" href="/baramboy/jandi-connector/issues.atom?private_token=cR8LAs1DdnMzWxpJjy_R&amp;scope=all&amp;state=opened"><i class="fa fa-rss"></i><span class="icon-label">Subscribe</span></a>
+              <a class="btn btn-new" title="New Issue" id="new_issue_link" href="/baramboy/jandi-connector/issues/new?issue%5Bassignee_id%5D=&amp;issue%5Bmilestone_id%5D=">New Issue</a>
+            </div>
+          </div>
+          <div class="issues-filters">
+            <div class="issues-details-filters row-content-block second-block filtered-search-block">
+              <form class="filter-form js-filter-form" action="/baramboy/jandi-connector/issues?scope=all&amp;state=opened" accept-charset="UTF-8" method="get">
+                <input name="utf8" type="hidden" value="✓">
+                <div class="check-all-holder">
+                  <input type="checkbox" name="check_all_issues" id="check_all_issues" class="check_all_issues left">
+                </div>
+                <div class="issues-other-filters filtered-search-container">
+                  <div class="filtered-search-input-container">
+                    <input class="form-control filtered-search" data-id="filtered-search" data-project-id="2350390" data-username-params="[]" placeholder="Search or filter results..." data-dropdown-trigger="#js-dropdown-hint">
+                  </div>
+                  <div class="pull-right">
+                    <div class="btn-group inline ml-10">
+                      <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" type="button"><span class="light"></span>Last created<i class="fa fa-chevron-down"></i></button>
+                      <ul class="dropdown-menu dropdown-menu-align-right dropdown-menu-sort">
+                        <li>
+                        <a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=priority&amp;state=opened">Priority
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=created_desc&amp;state=opened">Last created
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=created_asc&amp;state=opened">Oldest created
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=updated_desc&amp;state=opened">Last updated
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=updated_asc&amp;state=opened">Oldest updated
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=weight_desc&amp;state=opened">More weight
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=weight_asc&amp;state=opened">Less weight
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=milestone_due_asc&amp;state=opened">Milestone due soon
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=milestone_due_desc&amp;state=opened">Milestone due later
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=due_date_asc&amp;state=opened">Due soon
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=due_date_desc&amp;state=opened">Due later
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=upvotes_desc&amp;state=opened">Most popular
+                        </a><a href="/baramboy/jandi-connector/issues?scope=all&amp;sort=downvotes_desc&amp;state=opened">Least popular
+                        </a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="issues-holder">
+            <ul class="content-list issues-list issuable-list">
+            <li class="issue today" data-id="4130258" data-labels="[]" id="issue_4130258" url="/baramboy/jandi-connector/issues/2">
+            <div class="issue-check">
+            <input type="checkbox" name="selected_issue_4130258" id="selected_issue_4130258" data-id="4130258" class="selected_issue">
+            </div>
+            <div class="issue-title title">
+            <span class="issue-title-text">
+
+            <a href="/baramboy/jandi-connector/issues/2">test</a>
+            </span>
+            <ul class="controls">
+            <li>
+            <a class="no-comments" href="/baramboy/jandi-connector/issues/2#notes"><i class="fa fa-comments"></i>
+            0
+            </a></li>
+            </ul>
+            </div>
+            <div class="issue-info">
+            #2 ·
+            opened <time class="js-timeago" title="" datetime="2017-01-31T08:01:22Z" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Jan 31, 2017 5:01pm GMT+0900" data-timeago-rendered="true">about an hour ago</time>
+            by <a class="author_link  " href="/baramboy"><span class="author ">박영일</span></a>
+            <div class="pull-right issue-updated-at">
+            <span>updated <time class="js-timeago issue_update_ago" title="" datetime="2017-01-31T08:01:22Z" data-toggle="tooltip" data-placement="bottom" data-container="body" data-original-title="Jan 31, 2017 5:01pm GMT+0900" data-timeago-rendered="true">about an hour ago</time></span>
+            </div>
+            </div>
+            </li>
+            </ul>
+            <div class="issues-footer text-center">
+            <button class="issue-email-modal-btn" data-target="#issue-email-modal" data-toggle="modal" type="button">
+            Email a new issue to this project
+            </button>
+            </div>
+            <div class="modal fade" id="issue-email-modal" role="dialog" tabindex="-1">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button aria="{:label=>&quot;close&quot;}" class="close" data-dismiss="modal" type="button">
+            <span aria="{:hidden=>&quot;true&quot;}"><i class="fa fa-times"></i></span>
+            </button>
+            <h4 class="modal-title">
+            Create new issue by email
+            </h4>
+            </div>
+            <div class="modal-body">
+            <p>
+            You can create a new issue inside this project by sending an email to the following email address:
+            </p>
+            <div class="email-modal-input-group input-group">
+            <input type="text" name="issue_email" id="issue_email" value="incoming+baramboy/jandi-connector+em4i63x4vnfcsc2arat3v0ciy@gitlab.com" class="monospace js-select-on-focus form-control" readonly="readonly">
+            <div class="input-group-btn">
+            <button class="btn btn-clipboard btn-transparent" data-toggle="tooltip" data-placement="bottom" data-container="body" data-clipboard-target="#issue_email" type="button" title="Copy to clipboard"><i class="fa fa-clipboard"></i></button>
+            </div>
+            </div>
+            <p>
+            The subject will be used as the title of the new issue, and the message will be the description.
+            <a target="_blank" tabindex="-1" href="/help/user/project/slash_commands">Slash commands</a>
+            and styling with
+            <a target="_blank" tabindex="-1" href="/help/user/markdown">Markdown</a>
+            are supported.
+            </p>
+            <p>
+            This is a private email address, generated just for you.
+            Anyone who gets ahold of it can create issues as if they were you.
+            You should
+            <a class="incoming-email-token-reset" href="/baramboy/jandi-connector/new_issue_address">reset it</a>
+            if that ever happens.
+            </p>
+            </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- .page-with-sidebar -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

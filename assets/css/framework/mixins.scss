@@ -1,0 +1,94 @@
+/**
+ * Prefilled mixins
+ * Mixins with fixed values
+ */
+
+@mixin str-truncated($max_width: 82%) {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+  max-width: $max_width;
+}
+
+/*
+ * Base mixin for lists in GitLab
+ */
+@mixin basic-list {
+  margin: 5px 0;
+  padding: 0;
+  list-style: none;
+
+  > li {
+    @include clearfix;
+
+    padding: 10px 0;
+    border-bottom: 1px solid $list-border-light;
+    display: block;
+    margin: 0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.active {
+      background: $gray-light;
+
+      a {
+        font-weight: 600;
+      }
+    }
+
+    &.hide {
+      display: none;
+    }
+
+    &.light {
+      a {
+        color: $gl-text-color;
+      }
+    }
+  }
+}
+
+@mixin bulleted-list {
+  > ul {
+    list-style-type: disc;
+
+    ul {
+      list-style-type: circle;
+
+      ul {
+        list-style-type: square;
+      }
+    }
+  }
+}
+
+@mixin dark-diff-match-line {
+  color: $dark-diff-match-bg;
+  background: $dark-diff-match-color;
+}
+
+@mixin webkit-prefix($property, $value) {
+  #{'-webkit-' + $property}: $value;
+  #{$property}: $value;
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin include-keyframes($animation-name) {
+  @include webkit-prefix(animation-name, $animation-name);
+  @include keyframes($animation-name) {
+    @content;
+  }
+}

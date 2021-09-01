@@ -1,0 +1,264 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" class="">
+    <h3 class="page-title">New Issue</h3>
+    <hr/>
+    <form class="form-horizontal issue-form common-note-form js-quick-submit js-requires-input gfm-form" id="new_issue" action="/root/chiang/issues" accept-charset="UTF-8" method="post">
+        <div class="form-group">
+            <label class="control-label" for="issue_title">Title</label>
+            <div class="col-sm-10">
+                <input required="required" maxlength="255" autofocus="autofocus" autocomplete="off" class="form-control pad" size="255" type="text" name="issue[title]" id="issue_title"/>
+                <p class="help-block">
+                    Add
+                    <a tabindex="-1" href="/help/user/project/description_templates">description templates</a>
+                    to help your contributors communicate effectively!
+                </p>
+            </div>
+        </div>
+        <div class="form-group detail-page-description">
+            <label class="control-label" for="issue_description">Description</label>
+            <div class="col-sm-10">
+                <div class="md-area">
+                    <div class="md-header">
+                        <ul class="nav-links clearfix">
+                            <li class="active">
+                                <a class="js-md-write-button" href="#md-write-holder" tabindex="-1">Write</a>
+                            </li>
+                            <li>
+                                <a class="js-md-preview-button" href="#md-preview-holder" tabindex="-1">
+                                    Preview
+                                </a>
+                            </li>
+                            <li class="pull-right">
+                                <div class="toolbar-group">
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="**" data-container="body" title="Add bold text" aria-label="Add bold text"><i class="fa fa-bold fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="*" data-container="body" title="Add italic text" aria-label="Add italic text"><i class="fa fa-italic fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="> " data-md-prepend="true" data-container="body" title="Insert a quote" aria-label="Insert a quote"><i class="fa fa-quote-right fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="`" data-md-block="```" data-container="body" title="Insert code" aria-label="Insert code"><i class="fa fa-code fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="* " data-md-prepend="true" data-container="body" title="Add a bullet list" aria-label="Add a bullet list"><i class="fa fa-list-ul fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="1. " data-md-prepend="true" data-container="body" title="Add a numbered list" aria-label="Add a numbered list"><i class="fa fa-list-ol fa-fw"></i></button>
+                                    <button type="button" class="toolbar-btn js-md has-tooltip hidden-xs" tabindex="-1" data-md-tag="* [ ] " data-md-prepend="true" data-container="body" title="Add a task list" aria-label="Add a task list"><i class="fa fa-check-square-o fa-fw"></i></button>
+                                </div>
+                                <div class="toolbar-group">
+                                    <button aria="{:label=>&quot;Go full screen&quot;}" class="toolbar-btn js-zen-enter has-tooltip hidden-xs" data-container="body" tabindex="-1" title="Go full screen" type="button">
+                                        <i class="fa fa-arrows-alt fa-fw"></i>
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="md-write-holder">
+                        <div class="zen-backdrop div-dropzone-wrapper">
+                            <div class="div-dropzone dz-clickable">
+                                <textarea class="note-textarea js-gfm-input js-autosize markdown-area" placeholder="Write a comment or drag your changedFiles here..." data-supports-slash-commands="true" name="issue[description]" id="issue_description" style="overflow: hidden; word-wrap: break-word; resize: vertical; height: 140px;"></textarea>
+                                <div class="div-dropzone-hover"><i class="fa fa-paperclip div-dropzone-icon"></i></div>
+                                <div class="div-dropzone-spinner" style="opacity: 0; display: none;"><i class="fa fa-spinner fa-spin div-dropzone-icon"></i><div class="div-dropzone-progress"></div></div>
+                            </div>
+                            <a class="zen-control zen-control-leave js-zen-leave" href="#">
+                                <i class="fa fa-compress"></i>
+                            </a>
+                        </div>
+
+                        <div class="comment-toolbar clearfix">
+                            <div class="toolbar-text">
+                                Styling with
+                                <a target="_blank" tabindex="-1" href="/help/user/markdown">Markdown</a>
+                                and
+                                <a target="_blank" tabindex="-1" href="/help/user/project/slash_commands">slash commands</a>
+                                are
+                                supported
+                            </div>
+                            <button class="toolbar-button markdown-selector" tabindex="-1" type="button">
+                                <i class="fa fa-file-image-o toolbar-button-icon"></i>
+                                Attach a file
+                            </button>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <div class="error-alert"></div>
+                    </div>
+                    <div class="hide js-md-preview md md-preview md-preview-holder"></div>
+                    <div class="referenced-users hide" style="display: none;">
+                        <span>
+                            <i class="fa fa-exclamation-triangle"></i>
+                            You are about to add
+                            <strong>
+                                <span class="js-referenced-users-count">0</span>
+                                people
+                            </strong>
+                            to the discussion. Proceed with caution.
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label for="issue_confidential">
+                        <input name="issue[confidential]" type="hidden" value="0"/>
+                        <input type="checkbox" value="1" name="issue[confidential]" id="issue_confidential"/>
+                        This issue is confidential and should only be visible to team members with at least Reporter access.
+                    </label>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group issue-assignee">
+                    <label class="control-label col-lg-4" for="issue_assignee_id">Assignee</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <div class="issuable-form-select-holder">
+                            <div class="dropdown">
+                                <button class="dropdown-menu-toggle js-dropdown-keep-input js-user-search js-issuable-form-dropdown js-assignee-search" type="button" data-first-user="root" data-null-user="true" data-current-user="true" data-project-id="4" data-selected="null" data-field-name="issue[assignee_id]" data-default-label="Assignee" data-toggle="dropdown" aria-expanded="false"><span class="dropdown-toggle-text is-default">Assignee</span><i class="fa fa-chevron-down"></i></button>
+                                <div class="dropdown-menu dropdown-select dropdown-menu-user dropdown-menu-selectable dropdown-menu-assignee js-filter-submit">
+                                    <div class="dropdown-title"><span>Select assignee</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                                    <div class="dropdown-input">
+                                        <input type="search" id="" class="dropdown-input-field" placeholder="Search assignee" autocomplete="off" value=""/><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i>
+                                    </div>
+                                    <div class="dropdown-content">
+                                        <ul>
+                                            <li> <a href="#" class="dropdown-menu-user-link ">  <strong class="dropdown-menu-user-full-name"> Unassigned </strong></a> </li>
+                                            <li class="divider"></li>
+                                            <li> <a href="#" class="dropdown-menu-user-link "> <img src="http://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&amp;d=identicon" class="avatar avatar-inline" width="30"/> <strong class="dropdown-menu-user-full-name"> Administrator </strong><span class="dropdown-menu-user-username"> @root </span></a> </li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group issue-milestone">
+                    <label class="control-label col-lg-4" for="issue_milestone_id">Milestone</label>
+                    <div class="col-lg-8 col-sm-10">
+                        <div class="issuable-form-select-holder">
+                            <div class="dropdown">
+                                <button class="dropdown-menu-toggle js-milestone-select js-filter-submit js-issuable-form-dropdown js-dropdown-keep-input" type="button" data-show-no="true" data-show-menu-above="false" data-show-any="false" data-show-upcoming="false" data-field-name="issue[milestone_id]" data-selected="null" data-project-id="4" data-milestones="/root/chiang/milestones.json" data-default-label="Milestone" data-toggle="dropdown"><span class="dropdown-toggle-text is-default">Milestone</span><i class="fa fa-chevron-down"></i></button>
+                                <div class="dropdown-menu dropdown-select dropdown-menu-selectable dropdown-menu-milestone">
+                                    <div class="dropdown-title"><span>Select milestone</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                                    <div class="dropdown-input">
+                                        <input type="search" id="" class="dropdown-input-field" placeholder="Search milestones" autocomplete="off" value=""/><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i>
+                                    </div>
+                                    <div class="dropdown-content"></div>
+                                    <div class="dropdown-footer">
+                                        <ul class="dropdown-footer-list">
+                                            <li>
+                                                <a title="New Milestone" href="/root/chiang/milestones/new">Create new
+                                                </a></li>
+                                            <li><a href="/root/chiang/milestones">Manage milestones</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-lg-4" for="issue_label_ids">Labels</label>
+                    <input multiple="multiple" value="" type="hidden" name="issue[label_ids][]" id="issue_label_ids"/>
+                    <div class="col-lg-8 col-sm-10 issuable-form-padding-top">
+                        <div class="issuable-form-select-holder">
+                            <div class="dropdown">
+                                <button class="dropdown-menu-toggle js-extra-options js-filter-submit js-issuable-form-dropdown js-label-select js-multiselect" data-default-label="Labels" data-field-name="issue[label_ids][]" data-labels="/root/chiang/labels.json" data-namespace-path="root" data-project-path="chiang" data-show-no="true" data-toggle="dropdown" type="button" aria-expanded="false">
+<span class="dropdown-toggle-text is-default">
+Labels
+</span>
+                                    <i class="fa fa-chevron-down"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-select dropdown-menu-paging dropdown-menu-labels dropdown-menu-selectable">
+                                    <div class="dropdown-page-one">
+                                        <div class="dropdown-title"><span>Select label</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                                        <div class="dropdown-input">
+                                            <input type="search" id="" class="dropdown-input-field" placeholder="Search" autocomplete="off" value=""/><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i>
+                                        </div>
+                                        <div class="dropdown-content">
+                                            <ul>
+                                                <li><a href="#" class="dropdown-clear-active"> No Label</a></li>
+                                                <li class="divider"></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown-footer">
+                                            <ul class="dropdown-footer-list">
+                                                <li>
+                                                    <a class="dropdown-toggle-page" href="#">
+                                                        Create new label
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a data-is-link="true" href="/root/chiang/labels">Manage labels
+                                                    </a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                                    </div>
+                                    <div class="dropdown-page-two dropdown-new-label">
+                                        <div class="dropdown-title"><button class="dropdown-title-button dropdown-menu-back" aria-label="Go back" type="button"><i class="fa fa-arrow-left"></i></button><span>Create new label</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                                        <div class="dropdown-content"><div class="dropdown-labels-error js-label-error" style="display: none;"></div>
+                                            <input class="default-dropdown-input" id="new_label_name" placeholder="Name new label" type="text"/>
+                                            <div class="suggest-colors suggest-colors-dropdown">
+                                                <a style="background-color: #0033CC" data-color="#0033CC" href="#">&nbsp;
+                                                </a><a style="background-color: #428BCA" data-color="#428BCA" href="#">&nbsp;
+                                            </a><a style="background-color: #44AD8E" data-color="#44AD8E" href="#">&nbsp;
+                                            </a><a style="background-color: #A8D695" data-color="#A8D695" href="#">&nbsp;
+                                            </a><a style="background-color: #5CB85C" data-color="#5CB85C" href="#">&nbsp;
+                                            </a><a style="background-color: #69D100" data-color="#69D100" href="#">&nbsp;
+                                            </a><a style="background-color: #004E00" data-color="#004E00" href="#">&nbsp;
+                                            </a><a style="background-color: #34495E" data-color="#34495E" href="#">&nbsp;
+                                            </a><a style="background-color: #7F8C8D" data-color="#7F8C8D" href="#">&nbsp;
+                                            </a><a style="background-color: #A295D6" data-color="#A295D6" href="#">&nbsp;
+                                            </a><a style="background-color: #5843AD" data-color="#5843AD" href="#">&nbsp;
+                                            </a><a style="background-color: #8E44AD" data-color="#8E44AD" href="#">&nbsp;
+                                            </a><a style="background-color: #FFECDB" data-color="#FFECDB" href="#">&nbsp;
+                                            </a><a style="background-color: #AD4363" data-color="#AD4363" href="#">&nbsp;
+                                            </a><a style="background-color: #D10069" data-color="#D10069" href="#">&nbsp;
+                                            </a><a style="background-color: #CC0033" data-color="#CC0033" href="#">&nbsp;
+                                            </a><a style="background-color: #FF0000" data-color="#FF0000" href="#">&nbsp;
+                                            </a><a style="background-color: #D9534F" data-color="#D9534F" href="#">&nbsp;
+                                            </a><a style="background-color: #D1D100" data-color="#D1D100" href="#">&nbsp;
+                                            </a><a style="background-color: #F0AD4E" data-color="#F0AD4E" href="#">&nbsp;
+                                            </a><a style="background-color: #AD8D43" data-color="#AD8D43" href="#">&nbsp;
+                                            </a></div>
+                                            <div class="dropdown-label-color-input">
+                                                <div class="dropdown-label-color-preview js-dropdown-label-color-preview"></div>
+                                                <input class="default-dropdown-input" id="new_label_color" placeholder="Assign custom color like #FF0000" type="text"/>
+                                            </div>
+                                            <div class="clearfix">
+                                                <button class="btn btn-primary pull-left js-new-label-btn disabled" type="button" disabled="disabled">
+                                                    Create
+                                                </button>
+                                                <button class="btn btn-default pull-right js-cancel-label-btn" type="button">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div></div>
+                                    <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label class="control-label" for="issue_due_date">Due date</label>
+                    <div class="col-sm-10">
+                        <div class="issuable-form-select-holder">
+                            <input id="issuable-due-date" class="datepicker form-control hasDatepicker" placeholder="Select due date" type="text" name="issue[due_date]"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="footer-block row-content-block">
+            <input type="submit" name="commit" value="Submit issue" class="btn btn-create disabled" disabled="disabled"/>
+            <a class="btn btn-cancel" th:href="@{/{groupPath}/{projectPath}/issues(groupPath=${paramGroupPath},projectPath=${paramProjectPath})}">Cancel</a>
+        </div>
+        <input type="hidden" name="issue[lock_version]" id="issue_lock_version"/>
+    </form>
+</div>
+</html>

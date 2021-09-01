@@ -1,0 +1,26 @@
+@mixin font-face($font-face-setting: Regular, $font-style-setting: null, $font-weight-setting: null) {
+  $font-path: 'framework/fonts/SalesforceSans-#{$font-face-setting}';
+
+  @font-face {
+    font-family: 'Salesforce Sans';
+
+    src: url('#{$font-path}.woff2') format('woff2'),
+      url('#{$font-path}.woff') format('woff');
+
+    font-style: $font-style-setting;
+    font-weight: $font-weight-setting;
+  }
+}
+
+$font-weight-light: 300 !default;
+// Salesforce Sans Regular
+$font-weight-regular: 400 !default;
+// Salesforce Sans Bold
+$font-weight-bold: 700 !default;
+
+@include font-face(Light,                 $font-weight-setting: $font-weight-light);
+@include font-face(LightItalic,   italic, $font-weight-light);
+@include font-face(Regular,               $font-weight-setting: $font-weight-regular);
+@include font-face(Italic,        italic, $font-weight-regular);
+@include font-face(Bold,                  $font-weight-setting: $font-weight-bold);
+@include font-face(BoldItalic,    italic, $font-weight-bold);

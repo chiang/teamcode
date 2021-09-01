@@ -1,0 +1,21 @@
+{
+  "name": "helpcenter-theme",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "RightStack <chiang@rightstack.net>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0"
+  }
+}

@@ -1,0 +1,28 @@
+Index: trunk/LICENSE.txt
+===================================================================
+--- trunk/LICENSE.txt	(revision 24)
++++ trunk/LICENSE.txt	(revision 25)
+@@ -1 +1 @@
+-ooo
++Apache License
+Index: trunk/halloween-icons-noga419.sketch
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: trunk/halloween-icons-noga419.sketch
+===================================================================
+--- trunk/halloween-icons-noga419.sketch	(revision 0)
++++ trunk/halloween-icons-noga419.sketch	(revision 25)
+
+Property changes on: trunk/halloween-icons-noga419.sketch
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++application/octet-stream
+\ No newline at end of property
+Index: trunk/build.gradle
+===================================================================
+--- trunk/build.gradle	(revision 0)
++++ trunk/build.gradle	(revision 25)
+@@ -0,0 +1 @@
++apply 'java'

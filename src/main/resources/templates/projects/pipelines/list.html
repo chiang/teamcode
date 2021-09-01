@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="content-container">
+  <div th:if="${paramProject.pipelineVisibility.name() != 'HIDDEN'}">
+    <div th:if="${paramProject.pipelineVisibility.name() == 'ENABLED'}">
+      <div th:if="${pipelineConfigurationGuideResponse.hasPipelineYml}">
+        <div>
+          <div class="content-list pipelines">
+            <div id="pipelines-list-vue"
+                 th:attr="data-endpoint=@{/projects/{path}/pipelines.json(path=${paramProject.path})},data-pending-path=@{/projects/{path}/pipelines?scope=pending(path=${paramProject.path})},data-running-path=@{/projects/{path}/pipelines?scope=running(path=${paramProject.path})},data-finished-path=@{/projects/{path}/pipelines?scope=finished(path=${paramProject.path})},data-all-path=@{/projects/{path}/pipelines(path=${paramProject.path})}"></div>
+          </div>
+        </div>
+      </div>
+      <div id="vue-pipeline-configuration" class="tc-panel-container"
+           th:if="${!pipelineConfigurationGuideResponse.hasPipelineYml}"
+           th:attr="data-commit-url=${pipelineConfigurationGuideResponse.getLink('commit').href}">
+        <div class="tc-panel">
+          <div class="tc-panel-body">
+            <h2>파이프라인 구성</h2>
+            <p>
+              파이프라인은 <strong>teamcode-pipelines.xml</strong> 파일에서 구성합니다. 먼저 프로그래밍 언어 템플릿을 설정하고 적절히 편집 후 커밋하시면 됩니다.
+              직접 파일을 만들어서 커밋하실 수도 있습니다.
+            </p>
+            <div class="panel-link-container">
+              <a href="http://support.teamcode.io/article/15-get-started-with-teamcode-pipelines" target="_blank" class="panel-link">파이프라인에 대해서 알아보기</a>
+              <span class="spacer"></span>
+              <a href="http://support.teamcode.io/article/16-configure-teamcode-pipelines-yml" target="_blank" class="panel-link">파이프라인 구성하는 법 알아보기</a>
+            </div>
+            <ul class="pipelines-yaml-template-list">
+              <li v-on:click="chooseTemplate('javascript')" :class="{ 'active': selectedLanguage == 'javascript'}">
+                <img th:src="@{/assets/images/logos/logo-js@2x.png}" />
+                <span>Javascript</span>
+              </li>
+              <li v-on:click="chooseTemplate('java')" :class="{ 'active': selectedLanguage == 'java'}">
+                <img th:src="@{/assets/images/logos/logo-java@2x.png}" />
+                <span>Java (Maven)</span>
+              </li>
+              <li v-on:click="chooseTemplate('gradle')" :class="{ 'active': selectedLanguage == 'gradle'}">
+                <img th:src="@{/assets/images/logos/logo-gradle@2x.png}" />
+                <span>Java (Gradle)</span>
+              </li>
+              <li v-on:click="chooseTemplate('python')" :class="{ 'active': selectedLanguage == 'python'}">
+                <img th:src="@{/assets/images/logos/logo-python@2x.png}" />
+                <span>Python</span>
+              </li>
+              <li style="width: 190px;">
+                <select2 :options="languages" :minimum-results-for-search="-1" select-placeholder="더 보기" v-on:select2-changed="chooseTemplate" :value="select2Selected">
+                  <!-- option disabled="disabled" value="0">Select one</option -->
+                </select2>
+              </li>
+            </ul>
+            <pipelines-template :template="languageTemplate" v-on:template-changed="templateChanged"></pipelines-template>
+            <div class="panel-form">
+              <input class="form-control" placeholder="커밋 시 메시지를 입력하세요." v-model="commitMessage"/>
+            </div>
+            <div class="panel-actions">
+              <a href="#!" class="btn btn-save" v-on:click="commit">커밋하기</a> <span th:text="|${paramProject.resolvedPipelineConfigPath}/.teamcode-pipelines.yml 에 커밋됩니다.|"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="empty-state-container">
+      <div th:if="${paramProject.pipelineVisibility.name() == 'DISABLED'}" class="empty-state">
+        <h3>파이프라인이 비활성화 상태입니다.</h3>
+        <div class="text-content">
+          <p>파이프라인을 이용해서 여러분의 코드를 빌드하고 테스트할 수 있습니다. 그리고 빌드한 애플리케이션을 배포까지 간편하게 하실 수 있습니다. 파이프라인 기능을 사용하시려면 먼저 파이프라인을 활성화시켜 주세요.</p>
+          <a th:href="@{/projects/{projectPath}/admin/pipeline/settings(projectPath=${paramProject.path})}" class="btn btn-new">파이프라인 설정하기</a>
+        </div>
+        <div class="panel-link-container">
+          <a href="http://support.teamcode.io/article/15-get-started-with-teamcode-pipelines" target="_blank" class="panel-link">파이프라인에 대해서 알아보기</a>
+          <span class="spacer"></span>
+          <a href="http://support.teamcode.io/article/16-configure-teamcode-pipelines-yml" target="_blank" class="panel-link">파이프라인 구성하는 법 알아보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

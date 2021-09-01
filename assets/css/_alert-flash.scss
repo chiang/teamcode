@@ -1,0 +1,54 @@
+.flash-container {
+  cursor: pointer;
+  margin: 0;
+  margin-bottom: 16px;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  &.flash-container-page {
+    margin-bottom: 0;
+  }
+}
+.alert,
+.flash-container .flash-notice,
+.flash-container .flash-alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 0;
+}
+.alert-info,
+.flash-container .flash-notice {
+    background-color: #1a97d5;
+    border-color: #1a97d5;
+    color: #fff;
+}
+.alert,
+.flash-container .flash-notice,
+.flash-container .flash-alert,
+.progress {
+    margin-bottom: 16px;
+}
+.flash-container .flash-notice {
+    margin: 0;
+}
+.flash-container.flash-container-page .flash-notice, .flash-container.flash-container-page .flash-alert {
+    border-radius: 0;
+}
+.alert-wrapper .alert:last-child, .alert-wrapper .flash-container .flash-notice:last-child, .flash-container .alert-wrapper .flash-notice:last-child, .alert-wrapper .flash-container .flash-alert:last-child, .flash-container .alert-wrapper .flash-alert:last-child {
+    margin-bottom: 16px;
+}
+.alert-danger, .flash-container .flash-alert {
+  background-color: #d31a48;
+  border-color: #d31a48;
+  color: #fff;
+}
+/** override default **/
+.alert {
+  text-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.alert-danger {
+  background-image: none;
+}

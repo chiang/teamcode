@@ -1,0 +1,418 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-help">
+<div layout:fragment="content">
+    <div class="documentation wiki">
+        <h1 dir="auto">
+            <a id="user-content-permissions" class="anchor" href="#permissions" aria-hidden="true"></a>Permissions
+        </h1>
+        <p dir="auto">Users have different abilities depending on the access level they have in a
+            particular group or project. If a user is both in a group's project and the
+            project itself, the highest permission level is used.</p>
+
+        <p dir="auto">On public and internal projects the Guest role is not enforced. All users will
+            be able to create issues, leave comments, and pull or download the project code.</p>
+
+        <p dir="auto">GitLab administrators receive all permissions.</p>
+
+        <p dir="auto">To add or import a user, you can follow the <a href="../workflow/add-user/add-user.md">project users and members
+            documentation</a>.</p>
+
+        <h2 dir="auto"><a id="user-content-project" class="anchor" href="#project" aria-hidden="true"></a>Project</h2>
+        <p dir="auto">The following table depicts the various user permission levels in a project.</p>
+        <table dir="auto">
+            <thead>
+            <tr>
+                <th>Action</th>
+                <th>Guest</th>
+                <th>Reporter</th>
+                <th>Developer</th>
+                <th>Master</th>
+                <th>Owner</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Create new issue</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Leave comments</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See a list of builds</td>
+                <td>✓ <sup><a href="#fn1">1</a></sup>
+                </td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See a build log</td>
+                <td>✓ <sup><a href="#fn1">1</a></sup>
+                </td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Download and browse build artifactsFile</td>
+                <td>✓ <sup><a href="#fn1">1</a></sup>
+                </td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>View wiki pages</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Pull project code</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Download project</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create code snippets</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage issue tracker</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage labels</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See a commit status</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See a container registry</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See environments</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create new environments</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Use environment terminals</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Stop environments</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>See a list of merge requests</td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage/Accept merge requests</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create new merge request</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create new branches</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Push to non-protected branches</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Force push to non-protected branches</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Remove non-protected branches</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Add tags</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Write a wiki</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Cancel and retry builds</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create or update commit status</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Update a container registry</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Remove a container registry image</td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Create new milestones</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Add new team members</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Push to protected branches</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Enable/disable branch protection</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Turn on/off protected branch push for devs</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Rewrite/remove Git tags</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Edit project</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Add deploy keys to project</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Configure project hooks</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage runners</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage build triggers</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Manage variables</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Switch visibility level</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Transfer project to another namespace</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Remove project</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>✓</td>
+            </tr>
+            <tr>
+                <td>Force push to protected branches <sup><a href="#fn2">2</a></sup>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Remove protected branches <sup><a href="#fn2">2</a></sup>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</html>

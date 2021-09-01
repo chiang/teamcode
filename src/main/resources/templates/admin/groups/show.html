@@ -1,0 +1,176 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <h3 class="page-title">Group: <span th:text="${group.name}" th:remove="tag"></span><a class="btn pull-right" href="/admin/groups/mobile/edit"><i class="fa fa-pencil-square-o"></i>Edit</a></h3>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Group info:</div>
+                    <ul class="well-list">
+                        <li>
+                            <div class="avatar-container s60">
+                                <img class="avatar s60" src="/assets/no_group_avatar-4a9d347a20d783caee8aaed4a37a65930cb8db965f61f3b72a2e954a0eaeb8ba.png" alt="No group avatar"/>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="light">Name:</span>
+                            <strong th:text="${group.name}"></strong>
+                        </li>
+                        <li>
+                            <span class="light">Path:</span>
+                            <strong th:text="${group.path}"></strong>
+                        </li>
+                        <li>
+                            <span class="light">Description:</span>
+                            <strong th:text="${group.description}"></strong>
+                        </li>
+                        <li>
+                            <span class="light">Created on:</span>
+                            <strong th:text="${#dates.format(group.createdAt, 'dd-MMM-yyyy')}">Feb 6, 2017 2:58pm</strong>
+                        </li>
+                        <li>
+                            <span class="light">Storage:</span>
+                            <strong>0 Bytes</strong>
+                            (
+                            0 Bytes
+                            repositories,
+                            0 Bytes
+                            build artifactsFile,
+                            0 Bytes
+                            LFS
+                            )
+                        </li>
+                        <li>
+                            <span class="light">Group Git LFS status:</span>
+                            <strong>
+                                <span class="lfs-enabled">Enabled for all projects</span>
+                                <a href="/help/workflow/lfs/manage_large_binaries_with_git_lfs"><i class="fa fa-question-circle"></i></a>
+                            </strong>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Projects<span class="badge">0</span></h3>
+                    </div>
+                    <ul class="well-list">
+                    </ul>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Add user(s) to the group:
+                    </div>
+                    <div class="panel-body form-holder">
+                        <p class="light">
+                            Read more about project permissions
+                            <strong><a class="vlink" href="/help/user/permissions">here</a></strong>
+                        </p>
+                        <form id="new_project_member" class="bulk_import" action="/admin/groups/mobile/members_update" accept-charset="UTF-8" method="post">
+                            <input type="hidden" name="_method" value="put"/>
+                            <div>
+                                <div class="select2-container select2-container-multi ajax-users-select multiselect" id="s2id_user_ids">
+                                    <ul class="select2-choices">
+                                        <li class="select2-search-field">
+                                            <label for="s2id_autogen1" class="select2-offscreen"></label>
+                                            <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input select2-default" id="s2id_autogen1" placeholder="" style="width: 568px;"/>
+                                        </li>
+                                    </ul>
+                                    <div class="select2-drop select2-drop-multi select2-display-none ajax-users-dropdown">
+                                        <ul class="select2-results">
+                                            <li class="select2-no-results">No matches found</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="user_ids" id="user_ids" value="" class="ajax-users-select multiselect " data-placeholder="Search for a user" data-null-user="false" data-any-user="false" data-email-user="true" data-first-user="false" data-current-user="false" data-push-code-to-protected-branches="null" data-author-id="" data-skip-users="null" tabindex="-1" style="display: none;"/>
+                            </div>
+                            <div class="prepend-top-10">
+                                <div class="select2-container project-access-select select2" id="s2id_access_level" style="width: 93px;">
+                                    <a href="javascript:void(0)" class="select2-choice" tabindex="-1">
+                                        <span class="select2-chosen" id="select2-chosen-2">Guest</span>
+                                        <abbr class="select2-search-choice-close"></abbr>
+                                        <span class="select2-arrow" role="presentation">
+                                            <b role="presentation"></b>
+                                        </span>
+                                    </a>
+                                    <label for="s2id_autogen2" class="select2-offscreen"></label>
+                                    <input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-2" id="s2id_autogen2"/>
+                                </div>
+                                <select name="access_level" id="access_level" class="project-access-select select2" tabindex="-1" title="" style="display: none;">
+                                    <option value="10">Guest</option>
+                                    <option value="20">Reporter</option>
+                                    <option value="30">Developer</option>
+                                    <option value="40">Master</option>
+                                    <option value="50">Owner</option>
+                                </select>
+                            </div>
+                            <hr/>
+                            <button name="button" type="submit" class="btn btn-create">Add users to group</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <strong>mobile</strong>
+                        group members
+                        <span class="badge">3</span>
+                        <div class="pull-right">
+                            <a class="btn btn-xs" href="http://localhost:8585/groups/mobile/group_members"><i class="fa fa-pencil-square-o"></i> Manage Access</a>
+                        </div>
+                    </div>
+                    <ul class="well-list group-users-list content-list">
+                        <li class="group_member member" id="group_member_10">
+                            <span class="list-item-name">
+                                <img class="avatar s40" alt="" src="http://www.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=80&amp;d=identicon"/>
+                                <strong><a href="/baramboy">박영일</a></strong>
+                                <span class="cgray">@baramboy</span>
+                                <div class="hidden-xs cgray">
+                                    Joined <time class="js-timeago" title="" datetime="2017-02-06T15:36:30Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Feb 7, 2017 12:36am GMT+0900" data-timeago-rendered="true">3 minutes ago</time>
+                                </div>
+                            </span>
+                            <div class="controls member-controls">
+                                <span class="member-access-text">Owner</span>
+                            </div>
+                        </li>
+                        <li class="group_member member" id="group_member_9">
+                            <span class="list-item-name">
+                                <img class="avatar s40" alt="" src="http://www.gravatar.com/avatar/5b43922a900302337d4c094142a3c8c5?s=80&amp;d=identicon"/>
+                                <strong>
+                                    <a href="/chiangpero">chiang</a>
+                                </strong>
+                                <span class="cgray">@chiangpero</span>
+                                <div class="hidden-xs cgray">
+                                    Joined <time class="js-timeago" title="" datetime="2017-02-06T15:36:30Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Feb 7, 2017 12:36am GMT+0900" data-timeago-rendered="true">3 minutes ago</time>
+                                </div>
+                            </span>
+                            <div class="controls member-controls">
+                                <span class="member-access-text">Owner</span>
+                            </div>
+                        </li>
+                        <li class="group_member member" id="group_member_8">
+                            <span class="list-item-name">
+                                <img class="avatar s40" alt="" src="http://www.gravatar.com/avatar/e64c7d89f26bd1972efa854d13d7dd61?s=80&amp;d=identicon"/>
+                                <strong>
+                                    <a href="/root">Administrator</a>
+                                </strong>
+                                <span class="cgray">@root</span>
+                                <span class="label label-success prepend-left-5">It's you</span>
+                                <div class="hidden-xs cgray">
+                                    Joined <time class="js-timeago" title="" datetime="2017-02-06T14:58:09Z" data-toggle="tooltip" data-placement="top" data-container="body" data-original-title="Feb 6, 2017 11:58pm GMT+0900" data-timeago-rendered="true">41 minutes ago</time>
+                                </div>
+                            </span>
+                            <div class="controls member-controls">
+                                <span class="member-access-text">Owner</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="panel-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</html>

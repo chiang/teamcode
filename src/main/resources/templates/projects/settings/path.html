@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+    <form th:action="@{/projects/{path}/admin/path(path=${project.path})}" accept-charset="UTF-8" method="post">
+      <input type="hidden" name="_method" value="patch"/>
+      <div class="form-group project_name_holder">
+        <label class="label-light" for="project_name">프로젝트 이름</label>
+        <div class="form-group">
+          <input class="form-control" type="text" name="name" id="project_name" th:value="${project.name}" autocomplete="off" spellcheck="false"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="label-light" for="project_path"><span>접근 경로</span></label>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon" th:text="${externalUrl} + '/projects/'">http://localhost/projects/</div>
+            <input class="form-control" type="text" name="path" id="project_path" th:value="${project.path}" autocomplete="off"/>
+          </div>
+        </div>
+        <ul style="margin-left: 17px;">
+          <li>프로젝트 이름은 화면에 표시되는 정보입니다. 접근 경로는 웹 주소, 서브버전 접근 주소로 사용됩니다.</li>
+          <li th:text="#{projects.path.rename.helpblock.1}">Be careful. Renaming a project's repository can have unintended side effects.</li>
+          <li th:text="#{projects.path.rename.helpblock.2}">You will need to update your local repositories to point to the new location.</li>
+        </ul>
+      </div>
+      <input type="submit" name="commit" value="이름 및 경로 변경하기" class="btn btn-warning"/>
+    </form>
+  </div>
+</div>
+</html>

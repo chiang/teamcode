@@ -1,0 +1,11 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+		<div class="">
+			<label class="label-light">새 이슈 레이블</label>
+		</div>
+		<div id="vue-issue-label-form" th:attr="data-endpoint=@{/projects/{path}/admin/issues/labels(path=${paramProject.path})}"></div>
+	</div>
+</div>
+</html>

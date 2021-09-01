@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout">
+<head>
+    <title>List</title>
+</head>
+<div layout:fragment="content" class="abc">
+    <div>
+        <a th:href="@{/repositories?createForm}" class="btn btn-new">New Repository</a>
+    </div>
+    <div th:if="${#lists.isEmpty(tblUserList)}">
+        아직 저장소가 하나도 없습니다.;;;
+    </div>
+    <div th:unless="${#lists.isEmpty(tblUserList)}">
+        <ul>
+            <li th:each="repository : ${repositories}" th:text="${repository.name}">Repository Name</li>
+        </ul>
+    </div>
+</div>
+</html>

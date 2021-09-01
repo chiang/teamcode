@@ -1,0 +1,50 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+  <div class="project-settings-wrapper">
+    <form class="edit-project" enctype="multipart/form-data" th:action="@{/projects/{path}/admin(path=${project.path})}" accept-charset="UTF-8" data-remote="true" method="post">
+      <input type="hidden" name="_method" value="patch" />
+      <fieldset class="append-bottom-0">
+          <div class="form-group">
+              <label class="required" for="project_name_edit">프로젝트 이름</label>
+              <input required="required" class="form-control" id="project_name_edit" type="text" th:value="${project.name}" name="name" autocomplete="off" spellcheck="false"/>
+          </div>
+          <div class="form-group">
+              <label class="required" for="project_description">프로젝트 설명</label>
+              <textarea class="form-control" rows="3" maxlength="250" name="description" id="project_description" th:text="${project.description}"></textarea>
+          </div>
+	      <div class="form-group">
+		      <label class="label-light" for="project_description">프로그래밍 언어</label>
+		      <select name="programmingLanguage" class="form-control js-data-languages">
+			      <optgroup label="Popular">
+				      <option th:each="pl : ${populars}" th:value="${pl}" th:text="${pl.displayName}" th:selected="${pl == project.programmingLanguage}"></option>
+			      </optgroup>
+			      <optgroup label="Other">
+				      <option th:each="pl : ${others}" th:value="${pl}" th:text="${pl.displayName}" th:selected="${pl == project.programmingLanguage}"></option>
+			      </optgroup>
+		      </select>
+	      </div>
+      </fieldset>
+      <hr/>
+      <fieldset class="features append-bottom-default">
+        <h5 class="prepend-top-0">Project avatar</h5>
+        <div class="form-group">
+          <div class="avatar-container project-avatar-container s60">
+              <img th:if="${project.avatarFileName != null}" class="avatar project-avatar" th:src="@{/avatar/projects/{projectPath}/{fileName}(projectPath=${paramProjectPath},fileName=${project.avatarFileName})}"/>
+	            <img th:if="${project.avatarFileName == null}" class="avatar project-avatar s40" th:src="@{/avatar/langs/{fileName}.svg(fileName=${project.programmingLanguageIcon})}"/>
+          </div>
+          <div class="avatar-upload-zone">
+            <a href="#!" class="choose-btn btn js-choose-avatar-button">파일 찾기...<input name="avatar" th:attr="data-create-url='/projects/' + ${paramProjectPath} + '/downloads',data-list-url='/projects/' + ${paramProjectPath} + '/downloads'" type="file"/></a>
+	          <div class="uploading">업로드 중입니다...</div>
+          </div>
+          <span class="file_name prepend-left-default js-avatar-filename">선택한 파일이 없습니다.</span>
+          <div th:if="${alertType != 'MAX_SIZE'}" class="help-block">200KB 미만의 파일만 업로드해 주세요.</div>
+          <p th:if="${alertType == 'MAX_SIZE'}" class="label-size-exceeded text-danger" style="color: #d31a48;">첨부된 파일이 200KB를 넘었습니다. 다른 파일을 선택해 주세요.</p>
+          <p th:if="${alertType != 'MAX_SIZE'}" class="label-size-exceeded text-danger" style="color: #d31a48; display: none;">첨부된 파일이 200KB를 넘었습니다. 다른 파일을 선택해 주세요.</p>
+        </div>
+      </fieldset>
+      <a type="submit" name="commit" value="Save changes" class="btn btn-save" href="#!">변경 사항 저장</a>
+    </form>
+  </div>
+</div>
+</html>

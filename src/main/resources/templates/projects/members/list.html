@@ -1,0 +1,37 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<head>
+    <title>프로젝트 멤버</title>
+</head>
+<div layout:fragment="content" style="padding: 70px;">
+	<div class="row prepend-top-default">
+	  <div class="col-lg-8 col-lg-offset-2">
+      <div th:if="${not #lists.isEmpty(members)}">
+        <ul th:if="${members.size() > 0}" class="content-list project_members">
+          <li th:each="member : ${members}" class="member project_member" id="project_member_13">
+            <span class="list-item-name">
+                <img th:if="${member.user.avatarFileName != null}" th:alt="${member.user.name}" class="avatar s40" th:src="@{/avatar/users/{userName}/{fileName}(userName=${member.user.name},fileName=${member.user.avatarFileName})}"/>
+                <img th:if="${member.user.avatarFileName == null}" th:attr="data-name=${member.user.fullName}" class="avatar s40 profile"/>
+                <strong><a href="#!" th:text="${member.user.fullName}">?</a></strong>
+                <span class="cgray" th:text="'@' + ${member.user.name}">@user</span>
+                <span th:if="${member.user.id == session.currentUser.id}" class="label label-success prepend-left-5">나</span>
+                <div class="member-description">
+	                <span class="badge organization" th:text="${member.user.organization}"></span>
+	                <span class="badge role" th:text="${member.role.name}"></span>
+	                <p th:if="${member.user.bio != null}" th:text="${member.user.bio}"></p>
+                </div>
+            </span>
+          </li>
+        </ul>
+      </div>
+		  <div th:if="${#lists.isEmpty(members)}" class="empty-state-container">
+        <div class="empty-state">
+          <h3>이 프로젝트에는 아직 멤버가 없습니다.</h3>
+          <div class="text-content">
+            <p>프로젝트가 만들어 졌지만 아직 아무도 이 프로젝트에서 활동하지 않습니다. 시스템 관리자나 프로젝트 관리자가 멤버를 등록할 수 있습니다.</p>
+          </div>
+        </div>
+		  </div>
+	  </div>
+	</div>
+</div>
+</html>

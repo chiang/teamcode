@@ -1,0 +1,323 @@
+@mixin md-typography {
+  color: $gl-text-color;
+  word-wrap: break-word;
+
+  a {
+    color: $md-link-color;
+
+    &:hover {
+      color: $tc-link-color-hover;
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  *:first-child:not(.katex-display) {
+    margin-top: 0;
+  }
+
+  // Single code lines should wrap
+  code {
+    font-family: $monospace_font;
+    white-space: pre-wrap;
+    word-wrap: normal;
+  }
+
+  // Multi-line code blocks should scroll horizontally
+  pre {
+    code {
+      white-space: pre;
+    }
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 11px;
+    line-height: 10px;
+    color: $kdb-color;
+    vertical-align: middle;
+    background-color: $kdb-bg;
+    border-width: 1px;
+    border-style: solid;
+    border-color: $kdb-border $kdb-border $kdb-border-bottom;
+    border-image: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 $kdb-shadow inset;
+  }
+
+  h1 {
+    //font-size: 1.75em;
+    font-size: 1.55em;
+    font-weight: 600;
+    margin: 23px 0 10px;
+    padding: 0 0 0.3em;
+    border-bottom: 1px solid $white-dark;
+    color: $gl-text-color;
+  }
+
+  h2 {
+    //font-size: 1.71428571em;
+    font-size: 1.3em;
+    font-weight: 600;
+    margin: 23px 0 10px !important;
+    //color: $gl-text-color;
+    color: #425c8a;
+  }
+
+  h3 {
+    margin: 16px 0 10px;
+    font-size: 1.3em;
+  }
+
+  h4 {
+    margin: 16px 0 10px;
+    font-size: 1.2em;
+  }
+
+  h5 {
+    margin: 16px 0 10px;
+    font-size: 1em;
+  }
+
+  h6 {
+    margin: 16px 0 10px;
+    font-size: 0.95em;
+  }
+
+  blockquote {
+    color: $gl-grayish-blue;
+    font-size: inherit;
+    padding: 8px 21px;
+    margin: 12px 0;
+    border-left: 3px solid $white-dark;
+
+    &.warning {
+      border-left-color: #EDB431;
+    }
+  }
+
+  blockquote:dir(rtl) {
+    border-left: 0;
+    border-right: 3px solid $white-dark;
+  }
+
+  blockquote p {
+    color: $gl-grayish-blue !important;
+    font-size: inherit;
+    line-height: 1.5;
+  }
+
+  p {
+    color: $gl-text-color;
+    margin: 6px 0 0;
+    line-height: 24px;
+  }
+
+  table {
+    @extend .table;
+    @extend .table-bordered;
+    margin: 12px 0;
+    color: $gl-text-color;
+
+    th {
+      background: $label-gray-bg;
+    }
+  }
+
+  table:dir(rtl) th {
+    text-align: right;
+  }
+
+  pre {
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.6em;
+    overflow-x: auto;
+    border-radius: 2px;
+  }
+
+  p > code {
+    font-weight: inherit;
+  }
+
+  ul,
+  ol {
+    padding: 0;
+    margin: 3px 0 3px 28px !important;
+  }
+
+  ul:dir(rtl),
+  ol:dir(rtl) {
+    margin: 3px 28px 3px 0 !important;
+  }
+
+  li {
+    line-height: 1.6em;
+  }
+
+  a[href*="/uploads/"],
+  a[href*="storage.googleapis.com/google-code-attachments/"] {
+    &::before {
+      margin-right: 4px;
+
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      content: "\f0c6";
+    }
+
+    &:hover::before {
+      text-decoration: none;
+    }
+  }
+
+  a.no-attachment-icon {
+    &::before {
+      display: none;
+    }
+  }
+
+  /* Link to current header. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
+
+    a.anchor {
+      left: -16px;
+      position: absolute;
+      text-decoration: none;
+      outline: none;
+
+      &::after {
+        content: image-url('icon_anchor.svg');
+        visibility: hidden;
+      }
+    }
+
+    &:hover > a.anchor::after {
+      visibility: visible;
+    }
+  }
+}
+
+
+/**
+ * Headers
+ *
+ */
+body {
+  -webkit-text-shadow: $body-text-shadow 0 0 1px;
+}
+
+.page-title {
+  margin-top: $gl-padding;
+  line-height: 1.3;
+  font-size: 1.25em;
+  font-weight: 600;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.page-title-empty {
+  margin-top: 0;
+  line-height: 1.3;
+  font-size: 1.25em;
+  font-weight: 600;
+  margin: 12px 7px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $gl-text-color;
+  font-weight: 500;
+}
+
+.light-header {
+  font-weight: 600;
+}
+
+/** CODE **/
+pre {
+  font-family: $monospace_font;
+
+  &.plain-readme {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.monospace {
+  font-family: $monospace_font;
+  font-size: 90%;
+}
+
+code {
+  &.key-fingerprint {
+    background: $body-bg;
+    color: $text-color;
+  }
+}
+
+a > code {
+  color: $link-color;
+}
+
+/**
+ * Apply Markdown typography
+ *
+ */
+.wiki {
+  @include md-typography;
+}
+
+.md {
+  @include md-typography;
+}
+
+/**
+ * Textareas intended for GFM
+ *
+ */
+.strikethrough {
+  text-decoration: line-through;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  small {
+    color: $gl-text-color;
+  }
+}
+
+.text-right-lg {
+  @media (min-width: $screen-lg-min) {
+    text-align: right;
+  }
+}
+
+.idiff.deletion {
+  background: $line-removed-dark;
+}
+
+.idiff.addition {
+  background: $line-added-dark;
+}

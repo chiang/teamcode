@@ -1,0 +1,94 @@
+
+teamcode:
+  home: /home/teamcode:/var/opt/teamcode
+  artifacts-dir: /var/opt/teamcode/data/ci/artifacts
+  #external-url: http://teamcode.example.com
+  external-url: http://localhost
+
+  attachments:
+    downloads:
+      max-files: 100
+
+  ticket:
+    eanbled: true
+
+subversion:
+  version: 1.9
+  realm: Teamcode Managed Subversion Server
+  repository:
+    root: ''
+
+container:
+  # Connector Protocol. 'HTTP/1.1' or 'AJP/1.3'
+  protocol: AJP/1.3
+  port: 8009
+
+  # time unit -> Minutes
+  # default 30 Minutes
+  session-timeout: 60
+
+
+datasource:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://tc-db/teamcode
+  username: 'teamcode'
+  password: '****'
+
+  # pooling
+  idleMaxAgeInMinutes: 240
+  idleConnectionTestPeriodInMinutes: 60
+  maxConnectionsPerPartition: 10
+  minConnectionsPerPartition: 5
+  partitionCount: 2
+  acquireIncrement: 5
+  statementsCacheSize: 100
+  # mysql (SELECT 1), postgresql (SELECT NOW()),
+  connectionTestStatement: "SELECT NOW()"
+
+spring:
+  http:
+    multipart:
+      max-file-size: 10MB
+
+  thymeleaf:
+    mode: HTML5
+    cache: false
+
+  jpa:
+    # oracle, mysql, hsql, h2, postgresql (if your dbms is 'MS SQL Server', comment this line and uncomment 'dialect:...' line)
+    database: postgresql
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+
+    properties:
+      hibernate:
+        default_batch_fetch_size: 4
+        jdbc:
+          fetch_size: 20
+        # for sql server
+        #dialect: io.teamcode.common.dialect.AdvancedSqlServerDialect
+
+        # for oracle
+        #dialect: io.teamcode.common.dialect.AdvancedOracleDialect
+
+    repositories:
+      enabled: true
+
+flyway:
+  locations: classpath:flyway/db/postgresql # locations of migrations scripts
+
+logging:
+  path: ./logs
+
+  # logger level
+  level:
+    io:
+      teamcode: DEBUG
+    org:
+      springframework:
+        boot.actuate.endpoint.mvc: ERROR
+        cache: ERROR
+        web: ERROR
+        security: ERROR
+      hibernate: ERROR

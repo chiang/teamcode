@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper" style="border: none; background: none;">
+    <ul class="project-integration-services">
+      <li th:each="settings: ${settingsList}">
+        <a th:href="@{/{groupPath}/{projectPath}/admin/settings/integrations/{serviceName}(groupPath=${paramGroupPath},projectPath=${paramProjectPath},serviceName=${settings.key})}">
+          <div class="service-logo">
+            <img th:src="@{{path}(path=${settings.logoPath})}" th:alt="${settings.title}" th:title="${settings.title}"/>
+          </div>
+          <div>
+            <h1 th:text="${settings.title}">Integration Service Title</h1>
+            <p class="help-block" th:text="${settings.description}">Integration Service Description</p>
+          </div>
+          <div class="service-activated" th:classappend="${settings.active} ? 'activated' : ''"></div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</html>

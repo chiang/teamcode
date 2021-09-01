@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-project">
+<head>
+    <title>프로젝트 멤버</title>
+</head>
+<div layout:fragment="content" th:classappend="project-settings-container">
+	<div th:replace="fragments/project-settings-nav :: project-settings-nav"></div>
+	<div class="project-settings-wrapper">
+      <div class="light">
+          <form class="users-project-form" id="new_project_member" th:action="@{/projects/{path}/admin/members(path=${paramProjectPath})}" accept-charset="UTF-8" method="post">
+              <div class="form-group">
+                  <select name="userIds" class="js-data-notmembers-ajax">
+                  </select>
+                  <div class="help-block append-bottom-10" th:text="#{projects.settings.members.search.help}">Search for members by name, username, or email.</div>
+              </div>
+              <div class="form-group">
+                  <select name="projectRole" id="access_level" class="form-control project-access-select">
+                      <option value="GUEST">Guest</option>
+                      <option value="REPORTER">Reporter</option>
+                      <option value="DEVELOPER">Developer</option>
+                      <option value="MASTER">Master</option>
+                  </select>
+                  <!-- div class="help-block append-bottom-10">
+                      <a class="vlink" th:href="@{/help/user/permissions}">Read more</a>
+                      about role permissions
+                  </div -->
+              </div>
+              <!--
+              <div class="form-group">
+                  <div class="clearable-input">
+                      <input type="text" name="expires_at" id="expires_at" class="form-control js-access-expiration-date hasDatepicker" placeholder="Expiration date"/>
+                      <i class="clear-icon js-clear-input"></i>
+                  </div>
+                  <div class="help-block append-bottom-10">
+                      On this date, the member(s) will automatically lose access to this project.
+                  </div>
+              </div>
+              -->
+              <input type="submit" name="commit" th:value="#{projects.settings.members.btn.text}" class="btn btn-create"/>
+              <!-- a class="btn btn-default" title="Import members from another project" href="/root/tester/project_members/import">Import</a -->
+          </form>
+          <!-- div class="prepend-top-default append-bottom-default clearfix">
+              <h5 class="member existing-title">Existing members and groups</h5>
+          </div -->
+      </div>
+      <div th:if="${not #lists.isEmpty(members)}" class="panel panel-default prepend-top-default">
+          <div class="panel-heading">
+              <strong th:text="${paramProject.name}"></strong> 프로젝트에 접근 가능한 멤버들
+              <span class="badge" th:text="${members.size()}">?</span>
+              <!-- form class="form-inline member-search-form" action="/root/tester/settings/members" accept-charset="UTF-8" method="get">
+                  <div class="form-group">
+                      <input type="search" name="search" id="search" placeholder="Find existing members by name" class="form-control" spellcheck="false" value=""/>
+                      <button aria-label="Submit search" class="member-search-btn" type="submit">
+                          <i class="fa fa-search"></i>
+                      </button>
+                      <div class="dropdown inline member-sort-dropdown">
+                          <button class="dropdown-menu-toggle " type="button" data-toggle="dropdown"><span class="dropdown-toggle-text ">Name, ascending</span><i class="fa fa-chevron-down"></i></button>
+                          <ul class="dropdown-menu dropdown-menu-align-right dropdown-menu-selectable">
+                              <li class="dropdown-header">
+                                  Sort by
+                              </li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=access_level_asc">Access level, ascending
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=access_level_desc">Access level, descending
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=last_joined">Last joined
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=oldest_joined">Oldest joined
+                                  </a></li>
+                              <li>
+                                  <a class="is-active" href="/root/tester/settings/members?sort=name_asc">Name, ascending
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=name_desc">Name, descending
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=recent_sign_in">Recent sign in
+                                  </a></li>
+                              <li>
+                                  <a href="/root/tester/settings/members?sort=oldest_sign_in">Oldest sign in
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </form -->
+          </div>
+          <ul th:if="${members.size() > 0}" class="content-list">
+              <li th:each="member : ${members}" class="member project_member" id="project_settings_members">
+                  <span class="list-item-name">
+                      <img th:if="${member.user.avatarFileName != null}" th:alt="${member.user.name}" class="avatar s40" th:src="@{/avatar/users/{userName}/{fileName}(userName=${member.user.name},fileName=${member.user.avatarFileName})}"/>
+                      <img th:if="${member.user.avatarFileName == null}" th:attr="data-name=${member.user.fullName}" class="avatar s40 profile"/>
+                      <strong><a href="#!" th:text="${member.user.fullName}">?</a></strong>
+                      <span class="cgray" th:text="'@' + ${member.user.name}">@user</span>
+                      <span th:if="${member.user.id == session.currentUser.id}" class="label label-success prepend-left-5">나</span>
+                      <div class="hidden-xs cgray">
+                          <time class="js-timeago" th:attr="datetime=${#dates.format(member.createdAt, 'yyyy-MM-dd''T''HH:mm:ssZ')},title=${#dates.format(member.createdAt, 'yyyy년 MM월 dd일 HH시 mm분')}" data-toggle="tooltip" data-placement="top" data-container="body">about 0 hours ago</time>에 추가되었습니다.
+                      </div>
+                  </span>
+                  <div th:if="${member.user.id == session.currentUser.id}" class="controls member-controls">
+                      <span class="member-access-text" th:text="${member.role.name}">Master</span>
+                  </div>
+                  <div th:if="${member.user.id != session.currentUser.id}" class="controls member-controls">
+                      <form class="form-horizontal js-edit-member-form" th:id="'edit_project_member_' + ${member.id}" th:action="@{/projects/{path}/admin/members/{memberId}(path=${paramProjectPath},memberId=${member.id})}" accept-charset="UTF-8" data-remote="true" method="post">
+                          <input type="hidden" name="_method" value="patch"/>
+                          <input type="hidden" name="role"/>
+                          <div class="member-form-control dropdown append-right-5">
+                              <button class="dropdown-menu-toggle js-member-permissions-dropdown" data-field-name="project_member[access_level]" data-toggle="dropdown" type="button">
+                                  <span class="dropdown-toggle-text" th:text="${member.role.name}">Guest</span>
+                                  <i class="fa fa-chevron-down"></i>
+                              </button>
+                              <div class="dropdown-menu dropdown-select dropdown-menu-align-right dropdown-menu-selectable">
+                                  <div class="dropdown-title">
+                                      <span>권한 변경하기</span>
+                                      <button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button>
+                                  </div>
+                                  <div class="dropdown-content">
+                                      <ul>
+                                          <li><a th:classappend="${member.role.name() == 'GUEST'} ? 'is-active' : ''" data-role-name="GUEST" data-el-id="project_member_16" href="javascript:void(0)">Guest</a></li>
+                                          <li><a th:classappend="${member.role.name() == 'REPORTER'} ? 'is-active' : ''" data-role-name="REPORTER" data-el-id="project_member_16" href="javascript:void(0)">Reporter</a></li>
+                                          <li><a th:classappend="${member.role.name() == 'DEVELOPER'} ? 'is-active' : ''" data-role-name="DEVELOPER" data-el-id="project_member_16" href="javascript:void(0)">Developer</a></li>
+                                          <li><a th:classappend="${member.role.name() == 'MASTER'} ? 'is-active' : ''" data-role-name="MASTER" data-el-id="project_member_16" href="javascript:void(0)">Master</a></li>
+                                      </ul>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- div class="prepend-left-5 clearable-input member-form-control">
+                              <input class="form-control js-access-expiration-date js-member-update-control hasDatepicker" placeholder="Expiration date" id="member_expires_at_16" data-el-id="project_member_16" type="text" name="project_member[expires_at]"/>
+                              <i class="clear-icon js-clear-input"></i>
+                          </div -->
+                      </form>
+                      <a th:attr="data-project-name=${paramProject.name},data-member-name=${member.user.fullName}" class="btn btn-remove prepend-left-10" title="Remove user from project" data-remote="true" rel="nofollow" data-method="delete" th:href="@{/projects/{path}/admin/members/{memberId}(path=${paramProjectPath}, memberId=${member.id})}">
+                          <span class="visible-xs-block">Delete</span>
+                          <i class="fa fa-trash hidden-xs"></i>
+                      </a>
+                  </div>
+              </li>
+          </ul>
+      </div><!-- .panel -->
+  </div>
+  <form id="form-delete-member" method="POST" action="">
+      <input type="hidden" name="_method" value="DELETE"/>
+  </form>
+</div>
+</html>

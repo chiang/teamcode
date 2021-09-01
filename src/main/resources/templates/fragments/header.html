@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="default-header" class="navbar navbar-fixed-top navbar-tc">
+    <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+    <div class="container-fluid">
+        <div class="header-content" style="padding-left: 0;">
+            <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="visible-sm visible-xs">
+                        <a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a>
+                    </li>
+                    <li sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a title="" aria-label="Admin Area" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/admin" data-original-title="Admin Area">
+                            <i class="fa fa-wrench fa-fw"></i>
+                        </a>
+                    </li>
+                    <!-- li>
+                        <a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a>
+                    </li -->
+                    <li class="header-user dropdown">
+                        <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img th:if="${session.currentUser.avatarFileName != null}" th:alt="${session.currentUser.name}" class="header-user-avatar" th:src="@{/avatar/users/{userName}/{fileName}(userName=${session.currentUser.name},fileName=${session.currentUser.avatarFileName})}" width="26" height="26" />
+                            <img th:if="${session.currentUser.avatarFileName == null}" th:attr="data-name=${session.currentUser.fullName}" class="header-user-avatar profile" width="26" height="26" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+                            <li>
+                                <a class="profile-link" aria-label="Profile" data-user="baramboy" th:href="@{/profile}">Profile</a>
+                            </li>
+                            <li>
+                                <a aria-label="Settings" href="/profile">Settings</a>
+                            </li>
+                            <li>
+                                <a aria-label="Help" href="/help">Help</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" th:href="@{/logout}">Sign out</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <h1 class="title">
+                <a th:href="@{/}">
+                    <img id="teamcode-logo" th:src="@{/assets/images/teamcode-with-text@2x.png}" width="120" height="37" title="TeamCode"/>
+                </a>
+            </h1>
+            <div class="js-dropdown-menu-projects">
+                <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+                    <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+                    <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value="" /><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+                    <div class="dropdown-content"></div>
+                    <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+</html>

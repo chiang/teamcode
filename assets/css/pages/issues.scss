@@ -1,0 +1,150 @@
+.issues-list {
+  .issue {
+    padding: 10px $gl-padding;
+    position: relative;
+
+    .title {
+      margin-bottom: 2px;
+    }
+
+    .issue-labels {
+      display: inline-block;
+    }
+  }
+}
+
+.check-all-holder {
+  line-height: 36px;
+  float: left;
+  margin-right: 15px;
+}
+
+.issues_content {
+  .title {
+    height: 40px;
+  }
+
+  form {
+    margin: 0;
+  }
+}
+
+form.edit-issue {
+  margin: 0;
+}
+
+ul.related-merge-requests > li {
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  .merge-request-id {
+    flex-shrink: 0;
+  }
+}
+
+.merge-requests-title,
+.related-branches-title {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.merge-request-id {
+  display: inline-block;
+  width: 3em;
+}
+
+.merge-request-status {
+  font-size: 13px;
+  padding: 0 5px;
+  color: $white-light;
+  height: 20px;
+  border-radius: 3px;
+  line-height: 18px;
+  border: 1px solid;
+
+  &.merged {
+    border-color: darken($blue-normal, 10%);
+    background: $blue-normal;
+  }
+
+  &.closed {
+    border-color: darken($red-normal, 10%);
+    background: $red-normal;
+  }
+
+  &.open {
+    border: 1px solid darken($green-normal, 10%);
+    background: $green-normal;
+  }
+}
+
+.merge-request,
+.issue {
+  &.today {
+    background: $issues-today-bg;
+    border-color: $issues-today-border;
+  }
+
+  &.closed {
+    background: $gray-light;
+    border-color: $border-color;
+  }
+
+  &.merged {
+    background: $gray-light;
+    border-color: $border-color;
+  }
+}
+
+.merge-request-ci-status {
+  svg {
+    margin-right: 4px;
+    position: relative;
+    top: 1px;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .issue-btn-group {
+    width: 100%;
+
+    .btn {
+      width: 100%;
+    }
+  }
+}
+
+.issue-form .select2-container {
+  width: 250px !important;
+}
+
+.issues-footer {
+  padding-top: $gl-padding;
+  padding-bottom: 37px;
+}
+
+.issue-email-modal-btn {
+  padding: 0;
+  color: $gl-link-color;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.email-modal-input-group {
+  margin-bottom: 10px;
+
+  .form-control {
+    background-color: $white-light;
+  }
+
+  .btn {
+    background-color: $gray-light;
+    border: 1px solid $border-gray-normal;
+  }
+}

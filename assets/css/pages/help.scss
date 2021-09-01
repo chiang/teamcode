@@ -1,0 +1,237 @@
+body.support-documentation {
+	//background-color: #fffcf7;
+	//font-size: 13px;
+
+	h1 {
+		text-align: center;
+		font-size: 2.2em;
+    margin-bottom: 25px;
+		>a {
+			font-weight: bold;
+			text-decoration: none;
+			//color: #221f1f;
+			&:hover,&:visited {
+				color: #221f1f;
+			}
+		}
+	}
+
+	table  {
+		td {
+			background-color: #fff;
+		}
+	}
+
+	.section-introduction {
+    margin-bottom: 1em;
+    margin-top: 45px;
+
+    h1 {
+      margin-bottom: 0.5em;
+      text-align: center;
+      font-size: 2em;
+      font-weight: 500;
+    }
+  }
+
+	a {
+		color: #0076aa;
+		margin: -0.2rem;
+    padding: 0.2rem;
+    text-decoration: underline;
+		&:visited {
+			color: #0076aa;
+		}
+		&:hover {
+			color: #006b8c;
+		}
+	}
+
+	.nav-menu {
+    text-align: center;
+  }
+
+  nav ul {
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding: 0.25em;
+      display: inline-block;
+      font-weight: bold;
+      >a {
+        font-size: 16px;
+      }
+    }
+  }
+
+	.container-limited {
+		max-width: 1024px;
+	}
+
+	&.faq {
+		section {
+			&.quick-answers {
+				margin: 0 auto;
+        padding: 1em 2em;
+
+        article {
+          h2 {
+            border: none;
+            padding-top: 3em;
+
+            a {
+              //color: #725ea9;
+              text-decoration: none;
+              >i {
+                margin-right: 7px;
+                font-size: 1.15em;
+              }
+            }
+          }
+
+          p {
+            font-size: 16px;
+            line-height: 1.5em;
+            margin-bottom: 1.5em;
+          }
+        }
+			}
+		}
+	}
+
+	h2 {
+		box-sizing: border-box;
+    padding: 1em 0 0.65em;
+    font-size: 1.1em;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+	}
+
+	.doc-group {
+		padding: 10px 38px;
+	}
+
+	.doc-list {
+		box-sizing: border-box;
+    padding: 1em 0 1em 1.125em;
+    text-align: left;
+
+    >li {
+      line-height: 1.2;
+
+      > a {
+        display: block;
+        padding: 0.4em 0.2rem;
+        color: #0076aa;
+        margin: -0.2rem;
+        text-decoration: underline;
+
+        &:visited {
+          color: #0076aa;
+        }
+      }
+    }
+	}
+
+	.help-navigation {
+		.navigation-crumbs {
+			display: block;
+      font-size: 0.65em;
+      line-height: 1.3;
+		}
+		ul {
+			li {
+				margin: 0 -1em;
+		    font-size: 0.9em;
+		    list-style: none;
+		    line-height: 1.3;
+		    a {
+          margin: 0;
+          padding: 0.75em 1em;
+          display: block;
+          font-weight: bold;
+          text-decoration: none;
+        }
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+///old
+.documentation-index {
+  h1 {
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  li {
+    line-height: 24px;
+    color: $document-index-color;
+
+    a {
+      margin-right: 3px;
+    }
+  }
+}
+
+
+.shortcut-mappings {
+  font-size: 12px;
+  color: $help-shortcut-mapping-color;
+
+  tbody:first-child tr:first-child {
+    padding-top: 0;
+  }
+
+  th {
+    padding-top: 15px;
+    line-height: 1.5;
+    color: $help-shortcut-header-color;
+    text-align: left;
+  }
+
+  td {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    vertical-align: top;
+    line-height: 20px;
+  }
+
+  .shortcut {
+    padding-right: 10px;
+    color: $help-shortcut-color;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  .key {
+    @extend .label;
+    @extend .label-inverse;
+    font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    padding: 3px 5px;
+  }
+}
+
+.documentation {
+  padding: 7px;
+
+  // Border around images in the help pages.
+  img:not(.emoji) {
+    border: 1px solid $white-normal;
+    padding: 5px;
+    margin: 5px;
+    max-height: calc(100vh - 100px);
+  }
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="../public/css/application.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+  <header class="navbar navbar-fixed-top navbar-tc with-horizontal-nav">
+    <a class="sr-only gl-accessibility" href="#content-body" tabindex="1">Skip to content</a>
+    <div class="container-fluid">
+      <div class="header-content">
+        <button aria-label="Toggle global navigation" class="side-nav-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i></button>
+        <button class="navbar-toggle" type="button"><span class="sr-only">Toggle navigation</span><i class="fa fa-ellipsis-v"></i></button>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="hidden-sm hidden-xs">
+              <div class="has-location-badge search search-form">
+                <form class="navbar-form" action="/search" accept-charset="UTF-8" method="get">
+                  <input name="utf8" type="hidden" value="✓">
+                  <div class="search-input-container">
+                    <div class="location-badge">This project</div>
+                    <div class="search-input-wrap">
+                      <div class="dropdown" data-url="/search/autocomplete">
+                        <input type="search" name="search" id="search" placeholder="Search" class="search-input dropdown-menu-toggle no-outline js-search-dashboard-options disabled" spellcheck="false" tabindex="1" autocomplete="off" data-toggle="dropdown" data-issues-path="https://gitlab.com/dashboard/issues" data-mr-path="https://gitlab.com/dashboard/merge_requests" value="">
+                        <div class="dropdown-menu dropdown-select">
+                          <div class="dropdown-content">
+                            <ul>
+                              <li><a class="is-focused dropdown-menu-empty-link">Loading...</a></li>
+                            </ul>
+                          </div>
+                          <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+                        </div>
+                        <i class="search-icon"></i>
+                        <i class="clear-icon js-clear-input"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="hidden" name="group_id" id="group_id" class="js-search-group-options">
+                  <input type="hidden" name="project_id" id="search_project_id" value="2350390" class="js-search-project-options" data-project-path="jandi-connector" data-name="jandi-connector" data-issues-path="/baramboy/jandi-connector/issues" data-mr-path="/baramboy/jandi-connector/merge_requests">
+                  <input type="hidden" name="search_code" id="search_code" value="true">
+                  <input type="hidden" name="repository_ref" id="repository_ref">
+                  <div class="search-autocomplete-opts hide" data-autocomplete-path="/search/autocomplete" data-autocomplete-project-id="2350390"></div>
+                </form>
+              </div>
+            </li>
+            <li class="visible-sm visible-xs"><a title="Search" aria-label="Search" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/search"><i class="fa fa-search"></i></a></li>
+            <li><a title="" aria-label="Todos" data-toggle="tooltip" data-placement="bottom" data-container="body" href="/dashboard/todos" data-original-title="Todos"><i class="fa fa-bell fa-fw"></i><span class="badge hidden todos-pending-count">0</span></a></li>
+            <li class="header-user dropdown">
+              <a id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img width="26" height="26" class="header-user-avatar" src="https://secure.gravatar.com/avatar/33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon" alt="33ec804b3ca3c9e1764546ad34ebaf6f?s=52&amp;d=identicon">
+                <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-align-right" aria-labelledby="dLabel">
+                <li>
+                  <a class="profile-link" aria-label="Profile" data-user="baramboy" href="profile.html">Profile</a>
+                </li>
+                <li>
+                  <a aria-label="Settings" href="/profile">Settings</a>
+                </li>
+                <li>
+                  <a aria-label="Help" href="/help">Help</a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                  <a class="sign-out-link" aria-label="Sign out" rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <h1 class="title"><a href="/baramboy">박영일</a> / <a class="project-item-select-holder" href="/baramboy/jandi-connector">jandi-connector</a><button name="button" type="button" class="dropdown-toggle-caret js-projects-dropdown-toggle" aria-label="Toggle switch project dropdown" data-target=".js-dropdown-menu-projects" data-toggle="dropdown" data-order-by="last_activity_at"><i class="fa fa-chevron-down"></i></button></h1>
+        <div class="header-logo">
+          <a class="home" title="Dashboard" id="logo" href="projects.html">
+            <svg width="36" height="36" class="tanuki-logo">
+              <path class="tanuki-shape tanuki-left-ear" fill="#e24329" d="M2 14l9.38 9v-9l-4-12.28c-.205-.632-1.176-.632-1.38 0z"></path>
+              <path class="tanuki-shape tanuki-right-ear" fill="#e24329" d="M34 14l-9.38 9v-9l4-12.28c.205-.632 1.176-.632 1.38 0z"></path>
+              <path class="tanuki-shape tanuki-nose" fill="#e24329" d="M18,34.38 3,14 33,14 Z"></path>
+              <path class="tanuki-shape tanuki-left-eye" fill="#fc6d26" d="M18,34.38 11.38,14 2,14 6,25Z"></path>
+              <path class="tanuki-shape tanuki-right-eye" fill="#fc6d26" d="M18,34.38 24.62,14 34,14 30,25Z"></path>
+              <path class="tanuki-shape tanuki-left-cheek" fill="#fca326" d="M2 14L.1 20.16c-.18.565 0 1.2.5 1.56l17.42 12.66z"></path>
+              <path class="tanuki-shape tanuki-right-cheek" fill="#fca326" d="M34 14l1.9 6.16c.18.565 0 1.2-.5 1.56L18 34.38z"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="js-dropdown-menu-projects">
+          <div class="dropdown-menu dropdown-select dropdown-menu-projects">
+            <div class="dropdown-title"><span>Go to a project</span><button class="dropdown-title-button dropdown-menu-close" aria-label="Close" type="button"><i class="fa fa-times dropdown-menu-close-icon"></i></button></div>
+            <div class="dropdown-input"><input type="search" id="" class="dropdown-input-field" placeholder="Search your projects" autocomplete="off" value=""><i class="fa fa-search dropdown-input-search"></i><i role="button" class="fa fa-times dropdown-input-clear js-dropdown-input-clear"></i></div>
+            <div class="dropdown-content"></div>
+            <div class="dropdown-loading"><i class="fa fa-spinner fa-spin"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="page-with-sidebar">
+    <div class="layout-nav">
+      <div class="container-fluid">
+        <div class="nav-control scrolling-tabs-container">
+          <div class="fade-left">
+          <i class="fa fa-angle-left"></i>
+          </div>
+          <div class="fade-right">
+          <i class="fa fa-angle-right"></i>
+          </div>
+          <ul class="nav-links scrolling-tabs">
+            <li class="home"><a title="Project" class="shortcuts-project" href="admin.html"><span>Overview</span></a></li>
+    				<li class=""><a title="Graphs" class="shortcuts-graphs" href="monitoring.html"><span>Monitoring</span></a></li>
+    				<li class=""><a title="Issues" class="shortcuts-issues" href="messages.html"><span>Messages</span></a></li>
+    				<li class=""><a title="Merge Requests" class="shortcuts-merge_requests" href="system-hooks.html"><span>System Hooks</span></a></li>
+    				<li class=""><a title="Snippets" class="shortcuts-snippets" href="admin-applications.html"><span>Applications</span></a></li>
+    				<li class=""><a title="Snippets" class="shortcuts-snippets" href="abuse.html"><span>Abuse Reports</span></a></li>
+          </ul>
+        </div>
+      </div><!-- .container-fluid -->
+    </div>
+    <div class="content-wrapper page-with-layout-nav">
+      <div class="container-fluid container-limited ">
+        <div class="content" id="content-body">
+        <div class="project-edit-container">
+        <div class="row prepend-top-default">
+        <div class="col-lg-3 profile-settings-sidebar">
+        <h4 class="prepend-top-0">
+        Project settings
+        </h4>
+        </div>
+        <div class="col-lg-9">
+        <div class="project-edit-errors"></div>
+        <form class="edit-project" id="edit_project_3" enctype="multipart/form-data" action="/root/petclinic" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="V5MpKTLa1cAU3zZnT0Gwx+tI9d2TSRIYZ4Td3gtg839ruLM9ZXYz3hIfP9C/1rhzTglpqrN+gf8mA7IuzFphBw=="><fieldset class="append-bottom-0">
+        <div class="form-group">
+        <label class="label-light" for="project_name_edit">Project name
+        </label><input class="form-control" id="project_name_edit" type="text" value="petclinic" name="project[name]">
+        </div>
+        <div class="form-group">
+        <label class="label-light" for="project_description">Project description
+        <span class="light">(optional)</span>
+        </label><textarea class="form-control" rows="3" maxlength="250" name="project[description]" id="project_description"></textarea>
+        </div>
+        </fieldset>
+        <div class="form-group">
+        <label class="label-light" for="project_tag_list">Tags</label>
+        <input value="" maxlength="2000" class="form-control" size="2000" type="text" name="project[tag_list]" id="project_tag_list">
+        <p class="help-block">Separate tags with commas.</p>
+        </div>
+        <hr>
+        <fieldset class="append-bottom-0">
+        <h5 class="prepend-top-0">
+        Sharing &amp; Permissions
+        </h5>
+        <div class="form_group prepend-top-20 sharing-and-permissions">
+        <div class="row js-visibility-select">
+        <div class="col-md-9">
+        <label class="label-light">
+        <label class="label-light" for="project_visibility">Project Visibility</label>
+        <a href="/help/public_access/public_access">(?)</a>
+        </label>
+        <span class="help-block">The project can be cloned by any logged in user.</span>
+        </div>
+        <div class="col-md-3 visibility-select-container">
+        <select class="form-control visibility-select" name="project[visibility_level]" id="project_visibility_level"><option data-description="Project access must be granted explicitly to each user." value="0">Private</option>
+        <option data-description="The project can be cloned by any logged in user." selected="selected" value="10">Internal</option>
+        <option data-description="The project can be cloned without any authentication." value="20">Public</option></select>
+
+        </div>
+        </div>
+        <fieldset class="features">
+        <div class="row">
+        <div class="col-md-9 project-feature">
+        <label class="label-light" for="project_project_feature_attributes_repository_access_level">Repository</label>
+        <span class="help-block">View and edit files in this project</span>
+        </div>
+        <div class="col-md-3 js-repo-access-level">
+        <select name="project[project_feature_attributes][repository_access_level]" id="project_project_feature_attributes_repository_access_level" class="pull-right form-control " data-field="repository_access_level"><option value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option selected="selected" value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-9 project-feature nested">
+        <label class="label-light" for="project_project_feature_attributes_merge_requests_access_level">Merge requests</label>
+        <span class="help-block">Submit changes to be merged upstream</span>
+        </div>
+        <div class="col-md-3">
+        <select name="project[project_feature_attributes][merge_requests_access_level]" id="project_project_feature_attributes_merge_requests_access_level" class="pull-right form-control project-repo-select js-repo-select" data-field="merge_requests_access_level"><option value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option selected="selected" value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-9 project-feature nested">
+        <label class="label-light" for="project_project_feature_attributes_builds_access_level">Builds</label>
+        <span class="help-block">Submit, test and deploy your changes before merge</span>
+        </div>
+        <div class="col-md-3">
+        <select name="project[project_feature_attributes][builds_access_level]" id="project_project_feature_attributes_builds_access_level" class="pull-right form-control project-repo-select js-repo-select" data-field="builds_access_level"><option value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option selected="selected" value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-9 project-feature">
+        <label class="label-light" for="project_project_feature_attributes_snippets_access_level">Snippets</label>
+        <span class="help-block">Share code pastes with others out of Git repository</span>
+        </div>
+        <div class="col-md-3">
+        <select name="project[project_feature_attributes][snippets_access_level]" id="project_project_feature_attributes_snippets_access_level" class="pull-right form-control " data-field="snippets_access_level"><option selected="selected" value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-9 project-feature">
+        <label class="label-light" for="project_project_feature_attributes_issues_access_level">Issues</label>
+        <span class="help-block">Lightweight issue tracking system for this project</span>
+        </div>
+        <div class="col-md-3">
+        <select name="project[project_feature_attributes][issues_access_level]" id="project_project_feature_attributes_issues_access_level" class="pull-right form-control " data-field="issues_access_level"><option value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option selected="selected" value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-9 project-feature">
+        <label class="label-light" for="project_project_feature_attributes_wiki_access_level">Wiki</label>
+        <span class="help-block">Pages for project documentation</span>
+        </div>
+        <div class="col-md-3">
+        <select name="project[project_feature_attributes][wiki_access_level]" id="project_project_feature_attributes_wiki_access_level" class="pull-right form-control " data-field="wiki_access_level"><option value="0">Disabled</option>
+        <option value="10">Only team members</option>
+        <option selected="selected" value="20">Everyone with access</option></select>
+        </div>
+        </div>
+        </fieldset>
+        <input type="hidden" value="4" name="project[project_feature_attributes][id]" id="project_project_feature_attributes_id"></div>
+        <div class="form-group">
+        <div class="checkbox">
+        <label for="project_request_access_enabled"><input name="project[request_access_enabled]" type="hidden" value="0"><input type="checkbox" value="1" name="project[request_access_enabled]" id="project_request_access_enabled">
+        <strong>Allow users to request access</strong>
+        <br>
+        <span class="descr">Allow users to request access if visibility is public or internal.</span>
+        </label></div>
+
+        </div>
+        <div class="row">
+        <div class="col-md-9">
+        <label class="label-light" for="project_lfs_enabled">LFS</label>
+        <span class="help-block">
+        Git Large File Storage
+        <a href="/help/workflow/lfs/manage_large_binaries_with_git_lfs"><i class="fa fa-question-circle"></i></a>
+        </span>
+        </div>
+        <div class="col-md-3">
+        <select selected="selected" class="pull-right form-control" data-field="lfs_enabled" name="project[lfs_enabled]" id="project_lfs_enabled"><option value="true">Enabled</option>
+        <option value="false">Disabled</option></select>
+        </div>
+        </div>
+        </fieldset>
+        <fieldset class="features merge-requests-feature append-bottom-default">
+        <hr>
+        <h5 class="prepend-top-0">
+        Merge Requests
+        </h5>
+        <div class="form-group">
+        <div class="checkbox builds-feature">
+        <label for="project_only_allow_merge_if_build_succeeds"><input name="project[only_allow_merge_if_build_succeeds]" type="hidden" value="0"><input type="checkbox" value="1" name="project[only_allow_merge_if_build_succeeds]" id="project_only_allow_merge_if_build_succeeds">
+        <strong>Only allow merge requests to be merged if the build succeeds</strong>
+        <br>
+        <span class="descr">
+        Builds need to be configured to enable this feature.
+        <a href="/help/user/project/merge_requests/merge_when_build_succeeds#only-allow-merge-requests-to-be-merged-if-the-build-succeeds"><i class="fa fa-question-circle"></i></a>
+        </span>
+        </label></div>
+        <div class="checkbox">
+        <label for="project_only_allow_merge_if_all_discussions_are_resolved"><input name="project[only_allow_merge_if_all_discussions_are_resolved]" type="hidden" value="0"><input type="checkbox" value="1" name="project[only_allow_merge_if_all_discussions_are_resolved]" id="project_only_allow_merge_if_all_discussions_are_resolved">
+        <strong>Only allow merge requests to be merged if all discussions are resolved</strong>
+        </label></div>
+        </div>
+
+        </fieldset>
+
+        <hr>
+        <fieldset class="features append-bottom-default">
+        <h5 class="prepend-top-0">
+        Project avatar
+        </h5>
+        <div class="form-group">
+        <p class="light">
+        </p>
+        <a class="choose-btn btn js-choose-project-avatar-button">
+        Browse file...
+        </a>
+        <span class="file_name prepend-left-default js-avatar-filename">No file chosen</span>
+        <input class="js-project-avatar-input hidden" type="file" name="project[avatar]" id="project_avatar">
+        <div class="help-block">The maximum file size allowed is 200KB.</div>
+        </div>
+        </fieldset>
+        <input type="submit" name="commit" value="Save changes" class="btn btn-save">
+        </form></div>
+        </div>
+        <div class="row prepend-top-default"></div>
+        <hr>
+        <div class="row prepend-top-default">
+        <div class="col-lg-3">
+        <h4 class="prepend-top-0">
+        Housekeeping
+        </h4>
+        <p class="append-bottom-0">
+        </p><p>
+        Runs a number of housekeeping tasks within the current repository,
+        such as compressing file revisions and removing unreachable objects.
+        </p>
+        <p></p>
+        </div>
+        <div class="col-lg-9">
+        <a class="btn btn-default" rel="nofollow" data-method="post" href="/root/petclinic/housekeeping">Housekeeping</a>
+        </div>
+        </div>
+        <hr>
+        <div class="row prepend-top-default">
+        <div class="col-lg-3">
+        <h4 class="prepend-top-0">
+        Export project
+        </h4>
+        <p class="append-bottom-0">
+        </p><p>
+        Export this project with all its related data in order to move your project to a new GitLab instance. Once the export is finished, you can import the file from the "New Project" page.
+        </p>
+        <p>
+        Once the exported file is ready, you will receive a notification email with a download link.
+        </p>
+        <p></p>
+        </div>
+        <div class="col-lg-9">
+        <a class="btn btn-default" rel="nofollow" data-method="post" href="/root/petclinic/export">Export project</a>
+        <div class="bs-callout bs-callout-info">
+        <p class="append-bottom-0">
+        </p><p>
+        The following items will be exported:
+        </p>
+        <ul>
+        <li>Project and wiki repositories</li>
+        <li>Project uploads</li>
+        <li>Project configuration including web hooks and services</li>
+        <li>Issues with comments, merge requests with diffs and comments, labels, milestones, snippets, and other project entities</li>
+        </ul>
+        <p>
+        The following items will NOT be exported:
+        </p>
+        <ul>
+        <li>Build traces and artifactsFile</li>
+        <li>LFS objects</li>
+        <li>Container registry images</li>
+        </ul>
+        <p></p>
+        </div>
+        </div>
+        </div>
+        <hr>
+        <div class="row prepend-top-default">
+        <div class="col-lg-3">
+        <h4 class="warning-title prepend-top-0">
+        Archive project
+        </h4>
+        <p class="append-bottom-0">
+        Archiving the project will mark its repository as read-only. It is hidden from the dashboard and doesn't show up in searches.
+        </p>
+        </div>
+        <div class="col-lg-9">
+        <p>
+        <strong>Archived projects cannot be committed to!</strong>
+        </p>
+        <a data-confirm="Are you sure that you want to archive this project?
+        An archived project cannot be committed to." class="btn btn-warning" rel="nofollow" data-method="post" href="/root/petclinic/archive">Archive project</a>
+        </div>
+        </div>
+        <hr>
+        <div class="row prepend-top-default">
+        <div class="col-lg-3">
+        <h4 class="prepend-top-0 warning-title">
+        Rename repository
+        </h4>
+        </div>
+        <div class="col-lg-9">
+
+
+        <form class="edit_project" id="edit_project_3" action="/root/petclinic" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="patch"><input type="hidden" name="authenticity_token" value="AXC50FItcoJTttln7376jx2GU0/44fYkYAMjOFY/NzQ9WyPEBYGUnFV20NAf6fI7uMfPONjWZcMhhEzIkQWlTA=="><div class="form-group project_name_holder">
+        <label class="label-light" for="project_name">Project name
+        </label><div class="form-group">
+        <input class="form-control" type="text" value="petclinic" name="project[name]" id="project_name">
+        </div>
+        </div>
+        <div class="form-group">
+        <label class="label-light" for="project_path"><span>Path</span>
+        </label><div class="form-group">
+        <div class="input-group">
+        <div class="input-group-addon">
+        http://localhost:8585/root/
+        </div>
+        <input class="form-control" type="text" value="petclinic" name="project[path]" id="project_path">
+        </div>
+        </div>
+        <ul>
+        <li>Be careful. Renaming a project's repository can have unintended side effects.</li>
+        <li>You will need to update your local repositories to point to the new location.</li>
+        </ul>
+        </div>
+        <input type="submit" name="commit" value="Rename project" class="btn btn-warning">
+        </form></div>
+        </div>
+        <hr>
+        <div class="row prepend-top-default">
+        <div class="col-lg-3">
+        <h4 class="prepend-top-0 danger-title">
+        Transfer project
+        </h4>
+        </div>
+        <div class="col-lg-9">
+        <form class="edit_project" id="edit_project_3" action="/root/petclinic/transfer" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="put"><div class="form-group">
+        <label class="label-light" for="new_namespace_id"><span>Namespace</span>
+        </label><div class="form-group">
+        <div class="select2-container select2" id="s2id_new_namespace_id" style="width: 217px;"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1">Administrator</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen">Namespace
+        </label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1"><div class="select2-drop select2-display-none select2-with-searchbox">   <div class="select2-search">       <label for="s2id_autogen1_search" class="select2-offscreen">Namespace
+        </label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select name="new_namespace_id" id="new_namespace_id" class="select2" tabindex="-1" title="Namespace
+        " style="display: none;"><option value="">Choose a project namespace</option><optgroup label="Groups"></optgroup><optgroup label="Users"><option data-options-parent="users" selected="selected" value="1">Administrator</option></optgroup></select>
+        </div>
+        <ul>
+        <li>Be careful. Changing the project's namespace can have unintended side effects.</li>
+        <li>You can only transfer the project to namespaces you manage.</li>
+        <li>You will need to update your local repositories to point to the new location.</li>
+        <li>Project visibility level will be changed to match namespace rules when transfering to a group.</li>
+        </ul>
+        </div>
+        <input type="submit" name="commit" value="Transfer project" class="btn btn-remove js-confirm-danger" data-confirm-danger-message="You are going to transfer Administrator / petclinic to another owner. Are you ABSOLUTELY sure?">
+        </form></div>
+        </div>
+        <hr>
+        <div class="row prepend-top-default append-bottom-default">
+        <div class="col-lg-3">
+        <h4 class="prepend-top-0 danger-title">
+        Remove project
+        </h4>
+        <p class="append-bottom-0">
+        Removing the project will delete its repository and all related resources including issues, merge requests etc.
+        </p>
+        </div>
+        <div class="col-lg-9">
+        <form action="/root/petclinic" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓"><input type="hidden" name="_method" value="delete"><input type="hidden" name="authenticity_token" value="Bbx52rucXX5DgSoNGR/MPpMWLwMTAnaoiEEv9hNjXJU5l+PO7DC7YEVBI7rpiMSKNlezdDM15U/JxkAG1FnO7Q=="><p>
+        <strong>Removed projects cannot be restored!</strong>
+        </p>
+        <input class="btn btn-remove js-confirm-danger" data-confirm-danger-message="You are going to remove Administrator / petclinic.
+         Removed project CANNOT be restored!
+         Are you ABSOLUTELY sure?" type="submit" value="Remove project"><input type="hidden" name="authenticity_token" value="7mP1b3iXH4xsAX7wA3uwelzJleX3/tv+jYCOs46rhBHSSG97Lzv5kmrBd0fz7LjO+YgJktfJSBnMB+FDSZEWaQ=="></form>
+        </div>
+        </div>
+        </div>
+        <div class="save-project-loader hide">
+        <div class="center">
+        <h2>
+        <i class="fa fa-spinner fa-spin"></i>
+        Saving project.
+        </h2>
+        <p>Please wait a moment, this page will automatically refresh when ready.</p>
+        </div>
+        </div>
+        <div class="modal" id="modal-confirm-danger" tabindex="-1">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        <a class="close" data-dismiss="modal" href="#">×</a>
+        <h3 class="page-title">
+        Confirmation required
+        </h3>
+        </div>
+        <div class="modal-body">
+        <p class="text-danger js-confirm-text"></p>
+        <p>
+        This action can lead to data loss.
+        To prevent accidental actions we ask you to confirm your intention.
+        <br>
+        Please type
+        <code class="js-confirm-danger-match">petclinic</code>
+        to proceed or close this modal to cancel.
+        </p>
+        <div class="form-group">
+        <input type="text" name="confirm_name_input" id="confirm_name_input" value="" class="form-control js-confirm-danger-input">
+        </div>
+        <div class="form-actions">
+        <input type="submit" name="commit" value="Confirm" class="btn btn-danger js-confirm-danger-submit">
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        </div>
+        </div>
+    </div>
+  </div><!-- .page-with-sidebar -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<script>
+<!--
+$('.select2').select2();
+//-->
+</script>
+</body>
+</html>

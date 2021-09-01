@@ -1,0 +1,77 @@
+.btn-default, .btn-primary, .btn-success, .btn-info, .btn-warning, .btn-danger {
+  text-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.btn.btn-success,
+.btn.btn-new,
+.btn.btn-create,
+.btn.comment-btn,
+.btn.btn-save {
+  background-color: #3cbd70;
+  border-color: #36aa65;
+  color: #fff;
+}
+.btn.btn-success:hover,
+.btn.btn-success:focus,
+.btn.btn-new:hover,
+.btn.btn-new:focus,
+.btn.btn-create:hover,
+.btn.comment-btn:hover,
+.btn.btn-create:focus,
+.btn.comment-btn:focus,
+.btn.btn-save:hover,
+.btn.btn-save:focus {
+  background-color: #33a260;
+  border-color: #2d8f54;
+  color: #fff;
+}
+.btn {
+  &:hover, &:focus {
+    background-color: #f0f0f0;
+    border-color: #e3e3e3;
+    color: rgba(0,0,0,0.85);
+  }
+}
+.btn.btn-small, .btn.btn-sm, .btn-group-sm>.btn {
+  padding: 4px 10px;
+  font-size: 13px;
+  line-height: 18px;
+}
+.btn.btn-warning {
+  background-image: none;
+  background-color: #fc8a51;
+  border-color: #fc7938;
+  color: #fff;
+  &:hover, &:focus {
+    background-color: #fb722e;
+    border-color: #fb6215;
+    color: #fff;
+  }
+}
+.btn-default {
+  &:hover, &:focus {
+    background-color: #e0e0e0;
+    background-position: 0 0;
+  }
+}
+.btn {
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  padding: 6px 10px;
+  background-color: #fff;
+  border-color: #e5e5e5;
+  color: rgba(0,0,0,0.85);
+  &:hover, &:focus {
+    background-color: #f0f0f0;
+    border-color: #e3e3e3;
+    color: rgba(0,0,0,0.85);
+  }
+}
+.btn svg:not(:last-child), .btn .fa:not(:last-child) {
+  margin-right: 5px;
+}
+.btn .fa-caret-down, .btn .fa-chevron-down {
+  margin-left: 5px;
+}

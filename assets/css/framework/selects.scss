@@ -1,0 +1,293 @@
+/** Select2 selectbox style override **/
+.select2-container {
+  width: 100% !important;
+}
+.select2-container .select2-selection--single {
+	height: 34px;
+	background-color: #F4F5F7;
+	border: none;
+
+	.select2-selection__rendered {
+		line-height: 32px;
+		color: #505F79;
+	}
+
+	.select2-selection__arrow {
+		height: 32px;
+		color: #505F79;
+	}
+}
+.select2-container--default.select2-container--open {
+	.select2-selection__rendered {
+		color: #fff;
+	}
+}
+.select2-container--default.select2-container--open.select2-container--above .select2-selection--single, .select2-container--default.select2-container--open.select2-container--above .select2-selection--multiple {
+	background-color: #42526E;
+	border-radius: 4px;
+}
+.select2-container--default.select2-container--open.select2-container--below .select2-selection--single, .select2-container--default.select2-container--open.select2-container--below .select2-selection--multiple {
+	background-color: #42526E;
+	border-radius: 4px;
+}
+.select2-container--open .select2-dropdown--below {
+	//border-top: inherit;
+	border: none;
+	box-shadow: 0 4px 8px -2px rgba(9,30,66,.25), 0 0 1px rgba(9,30,66,.31);
+}
+.select2-container--open .select2-dropdown {
+	top: 6px;
+	border-radius: 3px;
+}
+
+.select2-container,
+.select2-container.select2-drop-above {
+  .select2-choice {
+    background: $white-light;
+    border-color: $input-border;
+    height: 35px;
+    padding: $gl-vert-padding $gl-input-padding;
+    font-size: $gl-font-size;
+    line-height: 1.42857143;
+    border-radius: $border-radius-base;
+
+    .select2-arrow {
+      background-image: none;
+      background-color: transparent;
+      border: none;
+      padding-top: 6px;
+      padding-right: 10px;
+
+      b {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-top: 5px dashed;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+        color: $gray-darkest;
+      }
+    }
+
+    .select2-chosen {
+      margin-right: 15px;
+    }
+
+    &:hover {
+      background-color: $white-normal;
+      border-color: $border-white-normal;
+      color: $gl-text-color;
+    }
+  }
+}
+
+.select2-drop {
+  box-shadow: $select2-drop-shadow1 0 0 1px 0, $select2-drop-shadow2 0 2px 18px 0;
+  border-radius: $border-radius-default;
+  border: none;
+  min-width: 175px;
+}
+
+.select2-results .select2-result-label,
+.select2-more-results {
+  padding: 10px 15px;
+}
+
+.select2-drop {
+  color: $gl-grayish-blue;
+}
+
+.select2-highlighted {
+  background: $gl-link-color !important;
+}
+
+.select2-results li.select2-result-with-children > .select2-result-label {
+  font-weight: 600;
+  color: $gl-text-color;
+}
+
+.select2-container-active {
+  .select2-choice,
+  .select2-choices {
+    box-shadow: none;
+  }
+}
+
+.select2-dropdown-open {
+  .select2-choice {
+    border-color: $border-white-normal;
+    outline: 0;
+    background-image: none;
+    background-color: $white-dark;
+    box-shadow: $gl-btn-active-gradient;
+  }
+}
+
+.select2-container-multi {
+  .select2-choices {
+    border-radius: $border-radius-default;
+    border-color: $input-border;
+    background: none;
+
+    .select2-search-field input {
+      //padding: 5px $gl-padding / 2;
+      font-size: 13px;
+      height: auto;
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    .select2-search-choice {
+      margin: 5px 0 0 8px;
+      box-shadow: none;
+      border-color: $input-border;
+      color: $gl-text-color;
+      line-height: 15px;
+      background-color: $gray-light;
+      background-image: none;
+
+      .select2-search-choice-close {
+        top: 4px;
+        left: 3px;
+      }
+
+      &.select2-search-choice-focus {
+        border-color: $gl-text-color;
+      }
+    }
+  }
+
+  &.select2-container-active .select2-choices,
+  &.select2-dropdown-open .select2-choices {
+    border-color: $border-white-normal;
+    box-shadow: $gl-btn-active-gradient;
+  }
+}
+
+.select2-drop-active {
+  margin-top: 6px;
+  font-size: 14px;
+
+  &.select2-drop-above {
+    margin-bottom: 8px;
+  }
+
+  .select2-results {
+    max-height: 350px;
+
+    .select2-highlighted {
+      background: $gl-primary;
+    }
+  }
+}
+
+.select2-search {
+  //padding: 15px 15px 5px;
+
+  .select2-drop-auto-width & {
+    padding: 15px 15px 5px;
+  }
+}
+
+.select2-search input {
+  padding: 2px 25px 2px 5px;
+  background: $white-light image-url('select2.png');
+  background-repeat: no-repeat;
+  background-position: right 0 bottom 6px;
+  border: 1px solid $input-border;
+  border-radius: $border-radius-default;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+
+  &:focus {
+    border-color: $input-border-focus;
+  }
+}
+
+.select2-search input.select2-active {
+  background-color: $white-light;
+  background-image: image-url('select2-spinner.gif') !important;
+  background-repeat: no-repeat;
+  background-position: right 5px center !important;
+  background-size: 16px 16px !important;
+}
+
+.select2-results .select2-no-results,
+.select2-results .select2-searching,
+.select2-results .select2-ajax-error,
+.select2-results .select2-selection-limit {
+  background: $gray-light;
+  display: list-item;
+  padding: 10px 15px;
+}
+
+
+.select2-results {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.ajax-users-select {
+  width: 400px;
+
+  &.input-large {
+    width: 210px;
+  }
+
+  &.input-clamp {
+    max-width: 100%;
+  }
+}
+
+.select2-highlighted {
+  .group-result {
+    .group-path {
+      color: $white-light;
+    }
+  }
+}
+
+.group-result {
+  .group-image {
+    float: left;
+  }
+
+  .group-name {
+    font-weight: bold;
+  }
+
+  .group-path {
+    color: $group-path-color;
+  }
+}
+
+.user-result {
+  min-height: 24px;
+
+  .user-image {
+    float: left;
+  }
+
+  &.no-username {
+    .user-name {
+      line-height: 24px;
+    }
+  }
+}
+
+.namespace-result {
+  .namespace-kind {
+    color: $namespace-kind-color;
+    font-weight: normal;
+  }
+
+  .namespace-path {
+    margin-left: 10px;
+    font-weight: bolder;
+  }
+}
+
+.ajax-users-dropdown {
+  min-width: 250px !important;
+}

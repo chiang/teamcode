@@ -1,0 +1,82 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <div class="top-area">
+        <div class="prepend-top-default append-bottom-default">
+            <form class="js-search-form" th:action="@{/admin/projects}" accept-charset="UTF-8" method="get">
+                <input type="hidden" name="sort" value=""/>
+                <div class="search-holder">
+                    <div class="search-field-holder">
+                        <input type="search" name="name" id="keyword" class="form-control search-text-input js-search-input" autofocus="autofocus" spellcheck="false" th:placeholder="#{search.by.name}" th:value="${searchWord}" autocomplete="off"/>
+                        <i class="fa fa-search search-icon"></i>
+                    </div>
+                    <div class="dropdown">
+                        <button class="dropdown-menu-toggle" type="button" data-toggle="dropdown">
+                            <span th:if="${sortOrder.toString() == 'name: ASC'}" class="dropdown-toggle-text" th:text="#{sort.name}">Name</span>
+                            <span th:if="${sortOrder.toString() == 'createdAt: DESC'}" class="dropdown-toggle-text" th:text="#{sort.createdAt.desc}">Last created</span>
+                            <span th:if="${sortOrder.toString() == 'createdAt: ASC'}" class="dropdown-toggle-text" th:text="#{sort.createdAt.asc}">Oldest created</span>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-align-right">
+                            <li class="dropdown-header">
+                                Sort by
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-sort="name,asc" th:text="#{sort.name}">Name</a>
+                                <a href="javascript:;" data-sort="createdAt,desc" th:text="#{sort.createdAt.desc}">Last created</a>
+                                <a href="javascript:;" data-sort="createdAt,asc" th:text="#{sort.createdAt.asc}">Oldest created</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="btn btn-new" th:href="@{/admin/projects?create}" th:text="#{btn.projects.new}">New Project</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="projects-list-holder">
+        <ul th:if="${!projects.empty}" class="projects-list content-list">
+            <li th:each="project : ${projects}" class="project-row" th:classappend="${project.description != '' ? '' : 'no-description'}">
+                <div class="controls">
+                    <!-- span class="badge">0 Bytes</span -->
+                    <a id="edit_project_7" class="btn" th:href="@{/projects/{path}/admin?edit(path=${project.path})}" th:text="#{btn.edit}">Edit</a>
+                </div>
+                <div class="title">
+                    <a th:href="@{/projects/{path}(path=${project.path})}">
+                        <div class="dash-project-avatar">
+                            <div class="avatar-container project-avatar-container s40">
+                                <img th:if="${project.avatarFileName != null}" class="avatar project-avatar s40" th:src="@{/avatar/projects/{projectPath}/{fileName}(projectPath=${project.path},fileName=${project.avatarFileName})}"/>
+                                <img th:if="${project.avatarFileName == null}" class="avatar project-avatar" th:src="@{/avatar/langs/{fileName}.svg(fileName=${project.programmingLanguageIcon})}"/>
+                            </div>
+                        </div>
+                        <span class="project-full-name">
+                            <!-- span class="namespace-name">bigdata/</span --><span class="project-name filter-title" th:text="${project.name}">Project Path</span>
+                        </span>
+                    </a>
+                </div>
+                <div th:if="${project.description != ''}" class="description">
+                    <p dir="auto" th:text="${project.description}"></p>
+                </div>
+            </li>
+        </ul>
+        <div th:if="${projects.empty}" class="nothing-here-block" th:text="#{projects.message.noProjects}">No projects found</div>
+    </div>
+    <form id="form-delete-project" method="POST">
+        <input type="hidden" name="_method" value="delete"/>
+    </form>
+</div>
+<script layout:fragment="content-script">
+<!--
+$(function(){
+    $('.js-search-input').keypress(function (e) {
+        var key = e.which;
+        if(key == 13)  {
+            $('.js-search-form').submit();
+        }
+    });
+    $('.js-search-form .dropdown li a').click(function(){
+        $('.js-search-form input[name="sort"]').val($(this).data('sort'));
+        $('.js-search-form').submit();
+    });
+});
+//-->
+</script>
+</html>

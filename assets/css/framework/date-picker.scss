@@ -1,0 +1,13 @@
+.vdp-datepicker {
+	width: 150px;
+	.vdp-datepicker__calendar-button {
+		position: absolute;
+	  right: 7px;
+	  top: 8px;
+	}
+
+	.vdp-datepicker__calendar {
+		margin-top: 5px;
+		border-radius: 3px;
+	}
+}

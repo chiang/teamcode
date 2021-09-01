@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>로그인 | 팀코드 - 쉽고 편하게 프로젝트를 공유하고 관리하세요!</title>
+	<link rel="stylesheet" th:href="@{/assets/css/main.css}" />
+    <link rel="icon" th:href="@{/assets/images/teamcode.png}" type="image/png"/>
+	<style>
+	</style>
+</head>
+<body>
+<div class="login-page">
+    <div class="fs-split">
+        <div class="fs-split-pane fs-split-pane-left">
+            <form class="form" th:action="@{/ln}" method="POST">
+                <a data-clog-event="WEBSITE_CLICK" data-clog-params="action=nav_logo,trigger=find_team" class="logo_link" href="http://teamcode.io" target="_blank">
+                    <img id="teamcode-logo" th:src="@{/assets/images/teamcode-with-text@2x.png}" width="120" height="37" title="TeamCode"/>
+                </a>
+                <div class="fs-split-body">
+                    <h1>팀과 함께 즐거운 프로젝트!</h1>
+                    <!-- p>새로운 계정이 필요하시면 담당자에게 문의하세요.</p -->
+                    <div class="form-group">
+                        <label class="sr-only" for="loginUser">User Name? </label>
+                        <input type="text" name="j_username" class="form-control" id="loginUser" placeholder="아이디" value="" autocomplete="off" spellcheck="off" />
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="loginPwd">Password</label>
+                        <input type="password" name="j_password" class="form-control" id="loginPwd" placeholder="비밀번호" />
+                    </div>
+                    <p th:if="${param.error != null}" class="error-message">아이디 혹은 비밀번호가 올바르지 않습니다.</p>
+                    <p th:if="${#strings.isEmpty(FLASH_AUTHENTICATION_MESSAGE) == false}" th:text="${FLASH_AUTHENTICATION_MESSAGE}" style="color: #e91e63;"></p>
+                    <div class="submit-container move-submit-down">
+                        <input type="submit" name="commit" value="로그인" class="btn btn-lg btn-save"/>
+                    </div>
+                </div>
+            </form>
+            <div class="copyright-footer centered">
+                <p class=""> ©2018 <span>All Rights Reserved. TeamCode® is a registered trademark of The RigthStack Co., Ltd.</span></p>
+            </div>
+        </div>
+        <div class="fs-split-pane fs-split-pane-right">
+            <div class="fs-split-body">
+                <div id="find-team-graphic" class="fs-split-graphics"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+<!--
+$(function(){
+$('#loginUser').focus();
+});
+//-->
+</script>
+</body>
+</html>

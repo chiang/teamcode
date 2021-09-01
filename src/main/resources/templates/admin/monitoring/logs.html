@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<head>
+    <title>Logs</title>
+</head>
+<div layout:fragment="content">
+    <!-- div class="row-content-block" th:text="#{admin.monitoring.logs.constraints.description}">
+        To prevent performance issues admin logs output the last 2000 lines
+    </div -->
+    <div class="file-holder" id="README">
+        <div class="file-title">
+            <i class="fa fa-file"></i>
+            application.log
+            <div class="pull-right">
+                <a class="log-bottom" href="#"><i class="fa fa-arrow-down"></i>
+                    Scroll down
+                </a>
+            </div>
+        </div>
+        <div v-if="loaded" class="file-content logs">
+            <ol v-logfile="logs">
+            </ol>
+        </div>
+        <div v-else="">Empty</div>
+    </div>
+</div>
+<div layout:fragment="content-script">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script th:src="@{/assets/js/vue-utils.js}"></script>
+    <script th:src="@{/assets/js/monitoring-logs.js}"></script>
+</div>
+</html>

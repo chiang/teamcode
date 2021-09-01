@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="sub-nav" class="scrolling-tabs-container sub-nav-scroll">
+    <div class="fade-left">
+        <i class="fa fa-angle-left"></i>
+    </div>
+    <div class="fade-right">
+        <i class="fa fa-angle-right"></i>
+    </div>
+    <div class="nav-links sub-nav scrolling-tabs">
+        <ul class="container-fluid container-limited">
+            <li th:classappend="${#httpServletRequest.requestURI == '/admin/monitoring/systeminfo'} ? 'active' : ''">
+                <a title="System Info" th:href="@{/admin/monitoring/systeminfo}"><span>System Info</span></a>
+            </li>
+            <li th:classappend="${#httpServletRequest.requestURI == '/admin/monitoring/logs'} ? 'active' : ''">
+                <a title="Logs" th:href="@{/admin/monitoring/logs}"><span>Logs</span></a>
+            </li>
+            <li th:classappend="${#httpServletRequest.requestURI == '/admin/monitoring/health'} ? 'active' : ''">
+                <a title="Health Check" th:href="@{/admin/monitoring/health}"><span>Health Check</span></a>
+            </li>
+            <li th:classappend="${#httpServletRequest.requestURI == '/admin/monitoring/requests'} ? 'active' : ''">
+                <a title="Requests Profiles" th:href="@{/admin/monitoring/requests}"><span>Requests Profiles</span></a>
+            </li>
+        </ul>
+    </div>
+</div><!-- .sub-nav-scroll -->
+</html>

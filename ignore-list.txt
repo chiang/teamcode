@@ -1,0 +1,8 @@
+
+group name:
+ 1. repos
+ 2. static
+ 3. avatar
+
+
+pyc: python module compiled file

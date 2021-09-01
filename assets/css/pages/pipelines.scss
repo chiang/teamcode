@@ -1,0 +1,1018 @@
+.pipeline-template {
+  margin-top: 26px;
+
+  .pipeline-template-header {
+    border: 1px solid rgb(217, 227, 237);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom: none;
+    padding: 6px 16px;
+    background-color: rgb(249, 250, 251);
+  }
+}
+
+.pipelines-yaml-template-list {
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  margin: 40px 0 0 0;
+  padding: 0;
+  white-space: nowrap;
+  -webkit-align-items: center;
+
+  >li {
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover, &.active {
+      img {
+        background: #F4F5F7;
+      }
+    }
+
+    &.active {
+      span {
+        font-weight: 600;
+      }
+    }
+
+    img {
+      display: block;
+      border-radius: 3px;
+      padding: 8px;
+      width: 64px;
+      margin: 0 auto 8px;
+    }
+  }
+}
+.pipelines {
+  .realtime-loading {
+    font-size: 40px;
+    text-align: center;
+  }
+
+  .stage {
+    max-width: 90px;
+    width: 90px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .commit-title {
+    margin: 0;
+  }
+
+  .controls {
+    white-space: nowrap;
+  }
+
+  .btn {
+    margin: 4px;
+  }
+
+  .table.ci-table {
+    table-layout: fixed;
+
+    .label {
+      margin-bottom: 3px;
+    }
+
+    .pipeline-id {
+      //color: $black;
+      font-weight: 600;
+    }
+
+    .pipeline-status {
+      width: 10%;
+    }
+
+    .pipeline-info,
+    .pipeline-commit,
+    .pipeline-stages,
+    .pipeline-actions {
+      //width: 20%;
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .content-list {
+    &.pipelines,
+    &.builds-content-list {
+      width: 100%;
+      overflow: auto;
+    }
+  }
+}
+
+.content-list.pipelines .table-holder {
+  min-height: 300px;
+}
+
+.pipeline-holder {
+  width: 100%;
+  overflow: auto;
+}
+
+.table.ci-table {
+  min-width: 900px;
+
+  &.pipeline {
+    min-width: 650px;
+  }
+
+  &.builds-page {
+
+    tr {
+      height: 71px;
+    }
+  }
+
+  tr {
+    th {
+      padding: 16px 8px;
+      border: none;
+      color: #193652;
+      font-weight: 500;
+    }
+
+    td {
+      padding: 10px 8px;
+    }
+
+    .commit-link {
+      padding: 9px 8px 10px;
+    }
+  }
+
+  tbody {
+    border-top-width: 1px;
+  }
+
+  .build.retried {
+    background-color: $gray-lightest;
+  }
+
+  .commit-link {
+    a {
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  .avatar {
+    margin-left: 0;
+    float: none;
+  }
+
+  .branch-commit {
+
+    a {
+      text-decoration: none;
+    }
+
+    .branch-name {
+      font-weight: bold;
+      max-width: 120px;
+      overflow: hidden;
+      display: inline-block;
+      white-space: nowrap;
+      vertical-align: top;
+      text-overflow: ellipsis;
+    }
+
+    svg {
+      height: 14px;
+      width: 14px;
+      vertical-align: middle;
+      fill: $gl-text-color-secondary;
+    }
+
+    .fa {
+      font-size: 12px;
+      color: $gl-text-color;
+    }
+
+    .commit-id {
+      color: $gl-link-color;
+    }
+
+    .commit-title {
+      margin-top: 4px;
+      min-width: 300px;
+      max-width: 420px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .label {
+      margin-right: 4px;
+    }
+
+    .label-container {
+      font-size: 0;
+
+      .label {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .icon-container {
+    display: inline-block;
+    width: 10px;
+
+    &.commit-icon {
+      width: 15px;
+      text-align: center;
+    }
+  }
+
+  .stage-cell {
+    font-size: 0;
+    padding: 10px 4px;
+
+    > .stage-container > div > button > span > svg,
+    > .stage-container > button > svg {
+      height: 22px;
+      width: 22px;
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      z-index: 2;
+      overflow: visible;
+    }
+
+    .stage-container {
+      display: inline-block;
+      position: relative;
+      height: 22px;
+      margin: 3px 6px 3px 0;
+
+      .tooltip {
+        white-space: nowrap;
+      }
+
+      .tooltip-inner {
+        padding: 3px 4px;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content: '';
+          width: 7px;
+          position: absolute;
+          right: -7px;
+          top: 10px;
+          border-bottom: 2px solid $border-color;
+        }
+      }
+    }
+  }
+
+  .duration,
+  .finished-at {
+    color: $gl-text-color-secondary;
+    margin: 4px 0;
+
+    .fa {
+      font-size: 12px;
+      margin-right: 4px;
+    }
+
+    svg {
+      width: 12px;
+      height: 12px;
+      vertical-align: middle;
+      margin-right: 4px;
+    }
+  }
+
+  .pipeline-actions {
+    min-width: 140px;
+
+    .btn {
+      margin: 0;
+      color: $gl-text-color-secondary;
+    }
+
+    .cancel-retry-btns {
+      vertical-align: middle;
+
+      .btn:not(:first-child) {
+        margin-left: 8px;
+      }
+    }
+
+    .dropdown-toggle,
+    .dropdown-menu {
+      color: $gl-text-color-secondary;
+
+      .fa {
+        color: $gl-text-color-secondary;
+        font-size: 14px;
+      }
+
+      svg,
+      .fa {
+        margin-right: 0;
+      }
+    }
+
+    .btn-remove {
+      color: $white-light;
+    }
+
+    .btn-group {
+      &.open {
+        .btn-default {
+          background-color: $white-normal;
+          border-color: $border-white-normal;
+        }
+      }
+
+      .btn {
+        .icon-play {
+          height: 13px;
+          width: 12px;
+        }
+      }
+    }
+
+    .tooltip {
+      white-space: nowrap;
+    }
+  }
+
+  .build-link {
+
+    a {
+      color: $gl-text-color;
+    }
+  }
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+  }
+}
+
+.admin-builds-table {
+  .ci-table td:last-child {
+    min-width: 120px;
+  }
+}
+
+// Pipeline visualization
+.pipeline-actions {
+  border-bottom: none;
+}
+
+.tab-pane {
+  &.pipelines {
+    .ci-table {
+      min-width: 900px;
+    }
+
+    .content-list.pipelines {
+      overflow: auto;
+    }
+
+    .stage {
+      max-width: 100px;
+      width: 100px;
+    }
+
+    .pipeline-actions {
+      min-width: initial;
+    }
+  }
+
+  &.builds {
+    .ci-table {
+      tr {
+        height: 71px;
+      }
+    }
+  }
+}
+
+// Pipeline graph
+.pipeline-graph {
+  width: 100%;
+  background-color: $gray-light;
+  padding: $gl-padding;
+  white-space: nowrap;
+  transition: max-height 0.3s, padding 0.3s;
+  overflow: auto;
+
+  .stage-column-list,
+  .builds-container > ul {
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: $gl-text-color-secondary;
+  }
+
+  svg {
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+
+  .stage-column {
+    display: inline-block;
+    vertical-align: top;
+
+    &:not(:last-child) {
+      margin-right: 44px;
+    }
+
+    &.left-margin {
+      &:not(:first-child) {
+        margin-left: 44px;
+
+        .left-connector {
+          &::before {
+            content: '';
+            position: absolute;
+            top: 48%;
+            left: -48px;
+            border-top: 2px solid $border-color;
+            width: 48px;
+            height: 1px;
+          }
+        }
+      }
+    }
+
+    &.no-margin {
+      margin: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    &:last-child {
+      .build {
+        // Remove right connecting horizontal line from first build in last stage
+        &:first-child {
+          &::after {
+            border: none;
+          }
+        }
+        // Remove right curved connectors from all builds in last stage
+        &:not(:first-child) {
+          &::after {
+            border: none;
+          }
+        }
+        // Remove opposite curve
+        .curve {
+          &::before {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &:first-child {
+      .build {
+        // Remove left curved connectors from all builds in first stage
+        &:not(:first-child) {
+          &::before {
+            border: none;
+          }
+        }
+        // Remove opposite curve
+        .curve {
+          &::after {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // Curve first child connecting lines in opposite direction
+    .curve {
+      display: none;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 21px;
+        height: 25px;
+        position: absolute;
+        top: -31px;
+        border-top: 2px solid $border-color;
+      }
+
+      &::after {
+        left: -44px;
+        border-right: 2px solid $border-color;
+        border-radius: 0 20px;
+      }
+
+      &::before {
+        right: -44px;
+        border-left: 2px solid $border-color;
+        border-radius: 20px 0 0;
+      }
+    }
+  }
+
+  .stage-name {
+    margin: 0 0 15px 10px;
+    font-weight: bold;
+    width: 176px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .build {
+    position: relative;
+    width: 186px;
+    margin-bottom: 10px;
+    white-space: normal;
+    color: $gl-text-color-secondary;
+
+    // Action Icons in big pipeline-graph nodes
+    > .ci-action-icon-container .ci-action-icon-wrapper {
+      height: 30px;
+      width: 30px;
+      background: $white-light;
+      border: 1px solid $border-color;
+      border-radius: 100%;
+      display: block;
+
+      &:hover {
+        background-color: $stage-hover-bg;
+        border: 1px solid $stage-hover-bg;
+      }
+
+      svg {
+        fill: $border-color;
+        position: relative;
+        left: -1px;
+        top: -1px;
+      }
+
+      &:hover svg {
+        fill: $gl-text-color;
+      }
+    }
+
+    > .ci-action-icon-container {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+
+    .ci-status-icon svg {
+      height: 20px;
+      width: 20px;
+    }
+
+    .dropdown-menu-toggle {
+      background-color: transparent;
+      border: none;
+      padding: 0;
+      color: $gl-text-color-secondary;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        color: $gl-text-color;
+
+        .dropdown-counter-badge {
+          color: $gl-text-color;
+        }
+      }
+    }
+
+    > .build-content {
+      display: inline-block;
+      padding: 8px 10px 9px;
+      width: 100%;
+      border: 1px solid $border-color;
+      border-radius: 30px;
+      background-color: $white-light;
+
+      &:hover {
+        background-color: $stage-hover-bg;
+        border: 1px solid $stage-hover-border;
+        color: $gl-text-color;
+      }
+    }
+
+
+    .arrow {
+      &::before,
+      &::after {
+        content: '';
+        display: inline-block;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        top: 18px;
+      }
+
+      &::before {
+        left: -5px;
+        margin-top: -6px;
+        border-width: 7px 5px 7px 0;
+        border-right-color: $border-color;
+      }
+
+      &::after {
+        left: -4px;
+        margin-top: -9px;
+        border-width: 10px 7px 10px 0;
+        border-right-color: $white-light;
+      }
+    }
+
+    // Connect first build in each stage with right horizontal line
+    &:first-child {
+      &::after {
+        content: '';
+        position: absolute;
+        top: 48%;
+        right: -48px;
+        border-top: 2px solid $border-color;
+        width: 48px;
+        height: 1px;
+      }
+    }
+
+    // Connect each build (except for first) with curved lines
+    &:not(:first-child) {
+      &::after,
+      &::before {
+        content: '';
+        top: -49px;
+        position: absolute;
+        border-bottom: 2px solid $border-color;
+        width: 25px;
+        height: 69px;
+      }
+
+      // Right connecting curves
+      &::after {
+        right: -25px;
+        border-right: 2px solid $border-color;
+        border-radius: 0 0 20px;
+      }
+
+      // Left connecting curves
+      &::before {
+        left: -25px;
+        border-left: 2px solid $border-color;
+        border-radius: 0 0 0 20px;
+      }
+    }
+
+    // Connect second build to first build with smaller curved line
+    &:nth-child(2) {
+      &::after,
+      &::before {
+        height: 29px;
+        top: -9px;
+      }
+
+      .curve {
+        display: block;
+      }
+    }
+  }
+}
+
+// Triggers the dropdown in the big pipeline graph
+.dropdown-counter-badge {
+  color: $border-color;
+  font-weight: 100;
+  font-size: 15px;
+  position: absolute;
+  right: 13px;
+  top: 8px;
+}
+
+.ci-status-text {
+  max-width: 110px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  display: inline-block;
+  position: relative;
+  font-weight: 200;
+}
+
+// Dropdown button in mini pipeline graph
+.mini-pipeline-graph-dropdown-toggle {
+  border-radius: 100px;
+  background-color: $white-light;
+  border-width: 1px;
+  border-style: solid;
+  width: 22px;
+  height: 22px;
+  margin: 0;
+  padding: 0;
+  transition: all 0.2s linear;
+  position: relative;
+
+  > .fa.fa-caret-down {
+    position: absolute;
+    left: 20px;
+    top: 5px;
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
+    color: inherit;
+    font-size: 12px;
+    transition: visibility 0.1s, opacity 0.1s linear;
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    outline: none;
+    width: 35px;
+
+    .fa.fa-caret-down {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+
+  // Dropdown button animation in mini pipeline graph
+  &.ci-status-icon-success {
+    border-color: $gl-success;
+    color: $gl-success;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($gl-success, 0.1);
+      border-color: $gl-success;
+    }
+  }
+
+  &.ci-status-icon-failed {
+    border-color: $gl-danger;
+    color: $gl-danger;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($gl-danger, 0.1);
+      border-color: $gl-danger;
+    }
+  }
+
+  &.ci-status-icon-pending,
+  &.ci-status-icon-success_with_warnings {
+    border-color: $gl-warning;
+    color: $gl-warning;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($gl-warning, 0.1);
+      border-color: $gl-warning;
+    }
+  }
+
+  &.ci-status-icon-running {
+    border-color: $blue-normal;
+    color: $blue-normal;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($blue-normal, 0.1);
+      border-color: $blue-normal;
+    }
+  }
+
+  &.ci-status-icon-canceled,
+  &.ci-status-icon-disabled,
+  &.ci-status-icon-not-found,
+  &.ci-status-icon-manual {
+    border-color: $gl-text-color;
+    color: $gl-text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($gl-text-color, 0.1);
+      border-color: $gl-text-color;
+    }
+  }
+
+  &.ci-status-icon-created,
+  &.ci-status-icon-skipped {
+    border-color: $gray-darkest;
+    color: $gray-darkest;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba($gray-darkest, 0.1);
+      border-color: $gray-darkest;
+    }
+  }
+}
+
+// dropdown content for big and mini pipeline
+.big-pipeline-graph-dropdown-menu,
+.mini-pipeline-graph-dropdown-menu {
+  width: 195px;
+  max-width: 195px;
+
+  li {
+    padding: 2px 3px;
+  }
+
+  .scrollable-menu {
+    max-height: 245px;
+    overflow: auto;
+  }
+
+  // Loading icon
+  .builds-dropdown-loading {
+    margin: 0 auto;
+    width: 20px;
+  }
+
+  // Action icon on the right
+  a.ci-action-icon-wrapper {
+    color: $action-icon-color;
+    border: 1px solid $action-icon-color;
+    border-radius: 20px;
+    width: 22px;
+    height: 22px;
+    padding: 2px 0 0 5px;
+    cursor: pointer;
+    float: right;
+    margin: -26px 9px 0 0;
+    font-size: 12px;
+    background-color: $white-light;
+
+    &:hover,
+    &:focus {
+      background-color: $stage-hover-bg;
+      border: 1px solid transparent;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+      left: -6px;
+      position: relative;
+      top: -3px;
+      fill: $action-icon-color;
+    }
+
+    &:hover svg,
+    &:focus svg {
+      fill: $gl-text-color;
+    }
+  }
+
+  // link to the build
+  .mini-pipeline-graph-dropdown-item {
+    padding: 3px 7px 4px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.428571429;
+    white-space: nowrap;
+    margin: 0 5px;
+    border-radius: 3px;
+
+    // build name
+    .ci-build-text {
+      font-weight: 200;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 90px;
+      color: $gl-text-color-secondary;
+      margin-left: 2px;
+      display: inline-block;
+      top: 1px;
+      vertical-align: text-bottom;
+      position: relative;
+    }
+
+    // status icon on the left
+    .ci-status-icon {
+      top: 3px;
+      position: relative;
+
+      > svg {
+        overflow: visible;
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    &:hover,
+    &:focus {
+      outline: none;
+      text-decoration: none;
+      color: $gl-text-color;
+      background-color: $stage-hover-bg;
+    }
+  }
+}
+
+// Dropdown in the big pipeline graph
+.big-pipeline-graph-dropdown-menu {
+  width: 195px;
+  min-width: 195px;
+  left: auto;
+  right: -195px;
+  top: -4px;
+  box-shadow: 0 1px 5px $black-transparent;
+
+  .mini-pipeline-graph-dropdown-item {
+    .ci-status-icon {
+      top: -1px;
+    }
+  }
+}
+
+/**
+ * Top arrow in the dropdown in the mini pipeline graph
+ */
+.mini-pipeline-graph-dropdown-menu {
+  .arrow-up {
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-color: transparent;
+      border-style: solid;
+      top: -6px;
+      left: 2px;
+      border-width: 0 5px 6px;
+    }
+
+    &::before {
+      border-width: 0 5px 5px;
+      border-bottom-color: $border-color;
+    }
+
+    &::after {
+      margin-top: 1px;
+      border-bottom-color: $white-light;
+    }
+  }
+}
+
+/**
+ * Terminal
+ */
+.terminal-icon {
+  margin-left: 3px;
+}
+
+.terminal-container {
+  .content-block {
+    border-bottom: none;
+  }
+
+  #terminal {
+    margin-top: 10px;
+    min-height: 450px;
+    box-sizing: border-box;
+
+    > div {
+      min-height: 450px;
+    }
+  }
+}

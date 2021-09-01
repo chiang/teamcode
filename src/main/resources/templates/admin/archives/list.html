@@ -1,0 +1,39 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-admin">
+<div layout:fragment="content">
+    <div class="projects-list-holder">
+        <ul th:if="${!archivedProjects.empty}" class="projects-list content-list">
+            <li th:each="project : ${projects}" class="project-row" th:classappend="${project.description != '' ? '' : 'no-description'}">
+                <div class="controls">
+                    <!-- span class="badge">0 Bytes</span -->
+                    <a id="edit_project_7" class="btn" th:href="@{/projects/{path}?edit(path=${project.path})}" th:text="#{btn.edit}">Edit</a>
+                </div>
+                <div class="title">
+                    <a th:href="@{/projects/{path}(path=${project.path})}">
+                        <div class="dash-project-avatar">
+                            <div class="avatar-container s40">
+                                <div class="avatar project-avatar s40 identicon" th:style="${project.identiconStyle}" th:text="${project.identiconChar}">P</div>
+                            </div>
+                        </div>
+                        <span class="project-full-name">
+                            <!-- span class="namespace-name">bigdata/</span --><span class="project-name filter-title" th:text="${project.name}">Project Path</span>
+                        </span>
+                    </a>
+                </div>
+                <div th:if="${project.description != ''}" class="description">
+                    <p dir="auto" th:text="${project.description}"></p>
+                </div>
+            </li>
+        </ul>
+        <div th:if="${archivedProjects.empty}" class="empty-state-container">
+          <div class="empty-state">
+            <h3>아카이브된 프로젝트가 없습니다.</h3>
+            <div class="text-content">잘못 만든 프로젝트를 삭제하거나 혹은 더 이상 사용하지 않고 나중에도 필요 없는 프로젝트는 아카이브 할 수 있습니다. 프로젝트 목록으로 이동해서
+            아카이브할 수 있습니다.</div>
+          </div>
+        </div>
+    </div>
+    <form id="form-delete-project" method="POST">
+        <input type="hidden" name="_method" value="delete"/>
+    </form>
+</div>
+</html>

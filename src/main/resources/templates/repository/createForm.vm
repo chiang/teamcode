@@ -1,0 +1,60 @@
+<html>
+<head>
+	#parse ("./include/head-styles.vm")
+</head>
+<body>
+#parse ("./include/header.vm")
+<div class="page-with-sidebar">
+	#parse ("./include/project-header.vm")
+	<div class="content-wrapper page-with-layout-nav">
+		#parse ("./include/issue-sub-nav.vm")
+		<div class="content" id="content-body">
+			<div class="container-fluid container-limited">
+				<div class="row prepend-top-default">
+					<div class="col-lg-3 profile-settings-sidebar">
+						<h4 class="prepend-top-0">
+						New project
+						</h4>
+						<p>
+						Create or Import your project from popular Git services
+						</p>
+					</div>
+					<div class="col-lg-9">
+						<form class="new_project" id="new_project" action="#springUrl("/repositories")" accept-charset="UTF-8" method="post">
+							<input name="utf8" type="hidden" value="✓">
+							<input name="create" type="hidden" value="✓">
+							<input type="hidden" name="authenticity_token" value="aqgKhxBATFTR1AEQ80j52XHxGZHujEdixXHX17rSdCDxIB0vV0itz/wKtV8I9nYTI/VrBBMUD8M2HmyPp1lPEA==">
+							<fieldset class="append-bottom-0">
+								<div class="form-group col-xs-12 col-sm-6">
+									<label class="label-light" for="project_namespace_id"><span>Project path</span></label>
+									<div class="form-group">
+										<div class="input-group">
+											<div class="input-group-addon static-namespace">https://gitlab.com/baramboy/</div>
+											<input value="1151681" type="hidden" name="project[namespace_id]" id="project_namespace_id">
+										</div>
+									</div>
+								</div>
+								<div class="form-group col-xs-12 col-sm-6 project-path">
+									<label class="label-light" for="project_namespace_id"><span>Project name</span></label>
+									<input placeholder="my-awesome-project" class="form-control" tabindex="2" autofocus="autofocus" required="required" type="text" name="name" id="project_path">
+								</div>
+							</fieldset>
+							<div class="help-block">
+								Want to house several dependent projects under the same namespace?
+								<a href="/groups/new">Create a group</a>
+							</div>
+							<div class="form-group">
+								<label class="label-light" for="project_description">Project description <span class="light">(optional)</span></label>
+								<textarea placeholder="Description format" class="form-control" rows="3" maxlength="250" name="description" id="project_description"></textarea>
+							</div>
+							<input type="submit" name="commit" value="Create project" class="btn btn-create project-submit" tabindex="4">
+							<a class="btn btn-cancel" href="/dashboard/projects">Cancel</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div><!-- .container-fluid -->
+</body>
+</html>

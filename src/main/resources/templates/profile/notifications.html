@@ -1,0 +1,36 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-profile">
+<head>
+	<title>Notifications &middot; User Settings</title>
+</head>
+<div layout:fragment="content">
+	<div class="row">
+		<div class="col-lg-3 profile-settings-sidebar">
+			<h4 th:text="#{profile.notification.header}">Notifications</h4>
+			<p th:text="#{profile.notification.help}">You can specify notification email.</p>
+			<!-- p>By default, all projects and groups will use the global notifications setting.</p-->
+		</div>
+		<div class="col-lg-9">
+			<h5 th:text="#{profile.notification.global.header}">Global notification settings</h5>
+			<form class="update-notifications prepend-top-default" th:action="@{/profile/notifications}" accept-charset="UTF-8" method="post">
+				<input type="hidden" name="_method" value="put"/>
+				<div class="form-group">
+					<label class="label-light" for="user_notification_email" th:text="#{profile.notification.global.email.header}">Notification email</label>
+					<select class="select2" name="notificationEmail" id="user_notification_email" tabindex="-1" title="Notification email">
+						<option th:each="email : ${notificationEmails.userEmails}" th:value="${email}" th:text="${email}" th:selected="${email == notificationEmails.currentNotificationEmail}" ></option>
+					</select>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+<script layout:fragment="content-script">
+	<!--
+	$(function(){
+		$('.select2').select2().on("change", function(e) {
+			var _this = $(this);
+			_this.closest('form').submit();
+		});
+	});
+	//-->
+</script>
+</html>

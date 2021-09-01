@@ -1,0 +1,108 @@
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout/layout-profile">
+<head>
+	<title>Preferences &middot; User Settings</title>
+</head>
+
+<form layout:fragment="content" class="row mt js-preferences-form" id="edit_user_957317" th:action="@{/profile/preferences}" accept-charset="UTF-8" data-remote="true" method="post">
+	<input type="hidden" name="_method" value="put"/>
+	<div class="col-lg-3 profile-settings-sidebar">
+		<h4 class="prepend-top-0">Application theme</h4>
+		<p>This setting allows you to customize the appearance of the site, e.g. the sidebar.</p>
+	</div>
+	<div class="col-lg-9 application-theme">
+		<label th:each="theme : ${themes}">
+			<div th:class="'preview ' + ${theme.cssClass}"></div>
+			<input type="radio" th:value="${theme.name()}" name="theme" th:checked="(${session.currentUser.theme.name()} == ${theme.name()})"/>
+			<span th:text="${theme.title}" th:remove="tag">Theme name</span>
+		</label>
+	</div>
+	<div class="col-sm-12">
+		<hr/>
+	</div>
+	<div class="col-lg-3 profile-settings-sidebar">
+		<h4 class="prepend-top-0">Syntax highlighting theme</h4>
+		<p>This setting allow you to customize the appearance of the syntax.</p>
+	</div>
+	<div class="col-lg-9 syntax-theme">
+		<label>
+			<div class="preview">
+				<img src="https://gitlab.com/assets/white-scheme-preview-ce2e9957bbb5c9b6bdbb554984e1af877c89615db7e866aa9022430a6aba618f.png" alt="White scheme preview"/>
+			</div>
+			<input type="radio" value="1" checked="checked" name="user[color_scheme_id]" id="user_color_scheme_id_1"/>
+			White
+		</label>
+		<label>
+			<div class="preview">
+				<img src="https://gitlab.com/assets/dark-scheme-preview-cbefadee862bccdd68fbc5ea1e520150718425f5e0ae88c59ff1dfedc100d416.png" alt="Dark scheme preview"/>
+			</div>
+			<input type="radio" value="2" name="user[color_scheme_id]" id="user_color_scheme_id_2"/>
+			Dark
+		</label>
+		<label>
+			<div class="preview">
+				<img src="https://gitlab.com/assets/solarized-light-scheme-preview-c65e32b38abddf809082e2820e70eccc8fa82d4c4e17455c89f1843cd1b809ae.png" alt="Solarized light scheme preview"/>
+			</div>
+			<input type="radio" value="3" name="user[color_scheme_id]" id="user_color_scheme_id_3"/>
+			Solarized Light
+		</label>
+		<label>
+			<div class="preview">
+				<img src="https://gitlab.com/assets/solarized-dark-scheme-preview-8e84891217b1278387d0c6f4f5353af156d8697ce0073a0eccd1b37f404535ee.png" alt="Solarized dark scheme preview"/>
+			</div>
+			<input type="radio" value="4" name="user[color_scheme_id]" id="user_color_scheme_id_4"/>
+			Solarized Dark
+		</label>
+		<label>
+			<div class="preview">
+				<img src="https://gitlab.com/assets/monokai-scheme-preview-fce3c93c726674094fa07ceaa606cad67ba662d927efdfd807a693cc8841d297.png" alt="Monokai scheme preview"/>
+			</div>
+			<input type="radio" value="5" name="user[color_scheme_id]" id="user_color_scheme_id_5"/>
+			Monokai
+		</label>
+	</div>
+	<div class="col-sm-12">
+			<hr/>
+	</div>
+	<div class="col-lg-3 profile-settings-sidebar">
+		<h4 class="prepend-top-0">Behavior</h4>
+		<p>This setting allows you to customize the behavior of the system layout and default views.</p>
+	</div>
+	<div class="col-lg-9">
+		<div class="form-group">
+			<label class="label-light" for="user_layout">Layout width</label>
+			<select class="form-control" name="layout" id="user_layout">
+				<option value="FIXED" th:selected="(${session.currentUser.layout.name() == 'FIXED'})">Fixed</option>
+				<option value="FLUID" th:selected="(${session.currentUser.layout.name() == 'FLUID'})">Fluid</option>
+			</select>
+			<div class="help-block">Choose between fixed (max. 1200px) and fluid (100%) application layout.</div>
+		</div>
+		<div class="form-group">
+			<label class="label-light" for="user_dashboard">Default Dashboard
+				<a target="_blank" href="/help/profile/preferences#default-dashboard">(?)</a>
+			</label>
+			<select class="form-control" name="user[dashboard]" id="user_dashboard">
+				<option selected="selected" value="projects">Your Projects (default)</option>
+				<option value="stars">Starred Projects</option>
+				<option value="project_activity">Your Projects' Activity</option>
+				<option value="starred_project_activity">Starred Projects' Activity</option>
+				<option value="groups">Your Groups</option>
+				<option value="todos">Your Todos</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label class="label-light" for="user_project_view">Project view
+				<a target="_blank" href="/help/profile/preferences#default-project-view">(?)</a>
+			</label>
+			<select class="form-control" name="user[project_view]" id="user_project_view">
+				<option selected="selected" value="readme">Readme (default)</option>
+				<option value="activity">Activity view</option>
+				<option value="changedFiles">Files view</option>
+			</select>
+			<div class="help-block">Choose what content you want to see on a project's home page.</div>
+		</div>
+		<div class="form-group">
+			<input type="submit" name="commit" value="Save changes" class="btn btn-save"/>
+		</div>
+	</div>
+</form>
+</html>

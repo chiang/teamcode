@@ -1,0 +1,184 @@
+.tree-holder {
+  > .nav-block {
+    margin: 11px 0;
+  }
+
+  .file-finder {
+    width: 50%;
+
+    .file-finder-input {
+      width: 95%;
+      display: inline-block;
+    }
+  }
+
+  .add-to-tree {
+    vertical-align: top;
+    padding: 6px 10px;
+  }
+
+  .tree-table {
+    margin-bottom: 0;
+
+    thead {
+      border-bottom: 2px solid #DFE1E6;
+    }
+
+    tr {
+      td,
+      th {
+        line-height: 21px;
+      }
+
+      .last-commit {
+        @include str-truncated(506px);
+
+        .fa-angle-right {
+          margin-left: 5px;
+        }
+
+        @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+          @include str-truncated(450px);
+        }
+
+      }
+
+      .commit-history-link-spacer {
+        margin: 0 10px;
+        color: $white-normal;
+      }
+
+      &:hover {
+        td {
+          background-color: $row-hover;
+          //border-top: 1px solid $row-hover-border;
+          //border-bottom: 1px solid $row-hover-border;
+          cursor: pointer;
+        }
+      }
+
+      &.selected {
+        td {
+          background: $white-normal;
+          border-top: 1px solid $border-gray-dark;
+          border-bottom: 1px solid $border-gray-dark;
+        }
+      }
+    }
+  }
+
+  .tree-item {
+    .link-container {
+      padding: 0;
+
+      a {
+        padding: 10px $gl-padding;
+        display: block;
+      }
+    }
+
+    .tree-item-file-name {
+      max-width: 320px;
+      vertical-align: middle;
+
+      i,
+      a {
+        color: $gl-text-color;
+      }
+
+      img {
+        position: relative;
+        top: -1px;
+      }
+    }
+
+    .tree_commit {
+      max-width: 320px;
+
+      .str-truncated {
+        max-width: 100%;
+      }
+    }
+
+    .tree_time_ago {
+      min-width: 135px;
+    }
+  }
+
+  .tree_author {
+    padding-right: 8px;
+
+    .commit-author-name {
+      color: $gl-text-color;
+    }
+  }
+
+  .tree-time-ago {
+    min-width: 135px;
+    color: $gl-text-color-secondary;
+  }
+
+  .tree-commit {
+    max-width: 320px;
+    color: $gl-text-color-secondary;
+
+    .tree-commit-link {
+      color: $gl-text-color-secondary;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.tree-ref-holder {
+  float: left;
+  margin-right: 15px;
+}
+
+.blob-commit-info {
+  list-style: none;
+  //background: $gray-light;
+  background: #fff;
+  padding: 6px 16px;
+  border: 1px solid $border-color;
+  border-bottom: none;
+  margin: 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+
+  .table-list-cell {
+    border-bottom: none;
+  }
+
+  .commit-actions {
+    width: 200px;
+  }
+}
+
+#modal-remove-blob > .modal-dialog { width: 850px; }
+
+.blob-upload-dropzone-previews {
+  text-align: center;
+  border: 2px;
+  border-style: dashed;
+  border-color: $border-color;
+  min-height: 200px;
+}
+
+.upload-link {
+  font-weight: normal;
+  color: $md-link-color;
+}
+
+.tree-controls {
+  float: right;
+  margin-top: 11px;
+  position: relative;
+  z-index: 2;
+
+  .project-action-button {
+    margin-left: $btn-side-margin;
+  }
+}
