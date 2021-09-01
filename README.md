@@ -29,6 +29,10 @@ Gitlab 스타일과 Container 기반 배포 기능와 같은 고도화는 약 3�
 5. Winrm (w/ Python)
 6. Flyway
 
+## 관련 Repositories
+
+1. https://github.com/chiang/teamcode-runner => CI 빌드를 처리하는 도구입니다. Gitlab CI Runner 와 같습니다. 다만 Golang -> Java 입니다.
+
 
 ## 주의 사항
 1. Teamcode 는 출원된 상표입니다. 상업적 목적으로 사용이 불가능합니다.
