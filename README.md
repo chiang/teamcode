@@ -1,3 +1,5 @@
+**이 저장소는 개발이 멈추고 단종된 소프트웨어를 공개, 공유하는 것으로서 Documentation 외로는 더 이상 업데이트하지 않습니다.**
+
 ## 팀코드 소개
 
 팀코드는 Gitlab 을 보면서 **Gitlab 같은 제품이 Subversion 을 지원하면 좋겠다라는 생각에서 출발한 제품**입니다. 2015년도에 첫 제품을 출시했으며 2017년도에 **Teamcode** 상표 출원과 함께 기능을 고도화했습니다. Gitlab 을 벤치마킹한 만큼 Gitlab 의 소스 코드 (Ruby) 를 분석하고 이를 자바 기반으로 제작하는 과정을 거쳤습니다. UI 도 많이 Concept 을 가지고 왔습니다.
@@ -31,10 +33,10 @@ Gitlab 스타일과 Container 기반 배포 기능와 같은 고도화는 약 3�
 
 ## 관련 Repositories
 
-1. https://github.com/chiang/teamcode-runner => CI 빌드를 처리하는 도구입니다. Gitlab CI Runner 와 같습니다. 다만 Golang -> Java 입니다.
+1. https://github.com/chiang/teamcode-runner => CI 빌드를 처리하는 도구입니다. Gitlab CI Runner 와 같습니다. 다만 `Golang` -> `Java` 입니다.
 
 
 ## 주의 사항
-1. Teamcode 는 출원된 상표입니다. 상업적 목적으로 사용이 불가능합니다.
-2. 제품 소스 코드를 가지고 활용해서 제품을 개발하실 수 있으나 본 Repository 를 그대로 빌드에서 판매, 유통할 수 없습니다.
+1. Teamcode 는 출원된 상표입니다. 상업적 목적으로 상표 사용이 불가능합니다.
+2. 제품 소스 코드를 가지고 활용해서 제품을 개발하실 수 있으나 본 Repository 를 그대로 빌드해서 판매, 유통할 수 없습니다.
 
